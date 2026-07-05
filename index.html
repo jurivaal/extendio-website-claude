@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extendio — Haar-Accessoires aus Alicante</title>
+<meta name="description" content="Extendio: Entwirrbürsten mit 29 % biobasiertem Anteil (ASTM D6866), Bambus-Wattestäbchen, Haarklammern und Salon-Zubehör. Erhältlich auf Amazon.de, Amazon.es und Amazon.co.uk.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e000e;            /* exakte Logo-Hintergrundfarbe */
+    --ink-soft:#1c0f20;
+    --paper:#f7f2ec;          /* off-white Produktflächen */
+    --card:#ffffff;
+    --magenta:#c73bdd;
+    --magenta-deep:#8a2be2;
+    --copper:#c98a5e;
+    --copper-light:#e0b394;
+    --text-dark:#241826;
+    --text-mute:#6d5f70;
+    --text-on-dark:#f3e9f4;
+    --grad:linear-gradient(100deg,#c73bdd 0%,#8a2be2 100%);
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--paper);color:var(--text-dark);line-height:1.6}
+  h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ---------- Header ---------- */
+  header{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid rgba(201,138,94,.25)}
+  .header-inner{max-width:1180px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:28px}
+  .logo img{height:56px;width:auto;mix-blend-mode:screen} /* blendet den dunklen Logo-Hintergrund in den Header ein */
+  nav{display:flex;gap:26px;margin-left:auto}
+  nav a{color:var(--text-on-dark);text-decoration:none;font-size:.95rem;font-weight:400;letter-spacing:.04em;opacity:.85;transition:.2s}
+  nav a:hover{opacity:1;color:var(--copper-light)}
+  .lang-switch{display:flex;gap:4px;background:rgba(255,255,255,.07);border-radius:99px;padding:4px}
+  .lang-switch button{border:0;background:transparent;color:var(--text-on-dark);font-family:inherit;font-size:.82rem;font-weight:500;padding:5px 12px;border-radius:99px;cursor:pointer;letter-spacing:.05em;opacity:.7;transition:.2s}
+  .lang-switch button.active{background:var(--grad);opacity:1}
+  .lang-switch button:hover{opacity:1}
+
+  /* ---------- Hero ---------- */
+  .hero{background:radial-gradient(1100px 600px at 75% -10%,#2a1030 0%,var(--ink) 60%);color:var(--text-on-dark)}
+  .hero-inner{max-width:1180px;margin:0 auto;padding:72px 24px 88px;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(2.1rem,4.2vw,3.4rem);font-weight:600;line-height:1.15;margin-bottom:20px}
+  .hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{font-weight:300;font-size:1.08rem;max-width:52ch;opacity:.88;margin-bottom:32px}
+  .hero-img{background:var(--paper);border-radius:calc(var(--radius) + 8px);padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(201,138,94,.35)}
+  .hero-img img{border-radius:10px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.04em;padding:14px 30px;border-radius:99px;transition:.25s;box-shadow:0 8px 26px rgba(199,59,221,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(199,59,221,.5)}
+  .btn svg{flex:none}
+  .btn-ghost{display:inline-flex;align-items:center;margin-left:14px;color:var(--copper-light);text-decoration:none;font-size:.98rem;padding:14px 10px;border-bottom:1px solid transparent;transition:.2s}
+  .btn-ghost:hover{border-color:var(--copper-light)}
+  .hero-note{font-size:.82rem;opacity:.55;margin-top:18px;font-weight:300}
+  .trust-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .trust-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,138,94,.45);color:var(--copper-light);border-radius:99px;padding:7px 16px;font-size:.8rem;letter-spacing:.03em;font-weight:400}
+  .badge-design{display:inline-flex;align-items:center;gap:6px;color:var(--copper);font-size:.8rem;font-weight:500;letter-spacing:.02em;margin-top:10px}
+
+  /* ---------- Sections ---------- */
+  section{padding:80px 24px}
+  .wrap{max-width:1180px;margin:0 auto}
+  .kicker{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:10px}
+  h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:600;margin-bottom:14px}
+  .section-lead{max-width:62ch;color:var(--text-mute);margin-bottom:48px}
+
+  /* ---------- Product grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:26px}
+  .card{background:var(--card);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 24px rgba(36,24,38,.07);transition:.25s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(36,24,38,.13)}
+  .card-img{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;padding:20px;border-bottom:1px solid #f0e8e0}
+  .card-img img{max-height:100%;object-fit:contain}
+  .card-body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1}
+  .card h3{font-size:1.28rem;font-weight:600;margin-bottom:8px}
+  .card p{font-size:.93rem;color:var(--text-mute);flex:1}
+  .price-row{display:flex;align-items:baseline;gap:10px;margin:16px 0 14px;min-height:1.4em}
+  .price{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--copper)}
+  .price-old{font-size:.9rem;color:var(--text-mute);text-decoration:line-through}
+  .price-note{font-size:.85rem;color:var(--text-mute)}
+  .swatches{display:flex;gap:8px;margin:14px 0 2px}
+  .swatch{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d8ccc0;transition:.2s;display:block}
+  .swatch:hover{transform:scale(1.15);box-shadow:0 0 0 2px var(--magenta)}
+  .card .btn{justify-content:center;font-size:.92rem;padding:12px 20px;margin-top:6px}
+  .grid-note{font-size:.8rem;color:var(--text-mute);margin-top:26px}
+
+  /* ---------- Facts ---------- */
+  .facts{background:var(--card)}
+  .facts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
+  .fact{background:var(--paper);border-radius:var(--radius);padding:30px 28px;border-top:3px solid var(--copper)}
+  .fact .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--copper);margin-bottom:8px}
+  .fact h3{font-size:1.1rem;margin-bottom:8px}
+  .fact p{font-size:.92rem;color:var(--text-mute)}
+
+  /* ---------- B2B ---------- */
+  .b2b{background:radial-gradient(900px 500px at 20% 0%,#2a1030 0%,var(--ink) 65%);color:var(--text-on-dark)}
+  .b2b-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .b2b-img{background:var(--paper);border-radius:calc(var(--radius) + 6px);padding:22px;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(201,138,94,.35)}
+  .b2b-img img{border-radius:10px}
+  .b2b .kicker{color:var(--copper-light)}
+  .b2b p{opacity:.88;font-weight:300;margin-bottom:26px;max-width:56ch}
+  .b2b .price-row{margin:0 0 22px}
+  .b2b .price{color:var(--copper-light)}
+  .b2b .price-old{color:rgba(243,233,244,.55)}
+
+  /* ---------- Wholesale / B2B-Modul ---------- */
+  .wholesale{margin-top:64px;border:1px solid rgba(201,138,94,.4);border-radius:var(--radius);padding:36px 34px;display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;background:rgba(255,255,255,.04)}
+  .wholesale h3{font-size:1.5rem;margin-bottom:10px}
+  .wholesale p{font-size:.98rem;opacity:.85;font-weight:300;margin:0}
+  .wholesale-ctas{display:flex;flex-direction:column;gap:12px}
+  .wholesale-ctas .btn{justify-content:center}
+  .btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#0b3d1f;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.03em;padding:14px 30px;border-radius:99px;transition:.25s;box-shadow:0 8px 26px rgba(37,211,102,.25)}
+  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.4)}
+  .wholesale-note{font-size:.85rem;opacity:.6;text-align:center;margin-top:2px}
+  @media(max-width:900px){.wholesale{grid-template-columns:1fr;padding:28px 24px}}
+
+  /* ---------- About ---------- */
+  .about p{max-width:70ch;color:var(--text-mute);margin-bottom:14px}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:var(--text-on-dark);padding:60px 24px 40px}
+  .footer-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:40px}
+  footer .logo img{height:64px;margin-bottom:16px;mix-blend-mode:screen}
+  footer h4{font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-light);margin-bottom:14px;font-weight:600}
+  footer p, footer a{font-size:.92rem;font-weight:300;opacity:.85;text-decoration:none;line-height:1.8}
+  footer a:hover{color:var(--copper-light);opacity:1}
+  .footer-bottom{max-width:1180px;margin:44px auto 0;padding-top:22px;border-top:1px solid rgba(243,233,244,.12);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:.8rem;opacity:.6;font-weight:300}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    .hero-inner,.b2b-inner{grid-template-columns:1fr;gap:40px;padding-top:48px}
+    nav{display:none}
+    .b2b-inner .b2b-img{order:-1}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#top"><img src="assets/logo.png" alt="Extendio"></a>
+    <nav>
+      <a href="#produkte" data-i18n="nav_products"></a>
+      <a href="#salons" data-i18n="nav_salons"></a>
+      <a href="#ueber-uns" data-i18n="nav_about"></a>
+      <a href="#kontakt" data-i18n="nav_contact"></a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Sprache / Idioma / Language">
+      <button data-lang="de">DE</button>
+      <button data-lang="es">ES</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <p class="kicker" data-i18n="hero_kicker"></p>
+      <h1 data-i18n-html="hero_h1"></h1>
+      <p data-i18n="hero_sub"></p>
+      <a class="btn" data-buy="miniNegro" href="#" target="_blank" rel="noopener">
+        <span data-i18n="cta_view"></span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="btn-ghost" href="#produkte" data-i18n="cta_all"></a>
+      <p class="hero-note" data-i18n="hero_note"></p>
+      <div class="trust-row">
+        <span class="trust-pill" data-i18n="trust_tm"></span>
+        <span class="trust-pill" data-i18n="trust_design"></span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="assets/hero_brush.jpg" alt="Extendio Haarbürste" data-i18n-alt="alt_hero">
+    </div>
+  </div>
+</div>
+
+<section id="produkte">
+  <div class="wrap">
+    <p class="kicker" data-i18n="products_kicker"></p>
+    <h2 data-i18n="products_h2"></h2>
+    <p class="section-lead" data-i18n="products_lead"></p>
+
+    <div class="grid">
+      <!-- Cepillo Mini -->
+      <div class="card">
+        <div class="card-img"><img id="mini-img" src="assets/mini_lila.jpg" alt="" data-i18n-alt="alt_mini" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="p_mini_name"></h3>
+          <p data-i18n="p_mini_desc"></p>
+          <span class="badge-design" data-i18n="badge_design"></span>
+          <div class="swatches">
+            <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" data-img="assets/mini_negro.jpg" href="#" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
+            <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" data-img="assets/mini_azul.jpg" href="#" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
+            <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" data-img="assets/mini_beige.jpg" href="#" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
+            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" data-img="assets/mini_lila.jpg" href="#" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
+          </div>
+          <div class="price-row"><span class="price-note" data-i18n="p_mini_price"></span></div>
+          <a class="btn" data-buy="miniNegro" href="#" target="_blank" rel="noopener"><span data-i18n="cta_buy"></span></a>
+        </div>
+      </div>
+
+      <!-- Cepillo L -->
+      <div class="card">
+        <div class="card-img"><img src="assets/cepillo_l.jpg" alt="" data-i18n-alt="alt_l" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="p_l_name"></h3>
+          <p data-i18n="p_l_desc"></p>
+          <span class="badge-design" data-i18n="badge_design"></span>
+          <div class="price-row" data-price="l"></div>
+          <a class="btn" data-buy="cepilloL" href="#" target="_blank" rel="noopener"><span data-i18n="cta_buy"></span></a>
+        </div>
+      </div>
+
+      <!-- Wattestäbchen -->
+      <div class="card">
+        <div class="card-img"><img src="assets/wattestaebchen.jpg" alt="" data-i18n-alt="alt_swabs" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="p_swab_name"></h3>
+          <p data-i18n="p_swab_desc"></p>
+          <div class="price-row" data-price="swabs"></div>
+          <a class="btn" data-buy="swabs" href="#" target="_blank" rel="noopener"><span data-i18n="cta_buy"></span></a>
+        </div>
+      </div>
+
+      <!-- Haarklammern Set 1 -->
+      <div class="card">
+        <div class="card-img"><img src="assets/haarklammern_set1.jpg" alt="" data-i18n-alt="alt_clips1" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="p_clips1_name"></h3>
+          <p data-i18n="p_clips1_desc"></p>
+          <div class="price-row" data-price="clips"></div>
+          <a class="btn" data-buy="clipsSet1" href="#" target="_blank" rel="noopener"><span data-i18n="cta_buy"></span></a>
+        </div>
+      </div>
+
+      <!-- Haarklammern Set 2 -->
+      <div class="card">
+        <div class="card-img"><img src="assets/haarklammern_set2.jpg" alt="" data-i18n-alt="alt_clips2" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="p_clips2_name"></h3>
+          <p data-i18n="p_clips2_desc"></p>
+          <div class="price-row" data-price="clips"></div>
+          <a class="btn" data-buy="clipsSet2" href="#" target="_blank" rel="noopener"><span data-i18n="cta_buy"></span></a>
+        </div>
+      </div>
+    </div>
+    <p class="grid-note" data-i18n="price_disclaimer"></p>
+  </div>
+</section>
+
+<section class="facts">
+  <div class="wrap">
+    <p class="kicker" data-i18n="facts_kicker"></p>
+    <h2 data-i18n="facts_h2"></h2>
+    <p class="section-lead" data-i18n="facts_lead"></p>
+    <div class="facts-grid">
+      <div class="fact">
+        <div class="num">29&nbsp;%</div>
+        <h3 data-i18n="fact1_h"></h3>
+        <p data-i18n="fact1_p"></p>
+      </div>
+      <div class="fact">
+        <div class="num serif">100&nbsp;%</div>
+        <h3 data-i18n="fact2_h"></h3>
+        <p data-i18n="fact2_p"></p>
+      </div>
+      <div class="fact">
+        <div class="num serif">EU</div>
+        <h3 data-i18n="fact3_h"></h3>
+        <p data-i18n="fact3_p"></p>
+      </div>
+      <div class="fact">
+        <div class="num serif">®</div>
+        <h3 data-i18n="fact4_h"></h3>
+        <p data-i18n="fact4_p"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="b2b" id="salons">
+  <div class="wrap b2b-inner">
+    <div class="b2b-img">
+      <img src="assets/trolley.jpg" alt="" data-i18n-alt="alt_trolley" loading="lazy">
+    </div>
+    <div>
+      <p class="kicker" data-i18n="b2b_kicker"></p>
+      <h2 data-i18n="b2b_h2"></h2>
+      <p data-i18n="b2b_desc"></p>
+      <div class="price-row" data-price="trolley"></div>
+      <a class="btn" data-buy="trolley" href="#" target="_blank" rel="noopener">
+        <span data-i18n="cta_buy"></span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="wholesale" id="grosshandel">
+      <div>
+        <h3 data-i18n="ws_h"></h3>
+        <p data-i18n="ws_p"></p>
+      </div>
+      <div class="wholesale-ctas">
+        <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.9 2.6 1 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+          <span data-i18n="ws_wa"></span>
+        </a>
+        <a class="btn" data-mailto href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span data-i18n="ws_mail"></span>
+        </a>
+        <span class="wholesale-note">+34 634 22 38 98 · extendio.es@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="ueber-uns">
+  <div class="wrap">
+    <p class="kicker" data-i18n="about_kicker"></p>
+    <h2 data-i18n="about_h2"></h2>
+    <p data-i18n="about_p1"></p>
+    <p data-i18n="about_p2"></p>
+  </div>
+</section>
+
+<footer id="kontakt">
+  <div class="footer-grid">
+    <div>
+      <span class="logo"><img src="assets/logo.png" alt="Extendio"></span>
+      <p data-i18n="footer_tagline"></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_contact_h"></h4>
+      <p>Extendio · Juri Vaal<br>
+      Avenida Maestro José Garberi Serrano 11<br>
+      Bloque 5, portal 3, 1B<br>
+      03540 Alicante, España</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_reach_h"></h4>
+      <p>
+        <a href="tel:+34634223898">+34 634 22 38 98</a><br>
+        <a data-wa href="#" target="_blank" rel="noopener">WhatsApp Business</a><br>
+        <a href="mailto:extendio.es@gmail.com">extendio.es@gmail.com</a><br>
+        NIF-IVA: ESY6296347L
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_legal_h"></h4>
+      <p>
+        <a href="legal.html" data-i18n="legal_notice"></a><br>
+        <a href="privacy.html" data-i18n="privacy_label"></a><br>
+        <a href="cookies.html">Cookies</a><br>
+        <a href="#" data-cookie-settings data-i18n="cookie_settings"></a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_lang_h"></h4>
+      <div class="lang-switch" style="display:inline-flex">
+        <button data-lang="de">DE</button>
+        <button data-lang="es">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <p style="margin-top:14px" data-i18n="footer_marketplaces"></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Extendio · Alicante</span>
+    <span data-i18n="footer_ip"></span>
+    <span data-i18n="footer_amazon_note"></span>
+  </div>
+</footer>
+
+<script>
+/* ---------- Amazon-Routing: Sprache → Marktplatz ---------- */
+const MARKETPLACE = { de:'https://www.amazon.de/dp/', es:'https://www.amazon.es/dp/', en:'https://www.amazon.co.uk/dp/' };
+/* UK: gleiche ASINs wie DE/ES (ASINs sind i. d. R. marktplatzübergreifend identisch) — nach Launch auf amazon.co.uk stichprobenartig verifizieren. */
+const ASIN = {
+  /* Parent-ASIN B0GD2N9M5F ist als /dp/-Link nicht zuverlässig aufrufbar → alle Mini-Hauptlinks
+     zeigen auf die Schwarz-Variante (dort ist die Amazon-Farbauswahl sichtbar).
+     Mini Lila: eigene ASIN unbekannt → verlinkt ebenfalls auf die Schwarz-Variante. */
+  miniNegro:'B0GD2MV24F',
+  miniAzul:'B0GD2JL8JK',
+  miniBeige:'B0GD2RBZ87',
+  cepilloL:'B0GD2MXXDT',
+  swabs:'B0FZM98G9B',
+  clipsSet1:'B0GM6Y1D2G', /* Annahme: 02.01-Farbset (Koralle/Lila) = HC-4-set — vor Launch verifizieren */
+  clipsSet2:'B0GQ46QVKM', /* Annahme: 02.02-Farbset (Mint/Beige) = HC-4-set-2 (Branded) — vor Launch verifizieren */
+  trolley:'B0DKJW844F'
+};
+
+/* Preise: nur bestätigte Retail-Preise (amazon.de). EN/UK: keine €-Preise anzeigen. */
+const PRICES = {
+  de:{ l:['9,90 €'], swabs:['8,97 €','9,95 €'], clips:['8,99 €'], trolley:['89,95 €','119,95 €'] },
+  es:{ l:['9,90 €'], swabs:['8,97 €','9,95 €'], clips:['8,99 €'], trolley:['89,95 €','119,95 €'] },
+  en:{ l:null, swabs:null, clips:null, trolley:null }
+};
+
+const I18N = {
+de:{
+  nav_products:'Produkte', nav_salons:'Für Salons', nav_about:'Über uns', nav_contact:'Kontakt',
+  hero_kicker:'Haar-Accessoires · Alicante',
+  hero_h1:'Schönes Haar beginnt mit dem <em>richtigen Werkzeug</em>.',
+  hero_sub:'Entwirrbürsten mit 29 % biobasiertem Anteil aus Weizenstrohfaser (zertifiziert nach ASTM D6866), Wattestäbchen aus Bambus und Baumwolle, Haarklammern mit starkem Halt — entwickelt in Alicante, erhältlich auf Amazon.',
+  cta_view:'Auf Amazon ansehen', cta_all:'Alle Produkte', cta_buy:'Auf Amazon kaufen',
+  hero_note:'Verkauf & Versand über Amazon.de — kein eigener Shop, keine Registrierung nötig.',
+  products_kicker:'Sortiment', products_h2:'Unsere Produkte',
+  products_lead:'Jeder Button führt direkt zur Produktseite auf Amazon — dort wie gewohnt bestellen, mit Prime-Versand und Amazon-Käuferschutz.',
+  p_mini_name:'Entwirrbürste Mini',
+  p_mini_desc:'Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.',
+  p_mini_price:'Farbe wählen — Preis auf Amazon',
+  p_l_name:'Entwirrbürste L',
+  p_l_desc:'Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.',
+  p_swab_name:'Bambus-Wattestäbchen · 1200 Stück',
+  p_swab_desc:'Vorratspack mit 1200 Stück (6 Boxen à 200): Stiel aus Bambus, Kopf aus 100 % Baumwolle. Eine natürliche Alternative zu Wattestäbchen aus reinem Plastik.',
+  p_clips1_name:'Haarklammer-Set 1 · Koralle & Lila',
+  p_clips1_desc:'Vier Claw Clips in zwei Größen — Koralle, Lila, Lavendel und Beige. Aus Bio-Polypropylen mit Weizenstrohfaser, starker Halt ohne Ziepen.',
+  p_clips2_name:'Haarklammer-Set 2 · Mint & Beige',
+  p_clips2_desc:'Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.',
+  col_negro:'Schwarz', col_azul:'Blau', col_beige:'Beige', col_lila:'Lila (Variantenauswahl auf Amazon)',
+  price_disclaimer:'Preisangaben: unverbindlich, Stand Juli 2026 — maßgeblich ist der aktuelle Preis auf Amazon.',
+  facts_kicker:'Material & Fakten', facts_h2:'Belegt statt behauptet',
+  facts_lead:'Wir werben nur mit dem, was wir mit Zertifikaten belegen können — konkrete Materialangaben statt großer Versprechen.',
+  fact1_h:'Biobasierter Anteil — zertifiziert',
+  fact1_p:'Der Bürstenkorpus enthält 29 % biobasierten Kohlenstoff aus Weizenstrohfaser — unabhängig gemessen von Beta Analytic nach dem Standard ASTM D6866.',
+  fact2_h:'Bambus + Baumwolle',
+  fact2_p:'Unsere Wattestäbchen bestehen aus einem Bambus-Stiel und Köpfen aus 100 % Baumwolle. CE-konform und TÜV-geprüft.',
+  fact3_h:'Versand über Amazon',
+  fact3_p:'Lagerung und Versand laufen über die Amazon-Logistik in der EU und in Großbritannien — schnelle Lieferung, einfache Retouren.',
+  trust_tm:'® Eingetragene Unionsmarke (EUIPO)',
+  trust_design:'Design EU-weit geschützt (Geschmacksmuster)',
+  badge_design:'® Eingetragenes Design — das Original nur von Extendio',
+  fact4_h:'Marke & Design geschützt',
+  fact4_p:'Extendio ist als Unionsmarke beim EUIPO eingetragen (Nr. 019082088), und das Katzenohren-Design unserer Bürsten ist EU-weit als Geschmacksmuster eingetragen (Nr. 015112996-0001/-0002). Das Original gibt es nur von Extendio.',
+  footer_ip:'Extendio® · Unionsmarke EUIPO Nr. 019082088 · Design eingetragen als EU-Geschmacksmuster Nr. 015112996',
+  ws_h:'Großhandel & B2B-Anfragen',
+  ws_p:'Sie kaufen für Salon, Einzelhandel oder Wiederverkauf? Für größere Mengen gelten eigene Großhandelskonditionen — mit Versand direkt ab Lager. Schreiben Sie uns kurz, welche Produkte und Stückzahlen Sie brauchen, und Sie erhalten schnell ein Angebot.',
+  ws_wa:'Anfrage per WhatsApp', ws_mail:'Anfrage per E-Mail',
+  wa_text:'Hallo Extendio! Ich interessiere mich für Großhandelskonditionen. Produkte/Mengen: ',
+  mail_subject:'B2B- / Großhandelsanfrage',
+  b2b_kicker:'Für Profis & Salons', b2b_h2:'Salon Trolley — der Arbeitswagen für Extensions, Farbe & Styling',
+  b2b_desc:'Höhenverstellbarer Trolley mit Ablage, zwei herausnehmbaren Schalen, Werkzeug-Öffnungen und laufruhigen Rollen. Entwickelt für den täglichen Einsatz am Stuhl — vom Extensions-Termin bis zur Farbanwendung.',
+  about_kicker:'Über uns', about_h2:'Extendio — aus Alicante, über Amazon zu Ihnen',
+  about_p1:'Extendio ist ein inhabergeführtes Unternehmen aus Alicante, Spanien, gegründet und geführt von Juri Vaal. Wir entwickeln Haar-Accessoires und Salon-Zubehör mit klaren, belegbaren Materialangaben.',
+  about_p2:'Verkauft wird ausschließlich über Amazon — aktuell auf Amazon.de, Amazon.es und Amazon.co.uk. So bleiben Versand, Zahlung und Retouren in der vertrauten Amazon-Umgebung.',
+  footer_tagline:'Haar-Accessoires und Salon-Zubehör aus Alicante.',
+  footer_contact_h:'Anschrift', footer_reach_h:'Kontakt', footer_lang_h:'Sprache', footer_legal_h:'Rechtliches',
+  legal_notice:'Impressum', privacy_label:'Datenschutz', cookie_settings:'Cookie-Einstellungen',
+  footer_marketplaces:'Erhältlich auf Amazon.de · Amazon.es · Amazon.co.uk',
+  footer_amazon_note:'Alle Bestellungen werden über Amazon abgewickelt.',
+  alt_hero:'Extendio Haarbürste mit Katzenohren-Design in Schwarz',
+  alt_mini:'Extendio Entwirrbürste Mini — Farbvarianten',
+  alt_l:'Extendio Entwirrbürste L in Blau — Frontansicht mit flexiblen Borsten',
+  alt_swabs:'Extendio Bambus-Wattestäbchen, 6 Boxen à 200 Stück',
+  alt_clips1:'Extendio Haarklammer-Set 1 — vier Claw Clips in Koralle, Lila, Lavendel und Beige',
+  alt_clips2:'Extendio Haarklammer-Set 2 — vier Claw Clips in Mint, Lavendel und Beige',
+  alt_trolley:'Extendio Salon Trolley mit Zubehör'
+},
+es:{
+  nav_products:'Productos', nav_salons:'Para salones', nav_about:'Sobre nosotros', nav_contact:'Contacto',
+  hero_kicker:'Accesorios para el pelo · Alicante',
+  hero_h1:'El pelo bonito empieza con la <em>herramienta adecuada</em>.',
+  hero_sub:'Cepillos desenredantes con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado según ASTM D6866), bastoncillos de bambú y algodón, y pinzas para el pelo con sujeción firme — diseñados en Alicante, disponibles en Amazon.',
+  cta_view:'Ver en Amazon', cta_all:'Todos los productos', cta_buy:'Comprar en Amazon',
+  hero_note:'Venta y envío a través de Amazon.es — sin tienda propia ni registro.',
+  products_kicker:'Catálogo', products_h2:'Nuestros productos',
+  products_lead:'Cada botón lleva directamente a la página del producto en Amazon — compra como siempre, con envío Prime y la protección al comprador de Amazon.',
+  p_mini_name:'Cepillo Mini Desenredante',
+  p_mini_desc:'El cepillo desenredante en formato bolso — púas flexibles, suave con el cuero cabelludo, para pelo mojado y seco. Cuerpo con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado ASTM D6866). En cuatro colores.',
+  p_mini_price:'Elige color — precio en Amazon',
+  p_l_name:'Cepillo L Desenredante',
+  p_l_desc:'Superficie de cepillado grande para pelo largo, grueso o rizado. Las mismas púas flexibles y el mismo material con un 29 % de base biológica — más cepillo en cada pasada.',
+  p_swab_name:'Bastoncillos de bambú · 1200 uds.',
+  p_swab_desc:'Pack ahorro de 1200 unidades (6 cajas de 200): varilla de bambú y cabezas de 100 % algodón. Una alternativa natural a los bastoncillos de plástico.',
+  p_clips1_name:'Set de pinzas 1 · Coral y lila',
+  p_clips1_desc:'Cuatro claw clips en dos tamaños — coral, lila, lavanda y beige. De bio-polipropileno con fibra de paja de trigo, sujeción firme sin tirones.',
+  p_clips2_name:'Set de pinzas 2 · Menta y beige',
+  p_clips2_desc:'Cuatro claw clips en dos tamaños — menta, lavanda y dos beige. El mismo acabado mate y la misma sujeción firme, en tonos más fríos.',
+  col_negro:'Negro', col_azul:'Azul', col_beige:'Beige', col_lila:'Lila (selección de variante en Amazon)',
+  price_disclaimer:'Precios orientativos, julio de 2026 — el precio válido es el que aparece en Amazon.',
+  facts_kicker:'Materiales y datos', facts_h2:'Datos verificados, no promesas',
+  facts_lead:'Solo comunicamos lo que podemos demostrar con certificados: datos concretos de materiales en lugar de grandes promesas.',
+  fact1_h:'Contenido de base biológica — certificado',
+  fact1_p:'El cuerpo del cepillo contiene un 29 % de carbono de base biológica procedente de fibra de paja de trigo — medido de forma independiente por Beta Analytic según la norma ASTM D6866.',
+  fact2_h:'Bambú + algodón',
+  fact2_p:'Nuestros bastoncillos se componen de una varilla de bambú y cabezas de 100 % algodón. Conformidad CE y verificación TÜV.',
+  fact3_h:'Envío a través de Amazon',
+  fact3_p:'El almacenaje y el envío se gestionan con la logística de Amazon en la UE y el Reino Unido — entrega rápida y devoluciones sencillas.',
+  trust_tm:'® Marca registrada de la UE (EUIPO)',
+  trust_design:'Diseño registrado en toda la UE',
+  badge_design:'® Diseño registrado — el original, solo de Extendio',
+  fact4_h:'Marca y diseño protegidos',
+  fact4_p:'Extendio está registrada como marca de la Unión en la EUIPO (n.º 019082088), y el diseño con orejas de gato de nuestros cepillos está registrado en toda la UE como dibujo y modelo comunitario (n.º 015112996-0001/-0002). El original, solo de Extendio.',
+  footer_ip:'Extendio® · Marca de la Unión EUIPO n.º 019082088 · Diseño registrado en la UE n.º 015112996',
+  ws_h:'Mayoristas y consultas B2B',
+  ws_p:'¿Compras para salón, tienda o reventa? Para volúmenes grandes ofrecemos condiciones mayoristas propias, con envío directo desde el almacén. Cuéntanos qué productos y cantidades necesitas y te enviamos una oferta enseguida.',
+  ws_wa:'Consulta por WhatsApp', ws_mail:'Consulta por e-mail',
+  wa_text:'¡Hola Extendio! Me interesan las condiciones para mayoristas. Productos/cantidades: ',
+  mail_subject:'Consulta B2B / mayorista',
+  b2b_kicker:'Para profesionales y salones', b2b_h2:'Salon Trolley — el carrito de trabajo para extensiones, color y estilismo',
+  b2b_desc:'Carrito regulable en altura con bandeja, dos cubetas extraíbles, soportes para herramientas y ruedas suaves. Diseñado para el trabajo diario junto al sillón — de las extensiones a la aplicación de color.',
+  about_kicker:'Sobre nosotros', about_h2:'Extendio — desde Alicante, a través de Amazon',
+  about_p1:'Extendio es una empresa de Alicante dirigida por su propietario, Juri Vaal. Desarrollamos accesorios para el pelo y equipamiento para salones con datos de materiales claros y verificables.',
+  about_p2:'Vendemos exclusivamente a través de Amazon — actualmente en Amazon.es, Amazon.de y Amazon.co.uk. Así, el envío, el pago y las devoluciones se quedan en el entorno de Amazon que ya conoces.',
+  footer_tagline:'Accesorios para el pelo y equipamiento para salones, desde Alicante.',
+  footer_contact_h:'Dirección', footer_reach_h:'Contacto', footer_lang_h:'Idioma', footer_legal_h:'Legal',
+  legal_notice:'Aviso Legal', privacy_label:'Privacidad', cookie_settings:'Configuración de cookies',
+  footer_marketplaces:'Disponible en Amazon.es · Amazon.de · Amazon.co.uk',
+  footer_amazon_note:'Todos los pedidos se gestionan a través de Amazon.',
+  alt_hero:'Cepillo Extendio con diseño de orejas de gato, en negro',
+  alt_mini:'Cepillo Mini Desenredante Extendio — variantes de color',
+  alt_l:'Cepillo L Extendio en azul — vista frontal con púas flexibles',
+  alt_swabs:'Bastoncillos de bambú Extendio, 6 cajas de 200 unidades',
+  alt_clips1:'Set de pinzas Extendio 1 — cuatro claw clips en coral, lila, lavanda y beige',
+  alt_clips2:'Set de pinzas Extendio 2 — cuatro claw clips en menta, lavanda y beige',
+  alt_trolley:'Salon Trolley Extendio con accesorios'
+},
+en:{
+  nav_products:'Products', nav_salons:'For salons', nav_about:'About', nav_contact:'Contact',
+  hero_kicker:'Hair accessories · Alicante',
+  hero_h1:'Beautiful hair starts with the <em>right tools</em>.',
+  hero_sub:'Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante, available on Amazon.',
+  cta_view:'View on Amazon', cta_all:'All products', cta_buy:'Buy on Amazon',
+  hero_note:'Sold and shipped via Amazon.co.uk — no separate shop or sign-up needed.',
+  products_kicker:'Range', products_h2:'Our products',
+  products_lead:'Every button takes you straight to the product page on Amazon — order as usual, with Prime delivery and Amazon buyer protection.',
+  p_mini_name:'Mini Detangling Brush',
+  p_mini_desc:'The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.',
+  p_mini_price:'Pick a colour — see price on Amazon',
+  p_l_name:'Detangling Brush L',
+  p_l_desc:'A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.',
+  p_swab_name:'Bamboo Cotton Swabs · 1200 pcs',
+  p_swab_desc:'Value pack of 1200 swabs (6 boxes of 200): bamboo stem, 100% cotton tips. A natural alternative to all-plastic cotton swabs.',
+  p_clips1_name:'Claw Clip Set 1 · Coral & Purple',
+  p_clips1_desc:'Four claw clips in two sizes — coral, purple, lavender and beige. Made from bio-polypropylene with wheat-straw fibre; strong hold without pulling.',
+  p_clips2_name:'Claw Clip Set 2 · Mint & Beige',
+  p_clips2_desc:'Four claw clips in two sizes — mint, lavender and two beige. Same matte finish, same secure hold, in cooler tones.',
+  col_negro:'Black', col_azul:'Blue', col_beige:'Beige', col_lila:'Purple (choose variant on Amazon)',
+  price_disclaimer:'Prices are shown on Amazon.co.uk — the price at checkout on Amazon applies.',
+  facts_kicker:'Materials & facts', facts_h2:'Verified, not just claimed',
+  facts_lead:'We only state what we can back up with certificates — specific material facts instead of big promises.',
+  fact1_h:'Bio-based content — certified',
+  fact1_p:'The brush body contains 29% bio-based carbon from wheat-straw fibre — independently measured by Beta Analytic to the ASTM D6866 standard.',
+  fact2_h:'Bamboo + cotton',
+  fact2_p:'Our swabs are made from a bamboo stem with 100% cotton tips. CE-compliant and TÜV-tested.',
+  fact3_h:'Fulfilled by Amazon',
+  fact3_p:'Storage and delivery run through Amazon logistics in the EU and the UK — fast shipping and easy returns.',
+  trust_tm:'® Registered EU trade mark (EUIPO)',
+  trust_design:'Design protected across the EU',
+  badge_design:'® Registered design — the original, only from Extendio',
+  fact4_h:'Brand & design protected',
+  fact4_p:'Extendio is a registered EU trade mark (EUIPO No. 019082088), and the cat-ear design of our brushes is protected across the EU as a registered design (No. 015112996-0001/-0002). The original is available only from Extendio.',
+  footer_ip:'Extendio® · EU trade mark EUIPO No. 019082088 · Registered EU design No. 015112996',
+  ws_h:'Wholesale & B2B enquiries',
+  ws_p:'Buying for a salon, retail or resale? For larger volumes we offer separate wholesale terms, shipped directly from our warehouse. Tell us which products and quantities you need and we\'ll come back quickly with a quote.',
+  ws_wa:'Enquire via WhatsApp', ws_mail:'Enquire by email',
+  wa_text:'Hello Extendio! I\'m interested in your wholesale terms. Products/quantities: ',
+  mail_subject:'B2B / wholesale enquiry',
+  b2b_kicker:'For professionals & salons', b2b_h2:'Salon Trolley — the workstation for extensions, colour & styling',
+  b2b_desc:'Height-adjustable trolley with a work tray, two removable bowls, tool holders and smooth-running castors. Built for daily chair-side work — from extension appointments to colour application.',
+  about_kicker:'About us', about_h2:'Extendio — from Alicante, via Amazon',
+  about_p1:'Extendio is an owner-run business from Alicante, Spain, founded and led by Juri Vaal. We develop hair accessories and salon equipment with clear, verifiable material facts.',
+  about_p2:'We sell exclusively through Amazon — currently on Amazon.co.uk, Amazon.de and Amazon.es. Shipping, payment and returns all stay within the Amazon environment you already know.',
+  footer_tagline:'Hair accessories and salon equipment from Alicante.',
+  footer_contact_h:'Address', footer_reach_h:'Contact', footer_lang_h:'Language', footer_legal_h:'Legal',
+  legal_notice:'Legal Notice', privacy_label:'Privacy Policy', cookie_settings:'Cookie settings',
+  footer_marketplaces:'Available on Amazon.co.uk · Amazon.de · Amazon.es',
+  footer_amazon_note:'All orders are handled by Amazon.',
+  alt_hero:'Extendio cat-ear hairbrush in black',
+  alt_mini:'Extendio Mini Detangling Brush — colour variants',
+  alt_l:'Extendio Detangling Brush L in blue — front view with flexible bristles',
+  alt_swabs:'Extendio bamboo cotton swabs, 6 boxes of 200',
+  alt_clips1:'Extendio claw clip set 1 — four clips in coral, purple, lavender and beige',
+  alt_clips2:'Extendio claw clip set 2 — four clips in mint, lavender and beige',
+  alt_trolley:'Extendio salon trolley with accessories'
+}};
+
+const META_DESC = {
+  de:'Extendio: Entwirrbürsten mit 29 % biobasiertem Anteil (ASTM D6866), Bambus-Wattestäbchen, Haarklammern und Salon-Zubehör. Erhältlich auf Amazon.de.',
+  es:'Extendio: cepillos desenredantes con un 29 % de base biológica (ASTM D6866), bastoncillos de bambú, pinzas para el pelo y equipamiento para salones. Disponible en Amazon.es.',
+  en:'Extendio: detangling brushes with 29% bio-based content (ASTM D6866), bamboo cotton swabs, claw clips and salon equipment. Available on Amazon.co.uk.'
+};
+const TITLES = {
+  de:'Extendio — Haar-Accessoires aus Alicante',
+  es:'Extendio — Accesorios para el pelo, desde Alicante',
+  en:'Extendio — Hair accessories from Alicante'
+};
+
+function setLang(lang){
+  if(!I18N[lang]) lang = 'en';
+  const t = I18N[lang];
+  document.documentElement.lang = lang;
+  document.title = TITLES[lang];
+  document.querySelector('meta[name="description"]').setAttribute('content', META_DESC[lang]);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n] ?? ''; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t[el.dataset.i18nHtml] ?? ''; });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.alt = t[el.dataset.i18nAlt] ?? ''; });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => { el.title = t[el.dataset.i18nTitle] ?? ''; el.setAttribute('aria-label', el.title); });
+
+  /* Kauf-Buttons auf den passenden Marktplatz umschreiben */
+  document.querySelectorAll('[data-buy]').forEach(el => {
+    const asin = ASIN[el.dataset.buy];
+    if(asin) el.href = MARKETPLACE[lang] + asin;
+  });
+
+  /* B2B-Kontakt: WhatsApp Business & E-Mail mit vorbefülltem Text in Seitensprache */
+  document.querySelectorAll('[data-wa]').forEach(el => {
+    el.href = 'https://wa.me/34634223898?text=' + encodeURIComponent(t.wa_text);
+  });
+  document.querySelectorAll('[data-mailto]').forEach(el => {
+    el.href = 'mailto:extendio.es@gmail.com?subject=' + encodeURIComponent(t.mail_subject) + '&body=' + encodeURIComponent(t.wa_text);
+  });
+
+  /* Preise rendern (EN: kein €-Preis, Hinweistext stattdessen) */
+  document.querySelectorAll('[data-price]').forEach(el => {
+    const p = PRICES[lang][el.dataset.price];
+    if(p){
+      el.innerHTML = '<span class="price">' + p[0] + '</span>' + (p[1] ? '<span class="price-old">' + p[1] + '</span>' : '');
+    } else {
+      el.innerHTML = '<span class="price-note">' + (lang === 'en' ? 'See price on Amazon.co.uk' : '') + '</span>';
+    }
+  });
+
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  try{ localStorage.setItem('extendio-lang', lang); }catch(e){}
+  if(window.updateConsentLang) window.updateConsentLang(lang); /* Cookie-Banner folgt der Seitensprache */
+}
+
+document.querySelectorAll('.lang-switch button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+/* Farb-Swatches: beim Überfahren/Fokussieren wechselt das Kartenfoto zur jeweiligen Farbe */
+const miniImg = document.getElementById('mini-img');
+document.querySelectorAll('.swatch[data-img]').forEach(s => {
+  ['mouseenter','focus','touchstart'].forEach(ev =>
+    s.addEventListener(ev, () => { miniImg.src = s.dataset.img; }, {passive:true}));
+});
+
+/* Erstbesuch: Browser-Sprache vorauswählen, sonst gespeicherte Wahl */
+let initial = null;
+try{ initial = localStorage.getItem('extendio-lang'); }catch(e){}
+if(!initial){
+  const nav = (navigator.language || 'en').slice(0,2).toLowerCase();
+  initial = ['de','es'].includes(nav) ? nav : 'en';
+}
+setLang(initial);
+</script>
+<script src="assets/consent.js"></script>
+</body>
+</html>
