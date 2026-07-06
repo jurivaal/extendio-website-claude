@@ -1,0 +1,27 @@
+# Extendio — extendio.es
+# Alle Suchmaschinen- und KI-Crawler sind ausdrücklich willkommen.
+
+User-agent: *
+Allow: /
+
+# KI-Crawler (explizit erlaubt, damit die Marke in KI-Antworten auftaucht)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://extendio.es/sitemap.xml

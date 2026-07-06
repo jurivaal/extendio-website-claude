@@ -45,6 +45,16 @@ Eingetragene Nummern (aus den EUIPO-Dokumenten, Juli 2026 auf der Website ergän
   - Banner-Sprache folgt der Seitensprache (auch bei Umschalten bei offenem Banner).
 - Keine EU-ODR-Verlinkung (Plattform am 20.07.2025 eingestellt; im Impressum steht der erklärende Hinweis aus dem PDF).
 
+## SEO & KI-Auffindbarkeit
+
+- **`prerender.py`** backt die deutschen Texte statisch in `index.html` (Standard für Crawler ohne JavaScript — GPTBot, ClaudeBot, PerplexityBot & Co. führen kein JS aus!). **Nach jeder Textänderung in `index.html` einmal `python3 prerender.py` ausführen**, dann committen.
+- `robots.txt` — alle Such- und KI-Crawler ausdrücklich erlaubt, verweist auf die Sitemap.
+- `sitemap.xml` — alle 4 Seiten (bei neuen Seiten ergänzen, `lastmod` aktualisieren).
+- `llms.txt` — Marken-Kurzprofil für KI-Assistenten (Fakten: Materialien, Schutzrechte, B2B-Kontakt).
+- `index.html` Head: Canonical (https://extendio.es/), Open-Graph/Twitter-Karten (`assets/og-image.jpg`, 1200×630), JSON-LD (Organization + WebSite + 6 Produkte mit Amazon-Offer-Links).
+- Rechtsseiten stehen auf `noindex, follow` (gewollt).
+- Nach dem Launch: Domain in der **Google Search Console** anmelden (Property extendio.es, Sitemap einreichen) und in **Bing Webmaster Tools** (füttert auch ChatGPT-Suche). Das kann nur Juri mit seinem Konto.
+
 ## Empfohlen: Amazon Attribution
 
 In Seller Central (Brand Registry vorausgesetzt) Attribution-Tags erzeugen und an die Links hängen (`?maas=...`), pro Produkt × Sprache ein Tag. Qualifiziert für den Brand Referral Bonus (~10 %) und liefert Klick-/Conversion-Daten. Einfachste Stelle: in `index.html` die Konstante `MARKETPLACE` bzw. die `setLang()`-Linklogik erweitern.
