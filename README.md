@@ -2,6 +2,10 @@
 
 Statische One-Page-Website (DE/ES/EN), keine Build-Tools nötig. `index.html` + `assets/` einfach auf beliebiges Hosting legen (z. B. Netlify, Cloudflare Pages, IONOS).
 
+## Hinweis: Arbeitsordner liegt jetzt lokal, nicht mehr in iCloud
+
+Dieses Repo lag ursprünglich im iCloud-Drive-Ordner „Extendio Assets/website". iCloud hat wiederholt mitten in Git-Operationen synchronisiert: erst mit verwaisten `.git/index.lock`-Dateien, die Commits blockierten; danach hat der iCloud-Sync-Dienst sogar die `.git`-Verweisdatei (nach einem Versuch, nur das `.git`-Verzeichnis über `--separate-git-dir` auszulagern) selbstständig entfernt, weil er sie offenbar als verdächtiges Artefakt einstufte. Deshalb liegt der komplette Projektordner jetzt hier unter `~/Developer/extendio-website-claude` — vollständig lokal, außerhalb jeder iCloud-Synchronisation. Die Bild-/PDF-Quellen im iCloud-Ordner „Extendio Assets" bleiben davon unberührt und werden bei Bedarf weiterhin von dort in `assets/` kopiert. Der alte iCloud-Ordner `website/` wurde durch einen kurzen Hinweis auf den neuen Pfad ersetzt.
+
 ## Sprache ↔ Amazon-Routing
 
 | Sprache | Marktplatz |
