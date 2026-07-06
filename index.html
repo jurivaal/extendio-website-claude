@@ -36,7 +36,12 @@
       "logo": "https://extendio.es/assets/logo.png",
       "founder": { "@type": "Person", "name": "Juri Vaal" },
       "address": { "@type": "PostalAddress", "streetAddress": "Avenida Maestro José Garberi Serrano 11, Bloque 5, portal 3, 1B", "postalCode": "03540", "addressLocality": "Alicante", "addressCountry": "ES" },
-      "contactPoint": { "@type": "ContactPoint", "email": "extendio.es@gmail.com", "telephone": "+34634223898", "contactType": "customer service", "availableLanguage": ["de", "es", "en"] }
+      "contactPoint": { "@type": "ContactPoint", "email": "extendio.es@gmail.com", "telephone": "+34634223898", "contactType": "customer service", "availableLanguage": ["de", "es", "en"] },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61568506190195",
+        "https://www.instagram.com/extendio.es/",
+        "https://www.tiktok.com/@extendio7"
+      ]
     },
     {
       "@type": "WebSite",
@@ -189,6 +194,9 @@
   footer p, footer a{font-size:.92rem;font-weight:300;opacity:.85;text-decoration:none;line-height:1.8}
   footer a:hover{color:var(--copper-light);opacity:1}
   .footer-bottom{max-width:1180px;margin:44px auto 0;padding-top:22px;border-top:1px solid rgba(243,233,244,.12);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;font-size:.8rem;opacity:.6;font-weight:300}
+  .social-row{display:flex;gap:14px;margin-top:14px}
+  .social-row a{color:var(--copper-light);opacity:.85;transition:.2s}
+  .social-row a:hover{opacity:1;color:var(--magenta)}
 
   /* ---------- Responsive ---------- */
   @media(max-width:900px){
@@ -415,6 +423,17 @@
     <div>
       <span class="logo"><img src="assets/logo.png" alt="Extendio"></span>
       <p data-i18n="footer_tagline">Haar-Accessoires und Salon-Zubehör aus Alicante.</p>
+      <div class="social-row">
+        <a href="https://www.facebook.com/profile.php?id=61568506190195" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
+        </a>
+        <a href="https://www.instagram.com/extendio.es/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@extendio7" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.2 1.9 3.9 4.4 4.1v3c-1.6 0-3-.5-4.2-1.3v6.8c0 3.4-2.8 6.1-6.2 6.1S4.4 19 4.4 15.7c0-3.3 2.6-6 5.9-6.1v3.1a3 3 0 1 0 3 3V3z"/></svg>
+        </a>
+      </div>
     </div>
     <div>
       <h4 data-i18n="footer_contact_h">Anschrift</h4>
