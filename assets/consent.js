@@ -8,9 +8,13 @@
   var KEY = 'extendio-consent';
   var MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000; /* 12 Monate */
 
-  /* Künftige Analytics-/Marketing-Skripte hier registrieren, z. B.:
-     analytics: [{ src: 'https://www.googletagmanager.com/gtag/js?id=G-XXXX', attrs: { async: '' } }] */
-  var CONSENT_SCRIPTS = { analytics: [], marketing: [] };
+  var GA_MEASUREMENT_ID = 'G-Z3CH776PWX'; /* Google Analytics 4 — extendio.es */
+
+  /* Künftige weitere Analytics-/Marketing-Skripte hier ergänzen. */
+  var CONSENT_SCRIPTS = {
+    analytics: [{ src: 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID, attrs: { async: '' } }],
+    marketing: []
+  };
 
   var T = {
     es: {
@@ -23,7 +27,7 @@
       consentYes: 'Consentimiento: sí', consentNo: 'Consentimiento: no',
       cats: {
         necessary: { name: 'Estrictamente necesarias', purpose: 'Idioma, funcionamiento básico, seguridad', current: 'Sin cookies — solo almacenamiento local (localStorage): idioma, estado del consentimiento' },
-        analytics: { name: 'Analítica/estadística', purpose: 'Medir visitas y comportamiento agregado', current: 'Ninguna todavía — se añadirá al activar una herramienta' },
+        analytics: { name: 'Analítica/estadística', purpose: 'Medir visitas y comportamiento agregado', current: 'Google Analytics 4 (Google Ireland Ltd.) — cookies _ga y _ga_<container-id>, hasta 2 años; IP anonimizada' },
         marketing: { name: 'Marketing/publicidad', purpose: 'Medir campañas, remarketing', current: 'Ninguna todavía' }
       },
       currentLabel: 'Cookies actuales: '
@@ -38,7 +42,7 @@
       consentYes: 'Einwilligung: ja', consentNo: 'Einwilligung: nein',
       cats: {
         necessary: { name: 'Technisch notwendig', purpose: 'Sprache, Grundfunktionen, Sicherheit', current: 'Keine Cookies — nur lokale Speicherung (localStorage): Sprachwahl, Cookie-Einstellung' },
-        analytics: { name: 'Analyse/Statistik', purpose: 'Besuchs-/Nutzungsmessung', current: 'Noch keine — wird bei Tool-Einbindung ergänzt' },
+        analytics: { name: 'Analyse/Statistik', purpose: 'Besuchs-/Nutzungsmessung', current: 'Google Analytics 4 (Google Ireland Ltd.) — Cookies _ga und _ga_<Container-ID>, bis zu 2 Jahre; IP anonymisiert' },
         marketing: { name: 'Marketing/Werbung', purpose: 'Kampagnenmessung, Remarketing', current: 'Noch keine' }
       },
       currentLabel: 'Aktuell eingesetzte Cookies: '
@@ -53,7 +57,7 @@
       consentYes: 'Consent: yes', consentNo: 'Consent: no',
       cats: {
         necessary: { name: 'Strictly necessary', purpose: 'Language, core functionality, security', current: 'No cookies — local storage only (localStorage): language, consent state' },
-        analytics: { name: 'Analytics/statistics', purpose: 'Visit/behaviour measurement', current: 'None yet — added once a tool is enabled' },
+        analytics: { name: 'Analytics/statistics', purpose: 'Visit/behaviour measurement', current: 'Google Analytics 4 (Google Ireland Ltd.) — cookies _ga and _ga_<container-id>, up to 2 years; IP anonymised' },
         marketing: { name: 'Marketing/advertising', purpose: 'Campaign measurement, remarketing', current: 'None yet' }
       },
       currentLabel: 'Cookies currently in use: '
@@ -101,6 +105,15 @@
         s._loaded = true;
       });
     });
+
+    /* Google Analytics erst NACH Einwilligung initialisieren (gtag.js wird oben bereits geladen) */
+    if (c.analytics && !window._gaInited) {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+      window._gaInited = true;
+    }
   }
 
   /* ---------- UI ---------- */
