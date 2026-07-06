@@ -6,9 +6,7 @@
 <title>Extendio — Haar-Accessoires aus Alicante</title>
 <meta name="description" content="Extendio: Entwirrbürsten mit 29 % biobasiertem Anteil (ASTM D6866), Bambus-Wattestäbchen, Haarklammern und Salon-Zubehör. Erhältlich auf Amazon.de, Amazon.es und Amazon.co.uk.">
 <link rel="icon" type="image/png" href="assets/logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="assets/fonts.css" rel="stylesheet">
 <style>
   :root{
     --ink:#0e000e;            /* exakte Logo-Hintergrundfarbe */
@@ -68,6 +66,14 @@
   .kicker{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:10px}
   h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:600;margin-bottom:14px}
   .section-lead{max-width:62ch;color:var(--text-mute);margin-bottom:48px}
+
+  /* ---------- Philosophy ---------- */
+  .phil{background:var(--card)}
+  .phil-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .phil-img{border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 50px rgba(36,24,38,.12)}
+  .phil-img img{width:100%;height:100%;object-fit:cover}
+  .phil p{color:var(--text-mute);margin-bottom:16px;max-width:56ch}
+  @media(max-width:900px){.phil-inner{grid-template-columns:1fr;gap:32px}}
 
   /* ---------- Product grid ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:26px}
@@ -144,6 +150,7 @@
   <div class="header-inner">
     <a class="logo" href="#top"><img src="assets/logo.png" alt="Extendio"></a>
     <nav>
+      <a href="#philosophie" data-i18n="nav_phil"></a>
       <a href="#produkte" data-i18n="nav_products"></a>
       <a href="#salons" data-i18n="nav_salons"></a>
       <a href="#ueber-uns" data-i18n="nav_about"></a>
@@ -179,6 +186,20 @@
     </div>
   </div>
 </div>
+
+<section id="philosophie" class="phil">
+  <div class="wrap phil-inner">
+    <div>
+      <p class="kicker" data-i18n="phil_kicker"></p>
+      <h2 data-i18n="phil_h2"></h2>
+      <p data-i18n="phil_p1"></p>
+      <p data-i18n="phil_p2"></p>
+    </div>
+    <div class="phil-img">
+      <img src="assets/philosophy.jpg" alt="" data-i18n-alt="alt_phil" loading="lazy">
+    </div>
+  </div>
+</section>
 
 <section id="produkte">
   <div class="wrap">
@@ -405,7 +426,12 @@ const PRICES = {
 
 const I18N = {
 de:{
-  nav_products:'Produkte', nav_salons:'Für Salons', nav_about:'Über uns', nav_contact:'Kontakt',
+  nav_phil:'Philosophie', nav_products:'Produkte', nav_salons:'Für Salons', nav_about:'Über uns', nav_contact:'Kontakt',
+  phil_kicker:'Unsere Philosophie',
+  phil_h2:'Gutes Werkzeug, ehrlich gemacht',
+  phil_p1:'Extendio ist aus einer einfachen Frage entstanden: Warum sind gute Haarbürsten entweder praktisch-hässlich oder hübsch-unpraktisch? Wir wollten beides — eine Bürste, die wirklich entwirrt, ohne zu ziepen, und die trotzdem gut aussieht auf dem Waschtisch.',
+  phil_p2:'Deshalb sagen wir nur, was wir belegen können: konkrete Materialangaben statt großer Versprechen — entwickelt und geführt von einer Person in Alicante, kein anonymer Konzern.',
+  alt_phil:'Zwei Extendio Entwirrbürsten in Schwarz, Studioaufnahme mit Schattenspiel',
   hero_kicker:'Haar-Accessoires · Alicante',
   hero_h1:'Schönes Haar beginnt mit dem <em>richtigen Werkzeug</em>.',
   hero_sub:'Entwirrbürsten mit 29 % biobasiertem Anteil aus Weizenstrohfaser (zertifiziert nach ASTM D6866), Wattestäbchen aus Bambus und Baumwolle, Haarklammern mit starkem Halt — entwickelt in Alicante, erhältlich auf Amazon.',
@@ -464,7 +490,12 @@ de:{
   alt_trolley:'Extendio Salon Trolley mit Zubehör'
 },
 es:{
-  nav_products:'Productos', nav_salons:'Para salones', nav_about:'Sobre nosotros', nav_contact:'Contacto',
+  nav_phil:'Filosofía', nav_products:'Productos', nav_salons:'Para salones', nav_about:'Sobre nosotros', nav_contact:'Contacto',
+  phil_kicker:'Nuestra filosofía',
+  phil_h2:'Buenas herramientas, hechas con honestidad',
+  phil_p1:'Extendio nació de una pregunta sencilla: ¿por qué los buenos cepillos son o bien prácticos y feos, o bonitos e inútiles? Queríamos las dos cosas — un cepillo que desenreda de verdad, sin tirones, y que además luzca bien en el baño.',
+  phil_p2:'Por eso solo decimos lo que podemos demostrar: datos de materiales concretos en lugar de grandes promesas — diseñado y dirigido por una sola persona en Alicante, no una corporación anónima.',
+  alt_phil:'Dos cepillos desenredantes Extendio en negro, foto de estudio con juego de sombras',
   hero_kicker:'Accesorios para el pelo · Alicante',
   hero_h1:'El pelo bonito empieza con la <em>herramienta adecuada</em>.',
   hero_sub:'Cepillos desenredantes con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado según ASTM D6866), bastoncillos de bambú y algodón, y pinzas para el pelo con sujeción firme — diseñados en Alicante, disponibles en Amazon.',
@@ -523,7 +554,12 @@ es:{
   alt_trolley:'Salon Trolley Extendio con accesorios'
 },
 en:{
-  nav_products:'Products', nav_salons:'For salons', nav_about:'About', nav_contact:'Contact',
+  nav_phil:'Philosophy', nav_products:'Products', nav_salons:'For salons', nav_about:'About', nav_contact:'Contact',
+  phil_kicker:'Our philosophy',
+  phil_h2:'Good tools, made honestly',
+  phil_p1:'Extendio started with a simple question: why are good hairbrushes either practical-but-ugly or pretty-but-useless? We wanted both — a brush that actually detangles without pulling, and still looks good on the shelf.',
+  phil_p2:'That\'s why we only say what we can prove: specific material facts instead of big promises — designed and run by one person in Alicante, not an anonymous corporation.',
+  alt_phil:'Two black Extendio detangling brushes, studio shot with dramatic shadows',
   hero_kicker:'Hair accessories · Alicante',
   hero_h1:'Beautiful hair starts with the <em>right tools</em>.',
   hero_sub:'Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante, available on Amazon.',
