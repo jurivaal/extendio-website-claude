@@ -122,7 +122,7 @@
   .hero-img{background:var(--paper);border-radius:calc(var(--radius) + 8px);padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(201,138,94,.35)}
   .hero-img img{border-radius:10px}
   /* Gemeinsame Media-Slots: <img> und <video> austauschbar ohne CSS-Änderung */
-  .hero-media{display:block;width:100%;border-radius:10px;object-fit:cover}
+  .hero-media{display:block;width:100%;aspect-ratio:4/5;border-radius:10px;object-fit:cover}
   .card-img video.product-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   /* img.product-media erbt die bestehende .card-img img-Regel (contain, 22px Rand) */
   .btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.04em;padding:14px 30px;border-radius:99px;transition:.25s;box-shadow:0 8px 26px rgba(199,59,221,.35)}
@@ -259,7 +259,10 @@
       </div>
     </div>
     <div class="hero-img">
-      <img class="hero-media" src="assets/hero_brush.jpg" alt="Extendio Haarbürste mit Katzenohren-Design in Schwarz" data-i18n-alt="alt_hero">
+      <video class="hero-media" autoplay muted loop playsinline preload="metadata"
+           poster="assets/hero-brush-poster.jpg" aria-label="Extendio detangling brush">
+        <source src="assets/hero-brush-rotate.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </div>
@@ -287,16 +290,19 @@
     <div class="grid">
       <!-- Cepillo Mini -->
       <div class="card" data-reveal style="--rd:0ms">
-        <div class="card-img"><img class="product-media" id="mini-img" src="assets/mini_lila.jpg" alt="Extendio Entwirrbürste Mini — Farbvarianten" data-i18n-alt="alt_mini" loading="lazy"></div>
+        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+           poster="assets/mini-brush-poster.jpg" aria-label="Extendio Mini Detangling Brush in use">
+        <source src="assets/mini-brush-demo.mp4" type="video/mp4">
+      </video></div>
         <div class="card-body">
           <h3 data-i18n="p_mini_name">Entwirrbürste Mini</h3>
           <p data-i18n="p_mini_desc">Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.</p>
           <span class="badge-design" data-i18n="badge_design">® Eingetragenes Design — das Original nur von Extendio</span>
           <div class="swatches">
-            <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" data-img="assets/mini_negro.jpg" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
-            <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" data-img="assets/mini_azul.jpg" href="https://www.amazon.de/dp/B0GD2JL8JK" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
-            <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" data-img="assets/mini_beige.jpg" href="https://www.amazon.de/dp/B0GD2RBZ87" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
-            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" data-img="assets/mini_lila.jpg" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
+            <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
+            <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" href="https://www.amazon.de/dp/B0GD2JL8JK" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
+            <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" href="https://www.amazon.de/dp/B0GD2RBZ87" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
+            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
           </div>
           <div class="price-row"><span class="price-note" data-i18n="p_mini_price">Farbe wählen — Preis auf Amazon</span></div>
           <a class="btn" data-buy="miniNegro" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
@@ -350,7 +356,10 @@
 
       <!-- Salon Trolley (B2B) -->
       <div class="card" data-reveal style="--rd:400ms">
-        <div class="card-img"><img class="product-media" src="assets/trolley.jpg" alt="Extendio Salon Trolley mit Zubehör" data-i18n-alt="alt_trolley" loading="lazy"></div>
+        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+           poster="assets/trolley-poster.jpg" aria-label="Extendio Salon Trolley in use">
+        <source src="assets/trolley-loop.mp4" type="video/mp4">
+      </video></div>
         <div class="card-body">
           <span class="badge-salon" data-i18n="badge_salon">Für Profis & Salons</span>
           <h3 data-i18n="p_trolley_name">Salon Trolley</h3>
@@ -767,12 +776,6 @@ function setLang(lang){
 
 document.querySelectorAll('.lang-switch button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
-/* Farb-Swatches: beim Überfahren/Fokussieren wechselt das Kartenfoto zur jeweiligen Farbe */
-const miniImg = document.getElementById('mini-img');
-document.querySelectorAll('.swatch[data-img]').forEach(s => {
-  ['mouseenter','focus','touchstart'].forEach(ev =>
-    s.addEventListener(ev, () => { miniImg.src = s.dataset.img; }, {passive:true}));
-});
 
 /* Erstbesuch: Browser-Sprache vorauswählen, sonst gespeicherte Wahl */
 let initial = null;
