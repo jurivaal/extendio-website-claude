@@ -84,6 +84,18 @@
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+  /* ---------- Dezente Bewegung — komplett deaktiviert bei prefers-reduced-motion ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    /* Versteckt wird NUR, wenn JS den Observer startet (html.js-reveal) —
+       ohne JS/ohne IntersectionObserver bleibt alles sofort sichtbar */
+    .js-reveal [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s ease var(--rd,0ms),transform .6s ease var(--rd,0ms)}
+    .js-reveal [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+    .card .card-img img,.card .card-img video{transition:transform .2s ease}
+    .card:hover .card-img img,.card:hover .card-img video{transform:scale(1.03)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+  }
   body{font-family:'Jost',sans-serif;background:var(--paper);color:var(--text-dark);line-height:1.6}
   h1,h2,h3,.serif{font-family:'Playfair Display',serif}
   img{max-width:100%;display:block}
@@ -109,6 +121,10 @@
   .hero p{font-weight:300;font-size:1.08rem;max-width:52ch;opacity:.88;margin-bottom:32px}
   .hero-img{background:var(--paper);border-radius:calc(var(--radius) + 8px);padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(201,138,94,.35)}
   .hero-img img{border-radius:10px}
+  /* Gemeinsame Media-Slots: <img> und <video> austauschbar ohne CSS-Änderung */
+  .hero-media{display:block;width:100%;border-radius:10px;object-fit:cover}
+  .card-img video.product-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  /* img.product-media erbt die bestehende .card-img img-Regel (contain, 22px Rand) */
   .btn{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#fff;text-decoration:none;font-family:'Jost',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.04em;padding:14px 30px;border-radius:99px;transition:.25s;box-shadow:0 8px 26px rgba(199,59,221,.35)}
   .btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(199,59,221,.5)}
   .btn svg{flex:none}
@@ -243,20 +259,20 @@
       </div>
     </div>
     <div class="hero-img">
-      <img src="assets/hero_brush.jpg" alt="Extendio Haarbürste mit Katzenohren-Design in Schwarz" data-i18n-alt="alt_hero">
+      <img class="hero-media" src="assets/hero_brush.jpg" alt="Extendio Haarbürste mit Katzenohren-Design in Schwarz" data-i18n-alt="alt_hero">
     </div>
   </div>
 </div>
 
 <section id="philosophie" class="phil">
   <div class="wrap phil-inner">
-    <div>
+    <div data-reveal>
       <p class="kicker" data-i18n="phil_kicker">Unsere Philosophie</p>
       <h2 data-i18n="phil_h2">Gutes Werkzeug, ehrlich gemacht</h2>
       <p data-i18n="phil_p1">Extendio ist aus einer einfachen Frage entstanden: Warum sind gute Haarbürsten entweder praktisch-hässlich oder hübsch-unpraktisch? Wir wollten beides — eine Bürste, die wirklich entwirrt, ohne zu ziepen, und die trotzdem gut aussieht auf dem Waschtisch.</p>
       <p data-i18n="phil_p2">Deshalb sagen wir nur, was wir belegen können: konkrete Materialangaben statt großer Versprechen — entwickelt und geführt von einer Person in Alicante, kein anonymer Konzern.</p>
     </div>
-    <div class="phil-img">
+    <div class="phil-img" data-reveal style="--rd:100ms">
       <img src="assets/philosophy.jpg" alt="Stillleben mit Weizenähren und Bambus — die natürlichen Rohstoffe der Extendio-Produkte" data-i18n-alt="alt_phil" loading="lazy">
     </div>
   </div>
@@ -270,8 +286,8 @@
 
     <div class="grid">
       <!-- Cepillo Mini -->
-      <div class="card">
-        <div class="card-img"><img id="mini-img" src="assets/mini_lila.jpg" alt="Extendio Entwirrbürste Mini — Farbvarianten" data-i18n-alt="alt_mini" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:0ms">
+        <div class="card-img"><img class="product-media" id="mini-img" src="assets/mini_lila.jpg" alt="Extendio Entwirrbürste Mini — Farbvarianten" data-i18n-alt="alt_mini" loading="lazy"></div>
         <div class="card-body">
           <h3 data-i18n="p_mini_name">Entwirrbürste Mini</h3>
           <p data-i18n="p_mini_desc">Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.</p>
@@ -288,8 +304,8 @@
       </div>
 
       <!-- Cepillo L -->
-      <div class="card">
-        <div class="card-img"><img src="assets/cepillo_l.jpg" alt="Extendio Entwirrbürste L in Blau — Frontansicht mit flexiblen Borsten" data-i18n-alt="alt_l" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:80ms">
+        <div class="card-img"><img class="product-media" src="assets/cepillo_l.jpg" alt="Extendio Entwirrbürste L in Blau — Frontansicht mit flexiblen Borsten" data-i18n-alt="alt_l" loading="lazy"></div>
         <div class="card-body">
           <h3 data-i18n="p_l_name">Entwirrbürste L</h3>
           <p data-i18n="p_l_desc">Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.</p>
@@ -300,8 +316,8 @@
       </div>
 
       <!-- Wattestäbchen -->
-      <div class="card">
-        <div class="card-img"><img src="assets/wattestaebchen.jpg" alt="Extendio Bambus-Wattestäbchen, 6 Boxen à 200 Stück" data-i18n-alt="alt_swabs" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:160ms">
+        <div class="card-img"><img class="product-media" src="assets/wattestaebchen.jpg" alt="Extendio Bambus-Wattestäbchen, 6 Boxen à 200 Stück" data-i18n-alt="alt_swabs" loading="lazy"></div>
         <div class="card-body">
           <h3 data-i18n="p_swab_name">Bambus-Wattestäbchen · 1200 Stück</h3>
           <p data-i18n="p_swab_desc">Vorratspack mit 1200 Stück (6 Boxen à 200): Stiel aus Bambus, Kopf aus 100 % Baumwolle. Eine natürliche Alternative zu Wattestäbchen aus reinem Plastik.</p>
@@ -311,8 +327,8 @@
       </div>
 
       <!-- Haarklammern Set 1 -->
-      <div class="card">
-        <div class="card-img"><img src="assets/haarklammern_set1.jpg" alt="Extendio Haarklammer-Set 1 — vier Claw Clips in Koralle, Lila, Lavendel und Beige" data-i18n-alt="alt_clips1" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:240ms">
+        <div class="card-img"><img class="product-media" src="assets/haarklammern_set1.jpg" alt="Extendio Haarklammer-Set 1 — vier Claw Clips in Koralle, Lila, Lavendel und Beige" data-i18n-alt="alt_clips1" loading="lazy"></div>
         <div class="card-body">
           <h3 data-i18n="p_clips1_name">Haarklammer-Set 1 · Koralle & Lila</h3>
           <p data-i18n="p_clips1_desc">Vier Claw Clips in zwei Größen — Koralle, Lila, Lavendel und Beige. Aus Bio-Polypropylen mit Weizenstrohfaser, starker Halt ohne Ziepen.</p>
@@ -322,8 +338,8 @@
       </div>
 
       <!-- Haarklammern Set 2 -->
-      <div class="card">
-        <div class="card-img"><img src="assets/haarklammern_set2.jpg" alt="Extendio Haarklammer-Set 2 — vier Claw Clips in Mint, Lavendel und Beige" data-i18n-alt="alt_clips2" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:320ms">
+        <div class="card-img"><img class="product-media" src="assets/haarklammern_set2.jpg" alt="Extendio Haarklammer-Set 2 — vier Claw Clips in Mint, Lavendel und Beige" data-i18n-alt="alt_clips2" loading="lazy"></div>
         <div class="card-body">
           <h3 data-i18n="p_clips2_name">Haarklammer-Set 2 · Mint & Beige</h3>
           <p data-i18n="p_clips2_desc">Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.</p>
@@ -333,8 +349,8 @@
       </div>
 
       <!-- Salon Trolley (B2B) -->
-      <div class="card">
-        <div class="card-img"><img src="assets/trolley.jpg" alt="Extendio Salon Trolley mit Zubehör" data-i18n-alt="alt_trolley" loading="lazy"></div>
+      <div class="card" data-reveal style="--rd:400ms">
+        <div class="card-img"><img class="product-media" src="assets/trolley.jpg" alt="Extendio Salon Trolley mit Zubehör" data-i18n-alt="alt_trolley" loading="lazy"></div>
         <div class="card-body">
           <span class="badge-salon" data-i18n="badge_salon">Für Profis & Salons</span>
           <h3 data-i18n="p_trolley_name">Salon Trolley</h3>
@@ -354,22 +370,22 @@
     <h2 data-i18n="facts_h2">Belegt statt behauptet</h2>
     <p class="section-lead" data-i18n="facts_lead">Wir werben nur mit dem, was wir mit Zertifikaten belegen können — konkrete Materialangaben statt großer Versprechen.</p>
     <div class="facts-grid">
-      <div class="fact">
-        <div class="num">29&nbsp;%</div>
+      <div class="fact" data-reveal style="--rd:0ms">
+        <div class="num"><span class="stat-number" data-target="29" data-suffix="&nbsp;%">29&nbsp;%</span></div>
         <h3 data-i18n="fact1_h">Biobasierter Anteil — zertifiziert</h3>
         <p data-i18n="fact1_p">Der Bürstenkorpus enthält 29 % biobasierten Kohlenstoff aus Weizenstrohfaser — unabhängig gemessen von Beta Analytic nach dem Standard ASTM D6866.</p>
       </div>
-      <div class="fact">
-        <div class="num serif">100&nbsp;%</div>
+      <div class="fact" data-reveal style="--rd:80ms">
+        <div class="num serif"><span class="stat-number" data-target="100" data-suffix="&nbsp;%">100&nbsp;%</span></div>
         <h3 data-i18n="fact2_h">Bambus + Baumwolle</h3>
         <p data-i18n="fact2_p">Unsere Wattestäbchen bestehen aus einem Bambus-Stiel und Köpfen aus 100 % Baumwolle. CE-konform und TÜV-geprüft.</p>
       </div>
-      <div class="fact">
+      <div class="fact" data-reveal style="--rd:160ms">
         <div class="num serif">EU</div>
         <h3 data-i18n="fact3_h">Versand über Amazon</h3>
         <p data-i18n="fact3_p">Lagerung und Versand laufen über die Amazon-Logistik in der EU und in Großbritannien — schnelle Lieferung, einfache Retouren.</p>
       </div>
-      <div class="fact">
+      <div class="fact" data-reveal style="--rd:240ms">
         <div class="num serif">®</div>
         <h3 data-i18n="fact4_h">Marke & Design geschützt</h3>
         <p data-i18n="fact4_p">Extendio ist als Unionsmarke beim EUIPO eingetragen (Nr. 019082088), und das Katzenohren-Design unserer Bürsten ist EU-weit als Geschmacksmuster eingetragen (Nr. 015112996-0001/-0002). Das Original gibt es nur von Extendio.</p>
@@ -380,10 +396,10 @@
 
 <section class="b2b" id="salons">
   <div class="wrap">
-    <p class="kicker" data-i18n="b2b_kicker">Für Profis & Salons</p>
-    <h2 data-i18n="b2b_h2">Extendio im Salon</h2>
-    <p data-i18n="b2b_desc">Von der Entwirrbürste an der Waschstation über Haarklammern beim Farbtermin bis zum Salon Trolley am Stuhl: Viele Profis nutzen Extendio-Produkte täglich — und beziehen größere Stückzahlen direkt bei uns statt einzeln über Amazon.</p>
-    <a class="btn" href="#grosshandel">
+    <p class="kicker" data-reveal data-i18n="b2b_kicker">Für Profis & Salons</p>
+    <h2 data-reveal style="--rd:60ms" data-i18n="b2b_h2">Extendio im Salon</h2>
+    <p data-reveal style="--rd:120ms" data-i18n="b2b_desc">Von der Entwirrbürste an der Waschstation über Haarklammern beim Farbtermin bis zum Salon Trolley am Stuhl: Viele Profis nutzen Extendio-Produkte täglich — und beziehen größere Stückzahlen direkt bei uns statt einzeln über Amazon.</p>
+    <a class="btn" data-reveal style="--rd:180ms" href="#grosshandel">
       <span data-i18n="cta_b2b">Großhandelskonditionen anfragen</span>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
@@ -410,7 +426,7 @@
 </section>
 
 <section class="about" id="ueber-uns">
-  <div class="wrap">
+  <div class="wrap" data-reveal>
     <p class="kicker" data-i18n="about_kicker">Über uns</p>
     <h2 data-i18n="about_h2">Extendio — aus Alicante, über Amazon zu Ihnen</h2>
     <p data-i18n="about_p1">Extendio ist ein inhabergeführtes Unternehmen aus Alicante, Spanien, gegründet und geführt von Juri Vaal. Wir entwickeln Haar-Accessoires und Salon-Zubehör mit klaren, belegbaren Materialangaben.</p>
@@ -766,6 +782,56 @@ if(!initial){
   initial = ['de','es'].includes(nav) ? nav : 'en';
 }
 setLang(initial);
+
+/* ---------- Dezente Bewegung (Scroll-Reveal + Zahlen-Counter) ----------
+   Vollständig deaktiviert bei prefers-reduced-motion: dann kein Observer,
+   keine Animation, Videos werden pausiert und zeigen nur ihr Posterbild. */
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(reduce){
+    document.querySelectorAll('video[autoplay]').forEach(v => {
+      v.removeAttribute('autoplay');
+      v.addEventListener('loadeddata', () => v.pause(), { once: true });
+      try{ v.pause(); }catch(e){}
+    });
+    return; /* alles rendert sofort im Endzustand — CSS greift nur bei no-preference */
+  }
+
+  function countUp(el){
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1200, t0 = performance.now();
+    el.textContent = '0' + suffix; /* dataset dekodiert &nbsp; bereits zum echten Zeichen */
+    function tick(t){
+      const p = Math.min((t - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if(!('IntersectionObserver' in window)) return; /* Fallback: alles sofort sichtbar */
+  document.documentElement.classList.add('js-reveal');
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(!en.isIntersecting) return;
+      const el = en.target;
+      el.classList.add('is-visible');
+      el.querySelectorAll('.stat-number[data-target]').forEach(countUp);
+      io.unobserve(el);
+      /* Nach dem Reveal Attribut entfernen, damit die .6s-Transition nicht
+         die schnellen Hover-Effekte (Karten, Buttons) verlangsamt */
+      const cleanup = () => { el.removeAttribute('data-reveal'); el.classList.remove('is-visible'); el.style.removeProperty('--rd'); };
+      el.addEventListener('transitionend', cleanup, { once: true });
+      setTimeout(cleanup, 1400); /* Fallback, falls transitionend nicht feuert */
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+})();
 </script>
 <script src="assets/consent.js"></script>
 </body>
