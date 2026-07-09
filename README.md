@@ -71,6 +71,18 @@ Hinweis: Auf den Produktfotos (Verpackung) sind teils „Eco Friendly / 100% Bio
 
 ## Assets
 
-`assets/` enthält web-optimierte Kopien (max. 1400 px, JPEG 82 %) der Originalfotos aus dem Projektordner. Originale bleiben unangetastet. Bildquellen (alle ohne Verpackung, frontal mit sichtbarem Logo — Wunsch von Juri): **Nummernschema der `Brush_Photos_*`: Doppel-Ziffern (11/22/33/44, blue1/blue2, 1/2/3/5) = GROSSE Bürste, Dreifach-Ziffern (111/222/333/444) = MINI.** Hero = `_3.jpg` (L Schwarz, Borsten-Frontansicht). Mini-Swatches: Negro `_111`, Azul `_222`, Beige `_333`, Lila `_444` (Standard) — Swatches wechseln das Foto beim Hover. L-Karte = `blue2.jpg` (L in Blau = tatsächliche Farbe des L-Listings B0GD2MXXDT). Sets = `02.01.jpg`/`02.02.jpg`.
+`assets/` enthält web-optimierte Kopien (Fotos max. 1400 px JPEG 82 %; Videos H.264, stumm) — Originale bleiben unangetastet im iCloud-Ordner „Extendio Assets".
+
+**Video-Loops (Stand 2026-07-09)** — alle selbst geschnitten via Swift/AVFoundation (kein ffmpeg nötig), `autoplay muted loop playsinline`, Poster-JPEG vom Segmentanfang, Reduced-Motion pausiert auf Poster:
+| Slot | Datei | Quelle (Original) | Segment |
+|---|---|---|---|
+| Hero | `hero-brush-rotate.mp4` | Telegram-Bürsten-Makro (Downloads) | 10,5–18,5 s |
+| Mini | `mini-brush-demo.mp4` | dieselbe Quelle | 24–30,5 s |
+| Bürste L | `brush-l-demo.mp4` | dieselbe Quelle | 17–23 s |
+| Set 1 | `clawclip-demo.mp4` | `IMG_3691.MOV` (Downloads) | 0–10 s |
+| Set 2 | `clawclip2-demo.mp4` | `IMG_3691.MOV` | 26,5–33 s |
+| Trolley | `trolley-loop.mp4` | `EXT0195_1.mov` (victoriapriebe-Ordner) | 63,5–71,5 s |
+
+Wattestäbchen-Karte: Foto `wattestaebchen.jpg` (= `CottonSwab_IMG_6800.jpeg`, geöffnete Box) als Platzhalter, bis Footage gedreht ist — Tausch dann analog per `<video class="product-media">`. Übrige Fotos: Sets-JSON-LD nutzt `haarklammern_set1/2.jpg`, Mini-JSON-LD `mini_lila.jpg`, L `cepillo_l.jpg`, Trolley `trolley.jpg` (Fotoquellen: `02.01/02.02.jpg`, `Brush_Photos_444.jpg`, `blue2.jpg`, `Rollwagen_001 (V2).jpg`). Nummernschema der `Brush_Photos_*` im iCloud-Ordner: Doppel-/Einzel-Ziffern = GROSSE Bürste, Dreifach-Ziffern = MINI.
 
 **Achtung:** Die Amazon-Listing-Karten in `Extendio/Große Haarbürste/1.jpg`, den ES/FR-Unterordnern und `Extendio/доп карточки/` enthalten eingebrannten Text („Nachhaltig", „Plastikfreie Verpackung") — für die Website NICHT verwenden (Compliance). Gleiche Begriffe sind laut Brief auch im Amazon-Backend noch offen. Logo: `Logo_Extendio_Vaal.png` (dunkler Hintergrund `#0e000e` — Header/Hero nutzen exakt diese Farbe, Logo wird per `mix-blend-mode:screen` eingeblendet).
