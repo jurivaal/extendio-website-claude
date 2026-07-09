@@ -294,7 +294,7 @@
           <h3 data-i18n="p_l_name">Entwirrbürste L</h3>
           <p data-i18n="p_l_desc">Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.</p>
           <span class="badge-design" data-i18n="badge_design">® Eingetragenes Design — das Original nur von Extendio</span>
-          <div class="price-row" data-price="l"><span class="price">9,90 €</span></div>
+          <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="cepilloL" href="https://www.amazon.de/dp/B0GD2MXXDT" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
         </div>
       </div>
@@ -305,7 +305,7 @@
         <div class="card-body">
           <h3 data-i18n="p_swab_name">Bambus-Wattestäbchen · 1200 Stück</h3>
           <p data-i18n="p_swab_desc">Vorratspack mit 1200 Stück (6 Boxen à 200): Stiel aus Bambus, Kopf aus 100 % Baumwolle. Eine natürliche Alternative zu Wattestäbchen aus reinem Plastik.</p>
-          <div class="price-row" data-price="swabs"><span class="price">8,97 €</span><span class="price-old">9,95 €</span></div>
+          <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="swabs" href="https://www.amazon.de/dp/B0FZM98G9B" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
         </div>
       </div>
@@ -316,7 +316,7 @@
         <div class="card-body">
           <h3 data-i18n="p_clips1_name">Haarklammer-Set 1 · Koralle & Lila</h3>
           <p data-i18n="p_clips1_desc">Vier Claw Clips in zwei Größen — Koralle, Lila, Lavendel und Beige. Aus Bio-Polypropylen mit Weizenstrohfaser, starker Halt ohne Ziepen.</p>
-          <div class="price-row" data-price="clips"><span class="price">8,99 €</span></div>
+          <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="clipsSet1" href="https://www.amazon.de/dp/B0GM6Y1D2G" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
         </div>
       </div>
@@ -327,7 +327,7 @@
         <div class="card-body">
           <h3 data-i18n="p_clips2_name">Haarklammer-Set 2 · Mint & Beige</h3>
           <p data-i18n="p_clips2_desc">Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.</p>
-          <div class="price-row" data-price="clips"><span class="price">8,99 €</span></div>
+          <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="clipsSet2" href="https://www.amazon.de/dp/B0GQ46QVKM" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
         </div>
       </div>
@@ -339,7 +339,7 @@
           <span class="badge-salon" data-i18n="badge_salon">Für Profis & Salons</span>
           <h3 data-i18n="p_trolley_name">Salon Trolley</h3>
           <p data-i18n="p_trolley_desc">Höhenverstellbarer Arbeitswagen mit Ablage, zwei herausnehmbaren Schalen, Werkzeug-Öffnungen und laufruhigen Rollen — für Extensions, Farbe und Styling am Stuhl.</p>
-          <div class="price-row" data-price="trolley"><span class="price">89,95 €</span><span class="price-old">119,95 €</span></div>
+          <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="trolley" href="https://www.amazon.de/dp/B0DKJW844F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
         </div>
       </div>
@@ -495,12 +495,8 @@ const ASIN = {
   trolley:'B0DKJW844F'
 };
 
-/* Preise: nur bestätigte Retail-Preise (amazon.de). EN/UK: keine €-Preise anzeigen. */
-const PRICES = {
-  de:{ l:['9,90 €'], swabs:['8,97 €','9,95 €'], clips:['8,99 €'], trolley:['89,95 €','119,95 €'] },
-  es:{ l:['9,90 €'], swabs:['8,97 €','9,95 €'], clips:['8,99 €'], trolley:['89,95 €','119,95 €'] },
-  en:{ l:null, swabs:null, clips:null, trolley:null }
-};
+/* Keine Preise mehr im Code hinterlegt: amazon.de/.es/.co.uk haben unterschiedliche
+   Preise und häufige Aktionen — Karten zeigen stattdessen immer "Preis auf Amazon". */
 
 const I18N = {
 de:{
@@ -520,6 +516,7 @@ de:{
   p_mini_name:'Entwirrbürste Mini',
   p_mini_desc:'Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.',
   p_mini_price:'Farbe wählen — Preis auf Amazon',
+  price_note:'Preis auf Amazon',
   p_l_name:'Entwirrbürste L',
   p_l_desc:'Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.',
   p_swab_name:'Bambus-Wattestäbchen · 1200 Stück',
@@ -529,7 +526,7 @@ de:{
   p_clips2_name:'Haarklammer-Set 2 · Mint & Beige',
   p_clips2_desc:'Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.',
   col_negro:'Schwarz', col_azul:'Blau', col_beige:'Beige', col_lila:'Lila (Variantenauswahl auf Amazon)',
-  price_disclaimer:'Preisangaben: unverbindlich, Stand Juli 2026 — maßgeblich ist der aktuelle Preis auf Amazon.',
+  price_disclaimer:'Die Preise unterscheiden sich je nach Amazon-Marktplatz und ändern sich durch Aktionen — maßgeblich ist ausschließlich der aktuelle Preis auf der jeweiligen Amazon-Produktseite.',
   facts_kicker:'Material & Fakten', facts_h2:'Belegt statt behauptet',
   facts_lead:'Wir werben nur mit dem, was wir mit Zertifikaten belegen können — konkrete Materialangaben statt großer Versprechen.',
   fact1_h:'Biobasierter Anteil — zertifiziert',
@@ -588,6 +585,7 @@ es:{
   p_mini_name:'Cepillo Mini Desenredante',
   p_mini_desc:'El cepillo desenredante en formato bolso — púas flexibles, suave con el cuero cabelludo, para pelo mojado y seco. Cuerpo con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado ASTM D6866). En cuatro colores.',
   p_mini_price:'Elige color — precio en Amazon',
+  price_note:'Precio en Amazon',
   p_l_name:'Cepillo L Desenredante',
   p_l_desc:'Superficie de cepillado grande para pelo largo, grueso o rizado. Las mismas púas flexibles y el mismo material con un 29 % de base biológica — más cepillo en cada pasada.',
   p_swab_name:'Bastoncillos de bambú · 1200 uds.',
@@ -597,7 +595,7 @@ es:{
   p_clips2_name:'Set de pinzas 2 · Menta y beige',
   p_clips2_desc:'Cuatro claw clips en dos tamaños — menta, lavanda y dos beige. El mismo acabado mate y la misma sujeción firme, en tonos más fríos.',
   col_negro:'Negro', col_azul:'Azul', col_beige:'Beige', col_lila:'Lila (selección de variante en Amazon)',
-  price_disclaimer:'Precios orientativos, julio de 2026 — el precio válido es el que aparece en Amazon.',
+  price_disclaimer:'Los precios varían según el marketplace de Amazon y cambian por promociones — el precio válido es siempre el que aparece en la página del producto en Amazon.',
   facts_kicker:'Materiales y datos', facts_h2:'Datos verificados, no promesas',
   facts_lead:'Solo comunicamos lo que podemos demostrar con certificados: datos concretos de materiales en lugar de grandes promesas.',
   fact1_h:'Contenido de base biológica — certificado',
@@ -656,6 +654,7 @@ en:{
   p_mini_name:'Mini Detangling Brush',
   p_mini_desc:'The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.',
   p_mini_price:'Pick a colour — see price on Amazon',
+  price_note:'Price on Amazon',
   p_l_name:'Detangling Brush L',
   p_l_desc:'A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.',
   p_swab_name:'Bamboo Cotton Swabs · 1200 pcs',
@@ -665,7 +664,7 @@ en:{
   p_clips2_name:'Claw Clip Set 2 · Mint & Beige',
   p_clips2_desc:'Four claw clips in two sizes — mint, lavender and two beige. Same matte finish, same secure hold, in cooler tones.',
   col_negro:'Black', col_azul:'Blue', col_beige:'Beige', col_lila:'Purple (choose variant on Amazon)',
-  price_disclaimer:'Prices are shown on Amazon.co.uk — the price at checkout on Amazon applies.',
+  price_disclaimer:'Prices vary by Amazon marketplace and change with promotions — the price shown on the Amazon product page always applies.',
   facts_kicker:'Materials & facts', facts_h2:'Verified, not just claimed',
   facts_lead:'We only state what we can back up with certificates — specific material facts instead of big promises.',
   fact1_h:'Bio-based content — certified',
@@ -743,16 +742,6 @@ function setLang(lang){
   });
   document.querySelectorAll('[data-mailto]').forEach(el => {
     el.href = 'mailto:extendio.es@gmail.com?subject=' + encodeURIComponent(t.mail_subject) + '&body=' + encodeURIComponent(t.wa_text);
-  });
-
-  /* Preise rendern (EN: kein €-Preis, Hinweistext stattdessen) */
-  document.querySelectorAll('[data-price]').forEach(el => {
-    const p = PRICES[lang][el.dataset.price];
-    if(p){
-      el.innerHTML = '<span class="price">' + p[0] + '</span>' + (p[1] ? '<span class="price-old">' + p[1] + '</span>' : '');
-    } else {
-      el.innerHTML = '<span class="price-note">' + (lang === 'en' ? 'See price on Amazon.co.uk' : '') + '</span>';
-    }
   });
 
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));

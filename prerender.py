@@ -4,7 +4,7 @@
 Warum: Die Sprachumschaltung füllt alle Texte per JavaScript. Google rendert JS,
 aber die meisten KI-Crawler (GPTBot, ClaudeBot, PerplexityBot, CCBot) NICHT —
 ohne Prerender sehen sie eine leere Seite. Dieses Skript füllt alle
-data-i18n-Elemente, Preise, Alt-Texte und Amazon-Links mit den DE-Werten.
+data-i18n-Elemente, Alt-Texte und Amazon-Links mit den DE-Werten.
 Das Laufzeit-JS überschreibt sie beim Sprachwechsel ohnehin — idempotent.
 
 NACH JEDER TEXTÄNDERUNG in index.html einmal ausführen:  python3 prerender.py
@@ -22,12 +22,8 @@ de = {}
 for k, v in re.findall(r"(\w+):'((?:[^'\\]|\\.)*)'", m.group(1)):
     de[k] = v.replace("\\'", "'")
 
-# ---- ASINs & Preise parsen ----
+# ---- ASINs parsen (keine Preise mehr im Code — Karten zeigen nur "Preis auf Amazon") ----
 asins = dict(re.findall(r"^\s*(\w+):'(B0[A-Z0-9]{8})'", src, re.M))
-prices = {"l": ["9,90 €"], "swabs": ["8,97 €", "9,95 €"], "clips": ["8,99 €"], "trolley": ["89,95 €", "119,95 €"]}
-pm = re.search(r"de:\{ (l:\[[^\]]+\], swabs:\[[^\]]+\], clips:\[[^\]]+\], trolley:\[[^\]]+\]) \}", src)
-if pm:
-    prices = {k: re.findall(r"'([^']+)'", part) for k, part in re.findall(r"(\w+):\[([^\]]+)\]", pm.group(1))}
 
 n = 0
 def sub(pattern, repl, s):
@@ -61,20 +57,6 @@ def fill_buy(mm):
         return 'data-buy="' + key + '"' + mm.group(2) + 'href="https://www.amazon.de/dp/' + asins[key] + '"'
     return mm.group(0)
 src = re.sub(r'data-buy="(\w+)"([^>]*?)href="[^"]*"', fill_buy, src)
-
-# Preise
-def fill_price(mm):
-    global n
-    key = mm.group(1)
-    if key in prices and prices[key]:
-        p = prices[key]
-        inner = '<span class="price">' + p[0] + '</span>'
-        if len(p) > 1:
-            inner += '<span class="price-old">' + p[1] + '</span>'
-        n += 1
-        return mm.group(0).replace('></div>', '>' + inner + '</div>') if False else 'data-price="' + key + '">' + inner + '</div>'
-    return mm.group(0)
-src = re.sub(r'data-price="(\w+)"></div>', fill_price, src)
 
 # B2B-Kontaktlinks (DE-Standard)
 wa = "https://wa.me/34634223898?text=" + "Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20"
