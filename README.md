@@ -73,7 +73,7 @@ Hinweis: Auf den Produktfotos (Verpackung) sind teils „Eco Friendly / 100% Bio
 
 `assets/` enthält web-optimierte Kopien (Fotos max. 1400 px JPEG 82 %; Videos H.264, stumm) — Originale bleiben unangetastet im iCloud-Ordner „Extendio Assets".
 
-**Video-Loops (Stand 2026-07-09)** — alle selbst geschnitten via Swift/AVFoundation (kein ffmpeg nötig), `autoplay muted loop playsinline`, Poster-JPEG vom Segmentanfang, Reduced-Motion pausiert auf Poster:
+**Video-Loops (Stand 2026-09-03)** — Produktvideos wurden via Swift/AVFoundation geschnitten; das Salon-Hintergrundvideo wurde mit macOS `avconvert` weboptimiert. Alle laufen `autoplay muted loop playsinline`, Reduced-Motion pausiert auf dem Poster:
 | Slot | Datei | Quelle (Original) | Segment |
 |---|---|---|---|
 | Hero | `hero-brush-rotate.mp4` | Telegram-Bürsten-Makro (Downloads) | 10,5–18,5 s |
@@ -82,6 +82,7 @@ Hinweis: Auf den Produktfotos (Verpackung) sind teils „Eco Friendly / 100% Bio
 | Set 1 | `clawclip-demo.mp4` | `IMG_3691.MOV` (Downloads) | 0–10 s |
 | Set 2 | `clawclip2-demo.mp4` | `IMG_3691.MOV` | 26,5–33 s |
 | Trolley | `trolley-loop.mp4` | `EXT0195_1.mov` (victoriapriebe-Ordner) | 63,5–71,5 s |
+| Salon-Hintergrund | `salon-showcase.m4v` | `hf_20260903_103815_….mp4` (Downloads) | vollständiger Clip, 480p, ca. 2,1 MB |
 
 Wattestäbchen-Karte: Foto `wattestaebchen.jpg` (= `CottonSwab_IMG_6800.jpeg`, geöffnete Box) als Platzhalter, bis Footage gedreht ist — Tausch dann analog per `<video class="product-media">`. Übrige Fotos: Sets-JSON-LD nutzt `haarklammern_set1/2.jpg`, Mini-JSON-LD `mini_lila.jpg`, L `cepillo_l.jpg`, Trolley `trolley.jpg` (Fotoquellen: `02.01/02.02.jpg`, `Brush_Photos_444.jpg`, `blue2.jpg`, `Rollwagen_001 (V2).jpg`). Nummernschema der `Brush_Photos_*` im iCloud-Ordner: Doppel-/Einzel-Ziffern = GROSSE Bürste, Dreifach-Ziffern = MINI.
 
