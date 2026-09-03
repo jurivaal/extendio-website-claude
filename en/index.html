@@ -398,7 +398,7 @@
             <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
             <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2JL8JK" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
             <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2RBZ87" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
-            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
+            <a class="swatch" style="background:#b57edc" data-buy="miniLila" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2DZMWM" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
           </div>
           <div class="price-row"><span class="price-note" data-i18n="p_mini_price">Pick a colour — see price on Amazon</span></div>
           <a class="btn" data-buy="miniNegro" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
@@ -416,7 +416,13 @@
           <h3 data-i18n="p_l_name">Detangling Brush L</h3>
           <p data-i18n="p_l_desc">A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.</p>
           <span class="badge-design" data-i18n="badge_design">® Registered design — the original, only from Extendio</span>
-          <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
+          <div class="swatches">
+            <a class="swatch" style="background:#e6d3ba" data-buy="largeBeige" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B07HDVVJ33" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
+            <a class="swatch" style="background:#b57edc" data-buy="largeLila" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2KDYZR" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
+            <a class="swatch" style="background:#5b8fc7" data-buy="cepilloL" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2MXXDT" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
+            <a class="swatch" style="background:#1a1a1a" data-buy="largeNegro" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2N2463" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
+          </div>
+          <div class="price-row"><span class="price-note" data-i18n="p_l_price">Pick a colour — see price on Amazon</span></div>
           <a class="btn" data-buy="cepilloL" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GD2MXXDT" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
           <a class="guide-link" data-guide="large" href="/en/detangling-brush-l/" data-i18n="cta_details">Details &amp; customer experiences</a>
         </div>
@@ -630,13 +636,16 @@
 const MARKETPLACE = { de:'https://www.amazon.de/dp/', es:'https://www.amazon.es/dp/', en:'https://www.amazon.co.uk/dp/' };
 /* UK: gleiche ASINs wie DE/ES (ASINs sind i. d. R. marktplatzübergreifend identisch) — nach Launch auf amazon.co.uk stichprobenartig verifizieren. */
 const ASIN = {
-  /* Parent-ASIN B0GD2N9M5F ist als /dp/-Link nicht zuverlässig aufrufbar → alle Mini-Hauptlinks
-     zeigen auf die Schwarz-Variante (dort ist die Amazon-Farbauswahl sichtbar).
-     Mini Lila: eigene ASIN unbekannt → verlinkt ebenfalls auf die Schwarz-Variante. */
+  /* Parent-ASIN B0GD2N9M5F ist als /dp/-Link nicht zuverlässig aufrufbar → Hauptlinks
+     zeigen auf eine verfügbare Child-ASIN; Farbpunkte verlinken direkt auf die jeweilige Variante. */
   miniNegro:'B0GD2MV24F',
   miniAzul:'B0GD2JL8JK',
   miniBeige:'B0GD2RBZ87',
+  miniLila:'B0GD2DZMWM',
   cepilloL:'B0GD2MXXDT',
+  largeBeige:'B07HDVVJ33',
+  largeLila:'B0GD2KDYZR',
+  largeNegro:'B0GD2N2463',
   swabs:'B0FZM98G9B',
   clipsSet1:'B0GM6Y1D2G',
   clipsSet2:'B0GQ46QVKM',
@@ -678,13 +687,14 @@ de:{
   price_note:'Preis auf Amazon',
   p_l_name:'Entwirrbürste L',
   p_l_desc:'Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.',
+  p_l_price:'Farbe wählen — Preis auf Amazon',
   p_swab_name:'Bambus-Wattestäbchen · 1200 Stück',
   p_swab_desc:'Vorratspack mit 1200 Stück (6 Boxen à 200): Stiel aus Bambus, Kopf aus 100 % Baumwolle. Eine natürliche Alternative zu Wattestäbchen aus reinem Plastik.',
   p_clips1_name:'Haarklammer-Set 1 · Koralle & Lila',
   p_clips1_desc:'Vier Claw Clips in zwei Größen — Koralle, Lila, Lavendel und Beige. Aus Bio-Polypropylen mit Weizenstrohfaser, starker Halt ohne Ziepen.',
   p_clips2_name:'Haarklammer-Set 2 · Mint & Beige',
   p_clips2_desc:'Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.',
-  col_negro:'Schwarz', col_azul:'Blau', col_beige:'Beige', col_lila:'Lila (Variantenauswahl auf Amazon)',
+  col_negro:'Schwarz', col_azul:'Blau', col_beige:'Beige', col_lila:'Lila',
   price_disclaimer:'Die Preise unterscheiden sich je nach Amazon-Marktplatz und ändern sich durch Aktionen — maßgeblich ist ausschließlich der aktuelle Preis auf der jeweiligen Amazon-Produktseite.',
   facts_kicker:'Material & Fakten', facts_h2:'Belegt statt behauptet',
   facts_lead:'Wir werben nur mit dem, was wir mit Zertifikaten belegen können — konkrete Materialangaben statt großer Versprechen.',
@@ -752,13 +762,14 @@ es:{
   price_note:'Precio en Amazon',
   p_l_name:'Cepillo L Desenredante',
   p_l_desc:'Superficie de cepillado grande para pelo largo, grueso o rizado. Las mismas púas flexibles y el mismo material con un 29 % de base biológica — más cepillo en cada pasada.',
+  p_l_price:'Elige color — precio en Amazon',
   p_swab_name:'Bastoncillos de bambú · 1200 uds.',
   p_swab_desc:'Pack ahorro de 1200 unidades (6 cajas de 200): varilla de bambú y cabezas de 100 % algodón. Una alternativa natural a los bastoncillos de plástico.',
   p_clips1_name:'Set de pinzas 1 · Coral y lila',
   p_clips1_desc:'Cuatro claw clips en dos tamaños — coral, lila, lavanda y beige. De bio-polipropileno con fibra de paja de trigo, sujeción firme sin tirones.',
   p_clips2_name:'Set de pinzas 2 · Menta y beige',
   p_clips2_desc:'Cuatro claw clips en dos tamaños — menta, lavanda y dos beige. El mismo acabado mate y la misma sujeción firme, en tonos más fríos.',
-  col_negro:'Negro', col_azul:'Azul', col_beige:'Beige', col_lila:'Lila (selección de variante en Amazon)',
+  col_negro:'Negro', col_azul:'Azul', col_beige:'Beige', col_lila:'Lila',
   price_disclaimer:'Los precios varían según el marketplace de Amazon y cambian por promociones — el precio válido es siempre el que aparece en la página del producto en Amazon.',
   facts_kicker:'Materiales y datos', facts_h2:'Datos verificados, no promesas',
   facts_lead:'Solo comunicamos lo que podemos demostrar con certificados: datos concretos de materiales en lugar de grandes promesas.',
@@ -826,13 +837,14 @@ en:{
   price_note:'Price on Amazon',
   p_l_name:'Detangling Brush L',
   p_l_desc:'A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.',
+  p_l_price:'Pick a colour — see price on Amazon',
   p_swab_name:'Bamboo Cotton Swabs · 1200 pcs',
   p_swab_desc:'Value pack of 1200 swabs (6 boxes of 200): bamboo stem, 100% cotton tips. A natural alternative to all-plastic cotton swabs.',
   p_clips1_name:'Claw Clip Set 1 · Coral & Purple',
   p_clips1_desc:'Four claw clips in two sizes — coral, purple, lavender and beige. Made from bio-polypropylene with wheat-straw fibre; strong hold without pulling.',
   p_clips2_name:'Claw Clip Set 2 · Mint & Beige',
   p_clips2_desc:'Four claw clips in two sizes — mint, lavender and two beige. Same matte finish, same secure hold, in cooler tones.',
-  col_negro:'Black', col_azul:'Blue', col_beige:'Beige', col_lila:'Purple (choose variant on Amazon)',
+  col_negro:'Black', col_azul:'Blue', col_beige:'Beige', col_lila:'Purple',
   price_disclaimer:'Prices vary by Amazon marketplace and change with promotions — the price shown on the Amazon product page always applies.',
   facts_kicker:'Materials & facts', facts_h2:'Verified, not just claimed',
   facts_lead:'We only state what we can back up with certificates — specific material facts instead of big promises.',

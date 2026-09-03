@@ -21,8 +21,7 @@ Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in 
 1. **UK-ASINs:** EN-Buttons nutzen dieselben ASINs auf amazon.co.uk (ASINs sind i. d. R. marktplatzübergreifend identisch). Bitte jeden Link einmal auf amazon.co.uk anklicken und prüfen, ob das Listing live ist.
 2. **amazon.es:** Wattestäbchen (B0FZM98G9B), Haarklammern (B0GQ46QVKM) und Trolley (B0DKJW844F) — prüfen, ob die Listings auf .es tatsächlich aktiv sind.
 3. **Haarklammer-Sets:** Beide Sets sind eigene Karten. Am 03.09.2026 direkt auf Amazon.de bestätigt: Set 1 = Foto `02.01.jpg` (Koralle/Lila) → **B0GM6Y1D2G** (HC-4-set); Set 2 = Foto `02.02.jpg` (Mint/Beige) → **B0GQ46QVKM** (HC-4-set-2). Beide ASINs sind dort als Varianten miteinander verknüpft.
-4. **Mini-Links:** Die Parent-ASIN B0GD2N9M5F war als /dp/-Link fehlerhaft — alle Mini-Hauptbuttons (Hero-CTA, Karten-Button, Lila-Swatch) zeigen jetzt auf die Schwarz-Variante B0GD2MV24F; die Farbauswahl übernimmt Amazon dort. Sobald die Lila-ASIN vorliegt: in `ASIN` als `miniLila` ergänzen und den Lila-Swatch umstellen.
-5. **Cepillo L Beige (B07HDVVJ33):** NICHT verlinkt — laut Brief vor Verwendung zu verifizieren (passt nicht zur EAN-Liste).
+4. **Bürsten-Farbvarianten:** Am 03.09.2026 direkt in Amazon Attribution bestätigt. Mini: Schwarz B0GD2MV24F, Blau B0GD2JL8JK, Beige B0GD2RBZ87, Lila B0GD2DZMWM. L: Beige B07HDVVJ33, Lila B0GD2KDYZR, Blau B0GD2MXXDT, Schwarz B0GD2N2463. Farbpunkte verlinken direkt auf die jeweilige Child-ASIN; die Hauptbuttons bleiben auf Schwarz (Mini) beziehungsweise Blau (L).
 
 ## B2B-/Großhandels-Modul
 
