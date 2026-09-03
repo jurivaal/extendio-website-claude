@@ -84,6 +84,11 @@ descriptions = {
 }
 og_locales = {'de': 'de_DE', 'es': 'es_ES', 'en': 'en_GB'}
 markets = {'de': 'www.amazon.de', 'es': 'www.amazon.es', 'en': 'www.amazon.co.uk'}
+guide_routes = {
+    'mini': {'de':'/de/mini-entwirrbuerste/','es':'/es/cepillo-mini-desenredante/','en':'/en/mini-detangling-brush/'},
+    'large': {'de':'/de/entwirrbuerste-l/','es':'/es/cepillo-desenredante-l/','en':'/en/detangling-brush-l/'},
+    'trolley': {'de':'/de/friseurwagen/','es':'/es/carrito-peluqueria/','en':'/en/salon-trolley/'}
+}
 product_keys = [
     ('p_mini_name', 'p_mini_desc', 'miniNegro'),
     ('p_l_name', 'p_l_desc', 'cepilloL'),
@@ -126,6 +131,9 @@ def render_language(lang):
     for key, asin in asins.items():
         out = re.sub(rf'(data-buy="{key}"[^>]*href=")[^"]*',
                      rf'\g<1>https://{markets[lang]}/dp/{asin}', out)
+    for key, routes in guide_routes.items():
+        out = re.sub(rf'(data-guide="{key}"[^>]*href=")[^"]*',
+                     rf'\g<1>{routes[lang]}', out)
 
     # Strukturierte Produktliste ebenfalls sprach- und marktplatzgerecht ausgeben.
     ld_match = re.search(r'(<script type="application/ld\+json">)(.*?)(</script>)', out, re.S)

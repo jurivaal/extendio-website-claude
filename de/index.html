@@ -291,6 +291,7 @@
   .swatch{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d8ccc0;transition:.2s;display:block}
   .swatch:hover{transform:scale(1.15);box-shadow:0 0 0 2px var(--magenta)}
   .card .btn{justify-content:center;font-size:.92rem;padding:12px 20px;margin-top:6px}
+  .guide-link{display:block;text-align:center;margin-top:12px;color:var(--magenta-deep);font-weight:500;text-underline-offset:4px}
   .grid-note{font-size:.8rem;color:var(--text-mute);margin-top:26px}
 
   /* ---------- Bürsten-Finder ---------- */
@@ -461,14 +462,15 @@
           </div>
           <div class="price-row"><span class="price-note" data-i18n="p_mini_price">Farbe wählen — Preis auf Amazon</span></div>
           <a class="btn" data-buy="miniNegro" data-cta-position="product_card" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
+          <a class="guide-link" data-guide="mini" href="/de/mini-entwirrbuerste/" data-i18n="cta_details">Details &amp; Erfahrungen</a>
         </div>
       </div>
 
       <!-- Cepillo L -->
       <div class="card" data-reveal style="--rd:80ms">
         <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
-           poster="assets/brush-l-poster.jpg" aria-label="Extendio Detangling Brush L in use">
-        <source data-src="assets/brush-l-demo.mp4" type="video/mp4">
+           poster="assets/brush-l-real-use-poster.jpg" aria-label="Extendio Detangling Brush L in real use">
+        <source data-src="assets/brush-l-real-use.m4v" type="video/mp4">
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_l_name">Entwirrbürste L</h3>
@@ -476,6 +478,7 @@
           <span class="badge-design" data-i18n="badge_design">® Eingetragenes Design — das Original nur von Extendio</span>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="cepilloL" data-cta-position="product_card" href="https://www.amazon.de/dp/B0GD2MXXDT" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
+          <a class="guide-link" data-guide="large" href="/de/entwirrbuerste-l/" data-i18n="cta_details">Details &amp; Erfahrungen</a>
         </div>
       </div>
 
@@ -530,6 +533,7 @@
           <p data-i18n="p_trolley_desc">Höhenverstellbarer Arbeitswagen mit Ablage, zwei herausnehmbaren Schalen, Werkzeug-Öffnungen und laufruhigen Rollen — für Extensions, Farbe und Styling am Stuhl.</p>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Preis auf Amazon</span></div>
           <a class="btn" data-buy="trolley" data-cta-position="product_card" href="https://www.amazon.de/dp/B0DKJW844F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Auf Amazon kaufen</span></a>
+          <a class="guide-link" data-guide="trolley" href="/de/friseurwagen/" data-i18n="cta_details">Details &amp; Erfahrungen</a>
         </div>
       </div>
     </div>
@@ -695,6 +699,11 @@ const ASIN = {
   clipsSet2:'B0GQ46QVKM', /* Annahme: 02.02-Farbset (Mint/Beige) = HC-4-set-2 (Branded) — vor Launch verifizieren */
   trolley:'B0DKJW844F'
 };
+const GUIDE_ROUTES = {
+  mini:{de:'/de/mini-entwirrbuerste/',es:'/es/cepillo-mini-desenredante/',en:'/en/mini-detangling-brush/'},
+  large:{de:'/de/entwirrbuerste-l/',es:'/es/cepillo-desenredante-l/',en:'/en/detangling-brush-l/'},
+  trolley:{de:'/de/friseurwagen/',es:'/es/carrito-peluqueria/',en:'/en/salon-trolley/'}
+};
 
 /* Keine Preise mehr im Code hinterlegt: amazon.de/.es/.co.uk haben unterschiedliche
    Preise und häufige Aktionen — Karten zeigen stattdessen immer "Preis auf Amazon". */
@@ -712,7 +721,7 @@ de:{
   hero_sub:'Entwirrbürsten mit 29 % biobasiertem Anteil aus Weizenstrohfaser (zertifiziert nach ASTM D6866), Wattestäbchen aus Bambus und Baumwolle, Haarklammern mit starkem Halt — entwickelt in Alicante, erhältlich auf Amazon.',
   cta_view:'Auf Amazon ansehen', cta_all:'Alle Produkte', cta_buy:'Auf Amazon kaufen',
   hero_note:'Verkauf & Versand über Amazon.de — kein eigener Shop, keine Registrierung nötig.',
-  products_kicker:'Sortiment', products_h2:'Unsere Produkte',
+  products_kicker:'Sortiment', products_h2:'Unsere Produkte', cta_details:'Details & Erfahrungen',
   products_lead:'Jeder Button führt direkt zur passenden Produktseite auf Amazon. Preis, Lieferoptionen und Rückgabebedingungen werden dort aktuell angezeigt.',
   finder_h:'Welche Bürste passt zu mir?', finder_p:'Wählen Sie nach Format und Anwendung — beide Bürsten führen direkt zur passenden Amazon-Produktseite.',
   finder_mini_h:'Mini — kompakt', finder_mini_p:'Für Handtasche, Reise und unterwegs · vier Farben',
@@ -786,7 +795,7 @@ es:{
   hero_sub:'Cepillos desenredantes con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado según ASTM D6866), bastoncillos de bambú y algodón, y pinzas para el pelo con sujeción firme — diseñados en Alicante, disponibles en Amazon.',
   cta_view:'Ver en Amazon', cta_all:'Todos los productos', cta_buy:'Comprar en Amazon',
   hero_note:'Venta y envío a través de Amazon.es — sin tienda propia ni registro.',
-  products_kicker:'Catálogo', products_h2:'Nuestros productos',
+  products_kicker:'Catálogo', products_h2:'Nuestros productos', cta_details:'Detalles y opiniones',
   products_lead:'Cada botón lleva directamente a la página correspondiente del producto en Amazon. Allí encontrarás el precio, las opciones de entrega y las condiciones de devolución vigentes.',
   finder_h:'¿Qué cepillo es para mí?', finder_p:'Elige según el formato y el uso; ambos cepillos llevan directamente a su página de producto en Amazon.',
   finder_mini_h:'Mini — compacto', finder_mini_p:'Para el bolso, viajes y fuera de casa · cuatro colores',
@@ -860,7 +869,7 @@ en:{
   hero_sub:'Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante, available on Amazon.',
   cta_view:'View on Amazon', cta_all:'All products', cta_buy:'Buy on Amazon',
   hero_note:'Sold and shipped via Amazon.co.uk — no separate shop or sign-up needed.',
-  products_kicker:'Range', products_h2:'Our products',
+  products_kicker:'Range', products_h2:'Our products', cta_details:'Details & customer experiences',
   products_lead:'Every button takes you directly to the relevant Amazon product page, where the current price, delivery options and return terms are shown.',
   finder_h:'Which brush is right for me?', finder_p:'Choose by format and use — both brushes link directly to the relevant Amazon product page.',
   finder_mini_h:'Mini — compact', finder_mini_p:'For handbags, travel and on the go · four colours',
@@ -951,6 +960,10 @@ function setLang(lang){
     const asin = ASIN[el.dataset.buy];
     if(asin) el.href = MARKETPLACE[lang] + asin;
   });
+  document.querySelectorAll('[data-guide]').forEach(el => {
+    const routes = GUIDE_ROUTES[el.dataset.guide];
+    if(routes) el.href = routes[lang];
+  });
 
   /* B2B-Kontakt: WhatsApp Business & E-Mail mit vorbefülltem Text in Seitensprache */
   document.querySelectorAll('[data-wa]').forEach(el => {
@@ -983,6 +996,12 @@ document.addEventListener('click', e => {
       marketplace: new URL(link.href).hostname,
       language: lang,
       cta_position: link.dataset.ctaPosition || 'unspecified',
+      link_url: link.href
+    });
+  } else if(link.matches('[data-guide]')) {
+    window.trackExtendioEvent('product_guide_click', {
+      product_id: link.dataset.guide,
+      language: lang,
       link_url: link.href
     });
   } else if(link.matches('[data-wa]')) {

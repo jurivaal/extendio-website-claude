@@ -65,6 +65,10 @@
   };
 
   function currentLang() {
+    var route = location.pathname.match(/^\/(de|es|en)(?:\/|$)/);
+    if (route && T[route[1]]) return route[1];
+    var documentLang = (document.documentElement.lang || '').slice(0, 2).toLowerCase();
+    if (T[documentLang]) return documentLang;
     try {
       var l = localStorage.getItem('extendio-lang');
       if (l && T[l]) return l;
@@ -185,7 +189,7 @@
 
   function policyHref() {
     /* funktioniert von Startseite und Unterseiten aus */
-    return /\/(legal|privacy|cookies)\.html$/.test(location.pathname) ? 'cookies.html' : 'cookies.html';
+    return '/cookies.html';
   }
 
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
