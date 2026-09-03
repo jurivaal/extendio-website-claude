@@ -144,9 +144,10 @@
      gespeichert, gepuffert oder an Google übertragen. */
   window.trackExtendioEvent = function (name, params) {
     var c = getConsent();
-    if (!c || !c.analytics || !window._gaInited || typeof window.gtag !== 'function') return;
+    if (!c || !c.analytics || !window._gaInited || typeof window.gtag !== 'function') return false;
     var payload = Object.assign({ transport_type: 'beacon' }, params || {});
     window.gtag('event', name, payload);
+    return true;
   };
 
   /* ---------- UI ---------- */

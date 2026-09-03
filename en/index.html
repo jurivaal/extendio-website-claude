@@ -945,11 +945,17 @@ document.addEventListener('click', e => {
       link_url: link.href
     });
   } else if(link.matches('[data-guide]')) {
-    window.trackExtendioEvent('product_guide_click', {
+    const sent = window.trackExtendioEvent('product_guide_click', {
       product_id: link.dataset.guide,
       language: lang,
       link_url: link.href
     });
+    /* Interne Navigation kurz zurückhalten, damit GA den Hit zuverlässig in die
+       Beacon-Queue übernehmen kann. Modifier-Klicks bleiben unverändert. */
+    if(sent && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && link.target !== '_blank') {
+      e.preventDefault();
+      setTimeout(() => { location.href = link.href; }, 160);
+    }
   } else if(link.matches('[data-wa]')) {
     window.trackExtendioEvent('generate_lead', { contact_method:'whatsapp', language:lang, cta_position:link.dataset.ctaPosition || 'unspecified' });
   } else if(link.matches('[data-mailto]')) {
