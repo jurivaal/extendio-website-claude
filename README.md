@@ -65,6 +65,10 @@ In Amazon Ads (Brand Registry und berechtigtes Verkäuferkonto vorausgesetzt) At
 
 Die Website sendet bei consent-gated `amazon_click`-Ereignissen zusätzlich `cta_position` (`hero`, `brush_finder`, `colour_swatch`, `product_card`). So lässt sich nach Einrichtung der gleichnamigen benutzerdefinierten GA4-Dimension erkennen, welche Platzierung den Klick ausgelöst hat. Amazon-Käufe selbst können erst mit echten Attribution-Links aus dem Amazon-Ads-Konto zugeordnet werden.
 
+## IndexNow
+
+Die Datei `755f78a8942765686e3b8ec386bd9782.txt` bestätigt gegenüber dem IndexNow-Netzwerk die Domaininhaberschaft. Nach relevanten Inhaltsänderungen meldet `python3 tools/submit_indexnow.py` alle kanonischen URLs aus `sitemap.xml` kostenlos an die teilnehmenden Suchmaschinen. Google nimmt nicht an IndexNow teil; dort bleibt die in Search Console eingereichte Sitemap maßgeblich.
+
 ## Conversion- und Performance-Optimierung
 
 - Der Bürsten-Finder vor dem Produktraster erklärt den Unterschied zwischen Mini und L mit ausschließlich bestätigten Angaben.
