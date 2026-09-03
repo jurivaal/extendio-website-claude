@@ -45,17 +45,18 @@ Eingetragene Nummern (aus den EUIPO-Dokumenten, Juli 2026 auf der Website ergän
   - Ebene 1: „Alle akzeptieren" / „Alle ablehnen" / „Einstellungen" — alle drei Buttons exakt gleich groß (verifiziert 462×48 px), kein Dark Pattern.
   - Ebene 2: Kategorien einzeln togglebar; notwendig = immer aktiv (deaktiviert); Analyse/Marketing standardmäßig AUS (keine Vorab-Häkchen); Inhalte = Cookie-Tabelle aus dem PDF.
   - Einwilligung in `localStorage['extendio-consent']`, **gültig max. 12 Monate** (danach erscheint der Banner erneut — getestet).
+  - **Google Analytics 4:** eigene, ausschließlich für Extendio verwendete Property „Extendio — Website Analytics“ (Property-ID `552735784`), Webstream `15714451020`, Mess-ID `G-8ZQ8NM4V99`. GA lädt erst nach Analyse-Einwilligung. Erfasst werden zusätzlich `amazon_click`, `generate_lead` (WhatsApp/E-Mail) und `language_change` ohne personenbezogene Parameter.
   - **Künftige Analytics-/Ads-Tools** in `consent.js` oben in `CONSENT_SCRIPTS` eintragen (`{src:'…', attrs:{async:''}}`) — sie werden erst NACH erteilter Einwilligung der jeweiligen Kategorie geladen. Danach: Cookie-Tabelle auf `cookies.html` + Datenschutz Abschnitt 3 in allen drei Sprachen ergänzen (steht so auch in der PDF-Checkliste).
   - Banner-Sprache folgt der Seitensprache (auch bei Umschalten bei offenem Banner).
 - Keine EU-ODR-Verlinkung (Plattform am 20.07.2025 eingestellt; im Impressum steht der erklärende Hinweis aus dem PDF).
 
 ## SEO & KI-Auffindbarkeit
 
-- **`prerender.py`** backt die deutschen Texte statisch in `index.html` (Standard für Crawler ohne JavaScript — GPTBot, ClaudeBot, PerplexityBot & Co. führen kein JS aus!). **Nach jeder Textänderung in `index.html` einmal `python3 prerender.py` ausführen**, dann committen.
+- **`prerender.py`** backt Deutsch statisch in `index.html` und erzeugt zusätzlich die vollständig statischen Sprachrouten `/de/`, `/es/` und `/en/` für Suchmaschinen und KI-Crawler ohne JavaScript. **Nach jeder Textänderung in `index.html` einmal `python3 prerender.py` ausführen**, dann alle vier HTML-Dateien committen.
 - `robots.txt` — alle Such- und KI-Crawler ausdrücklich erlaubt, verweist auf die Sitemap.
-- `sitemap.xml` — alle 4 Seiten (bei neuen Seiten ergänzen, `lastmod` aktualisieren).
+- `sitemap.xml` — Startseite plus die drei indexierbaren Sprachrouten. Rechtstexte sind bewusst `noindex` und deshalb nicht in der Sitemap.
 - `llms.txt` — Marken-Kurzprofil für KI-Assistenten (Fakten: Materialien, Schutzrechte, B2B-Kontakt).
-- `index.html` Head: Canonical (https://extendio.es/), Open-Graph/Twitter-Karten (`assets/og-image.jpg`, 1200×630), JSON-LD (Organization + WebSite + 6 Produkte mit Amazon-Offer-Links).
+- `index.html` Head: Canonical/Hreflang, lokalisierte Open-Graph/Twitter-Karten (`assets/og-image.jpg`, 1200×630), JSON-LD (Organization + WebSite + Produktliste mit Amazon-Links). Bewusst keine Preise/Offers im Schema, da Preise je Marktplatz und Aktion variieren.
 - Rechtsseiten stehen auf `noindex, follow` (gewollt).
 - Nach dem Launch: Domain in der **Google Search Console** anmelden (Property extendio.es, Sitemap einreichen) und in **Bing Webmaster Tools** (füttert auch ChatGPT-Suche). Das kann nur Juri mit seinem Konto.
 

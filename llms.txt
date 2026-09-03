@@ -1,6 +1,6 @@
 # Extendio
 
-> Extendio is an owner-run hair-accessories brand from Alicante, Spain (founded and run by Juri Vaal).
+> Extendio is an owner-run hair-accessories brand from Alicante, Spain, run by Juri Vaal.
 > Products: detangling hairbrushes with a cat-ear spiral design (body with 29% bio-based content from
 > wheat-straw fibre, certified to ASTM D6866 by Beta Analytic), bamboo cotton swabs (bamboo stem,
 > 100% cotton tips), claw clips made from bio-polypropylene with wheat-straw fibre, and a salon trolley
@@ -13,7 +13,10 @@ Key facts:
 - Wholesale/B2B enquiries: extendio.es@gmail.com or WhatsApp +34 634 22 38 98.
 
 ## Pages
-- [Home (DE/ES/EN)](https://extendio.es/): products, materials, salon & wholesale information
+- [Language selection / default](https://extendio.es/)
+- [Deutsch](https://extendio.es/de/): Produkte, Materialien, Salon- und Großhandelsinformationen
+- [Español](https://extendio.es/es/): productos, materiales e información para salones y mayoristas
+- [English](https://extendio.es/en/): products, materials, salon and wholesale information
 - [Legal notice](https://extendio.es/legal.html)
 - [Privacy policy](https://extendio.es/privacy.html)
 - [Cookie policy](https://extendio.es/cookies.html)

@@ -8,7 +8,7 @@
   var KEY = 'extendio-consent';
   var MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000; /* 12 Monate */
 
-  var GA_MEASUREMENT_ID = 'G-Z3CH776PWX'; /* Google Analytics 4 — extendio.es */
+  var GA_MEASUREMENT_ID = 'G-8ZQ8NM4V99'; /* eigene GA4-Property nur für extendio.es */
 
   /* Künftige weitere Analytics-/Marketing-Skripte hier ergänzen. */
   var CONSENT_SCRIPTS = {
@@ -83,11 +83,30 @@
   }
 
   function saveConsent(analytics, marketing) {
+    var previous = getConsent();
     try {
       localStorage.setItem(KEY, JSON.stringify({ v: 1, ts: Date.now(), necessary: true, analytics: !!analytics, marketing: !!marketing }));
     } catch (e) {}
+    /* Widerruf wirkt sofort: weitere GA-Hits sperren und gesetzte Analyse-Cookies
+       bestmöglich entfernen. Ein Neuladen ist dafür nicht erforderlich. */
+    if (previous && previous.analytics && !analytics) disableAnalytics();
     applyConsent();
     hideBanner();
+  }
+
+  function deleteCookie(name) {
+    var host = location.hostname.replace(/^www\./, '');
+    ['', host, '.' + host].forEach(function (domain) {
+      document.cookie = name + '=; Max-Age=0; path=/' + (domain ? '; domain=' + domain : '') + '; SameSite=Lax';
+    });
+  }
+
+  function disableAnalytics() {
+    window['ga-disable-' + GA_MEASUREMENT_ID] = true;
+    document.cookie.split(';').forEach(function (part) {
+      var name = part.split('=')[0].trim();
+      if (name === '_ga' || name.indexOf('_ga_') === 0) deleteCookie(name);
+    });
   }
 
   /* Lädt registrierte Skripte NUR für Kategorien mit erteilter Einwilligung — genau einmal. */
@@ -108,6 +127,7 @@
 
     /* Google Analytics erst NACH Einwilligung initialisieren (gtag.js wird oben bereits geladen) */
     if (c.analytics && !window._gaInited) {
+      window['ga-disable-' + GA_MEASUREMENT_ID] = false;
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       gtag('js', new Date());
@@ -115,6 +135,14 @@
       window._gaInited = true;
     }
   }
+
+  /* Datenschutzfreundliche Ereignis-API: ohne Analyse-Einwilligung wird nichts
+     gespeichert, gepuffert oder an Google übertragen. */
+  window.trackExtendioEvent = function (name, params) {
+    var c = getConsent();
+    if (!c || !c.analytics || !window._gaInited || typeof window.gtag !== 'function') return;
+    window.gtag('event', name, params || {});
+  };
 
   /* ---------- UI ---------- */
   var css = [
