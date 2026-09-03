@@ -168,11 +168,12 @@
     '.ecb-flag{font-size:.75rem;color:#e0b394;letter-spacing:.04em}',
     /* Toggle */
     '.ecb-sw{position:relative;display:inline-block;width:46px;height:26px;flex:none}',
-    '.ecb-sw input{opacity:0;width:0;height:0}',
+    '.ecb-sw input{position:absolute;opacity:0;width:1px;height:1px}',
     '.ecb-sl{position:absolute;cursor:pointer;inset:0;background:rgba(243,233,244,.22);border-radius:99px;transition:.2s}',
     '.ecb-sl:before{content:"";position:absolute;height:20px;width:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}',
     '.ecb-sw input:checked + .ecb-sl{background:linear-gradient(100deg,#c73bdd,#8a2be2)}',
     '.ecb-sw input:checked + .ecb-sl:before{transform:translateX(20px)}',
+    '.ecb-sw input:focus-visible + .ecb-sl{outline:3px solid #fff;outline-offset:3px}',
     '.ecb-sw input:disabled + .ecb-sl{opacity:.55;cursor:not-allowed}',
     '@media(max-width:560px){#ecb{padding:20px 18px}.ecb-btn{flex:1 1 100%}}'
   ].join('');
@@ -191,6 +192,7 @@
 
   function render() {
     var t = T[currentLang()];
+    banner.setAttribute('aria-label', t.title);
     if (level === 1) {
       banner.innerHTML =
         '<h2>' + t.title + '</h2>' +
