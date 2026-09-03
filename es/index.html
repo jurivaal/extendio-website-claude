@@ -945,16 +945,24 @@ document.addEventListener('click', e => {
       link_url: link.href
     });
   } else if(link.matches('[data-guide]')) {
+    let navigated = false;
+    const navigate = () => {
+      if(navigated) return;
+      navigated = true;
+      location.href = link.href;
+    };
     const sent = window.trackExtendioEvent('product_guide_click', {
       product_id: link.dataset.guide,
       language: lang,
-      link_url: link.href
+      link_url: link.href,
+      event_callback: navigate,
+      event_timeout: 700
     });
-    /* Interne Navigation kurz zurückhalten, damit GA den Hit zuverlässig in die
-       Beacon-Queue übernehmen kann. Modifier-Klicks bleiben unverändert. */
+    /* Interne Navigation bis zur GA-Bestätigung zurückhalten; der Fallback
+       garantiert den Wechsel auch bei blockiertem Analytics-Skript. */
     if(sent && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && link.target !== '_blank') {
       e.preventDefault();
-      setTimeout(() => { location.href = link.href; }, 160);
+      setTimeout(navigate, 850);
     }
   } else if(link.matches('[data-wa]')) {
     window.trackExtendioEvent('generate_lead', { contact_method:'whatsapp', language:lang, cta_position:link.dataset.ctaPosition || 'unspecified' });
@@ -1052,6 +1060,6 @@ setLang(initial);
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 })();
 </script>
-<script src="assets/consent.js?v=20260903b"></script>
+<script src="assets/consent.js?v=20260903c"></script>
 </body>
 </html>
