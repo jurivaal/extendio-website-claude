@@ -82,9 +82,9 @@ titles = {
     'en': 'Extendio — Hair accessories from Alicante'
 }
 descriptions = {
-    'de': 'Extendio: Entwirrbürsten mit 29 % biobasiertem Anteil (ASTM D6866), Bambus-Wattestäbchen, Haarklammern und Salon-Zubehör. Erhältlich auf Amazon.de.',
-    'es': 'Extendio: cepillos desenredantes con un 29 % de base biológica (ASTM D6866), bastoncillos de bambú, pinzas para el pelo y equipamiento para salones. Disponible en Amazon.es.',
-    'en': 'Extendio: detangling brushes with 29% bio-based content (ASTM D6866), bamboo cotton swabs, claw clips and salon equipment. Available on Amazon.co.uk.'
+    'de': 'Extendio: Entwirrbürsten, Bambus-Wattestäbchen, Haarklammern und Salon-Zubehör aus Alicante. Über Amazon oder direkt bei Extendio erhältlich.',
+    'es': 'Extendio: cepillos desenredantes, bastoncillos de bambú, pinzas para el pelo y equipamiento para salones desde Alicante. Disponibles en Amazon o directamente en Extendio.',
+    'en': 'Extendio: detangling brushes, bamboo cotton swabs, claw clips and salon equipment from Alicante. Available through Amazon or directly from Extendio.'
 }
 og_locales = {'de': 'de_DE', 'es': 'es_ES', 'en': 'en_GB'}
 markets = {'de': 'www.amazon.de', 'es': 'www.amazon.es', 'en': 'www.amazon.de'}

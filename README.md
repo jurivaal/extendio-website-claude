@@ -14,7 +14,7 @@ Dieses Repo lag ursprünglich im iCloud-Drive-Ordner „Extendio Assets/website"
 | ES | amazon.es |
 | EN | amazon.de |
 
-Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in localStorage gespeichert. ASINs und Übersetzungen stehen zentral im `<script>`-Block von `index.html` (Konstanten `ASIN`, `I18N`). Numerische Preise werden bewusst nicht lokal gespeichert; maßgeblich ist Amazon.
+Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in localStorage gespeichert. ASINs und Übersetzungen stehen zentral im `<script>`-Block von `index.html` (Konstanten `ASIN`, `I18N`). Numerische Preise werden bewusst nicht lokal gespeichert; für Amazon-Bestellungen ist der dort angezeigte Preis maßgeblich. Extendio bleibt als Marke und Direktkontakt unabhängig vom Marktplatz; direkte Einzel-, B2B- und Mengenanfragen sind ausdrücklich möglich.
 
 ## Vor dem Launch verifizieren
 
