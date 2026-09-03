@@ -145,7 +145,8 @@
   window.trackExtendioEvent = function (name, params) {
     var c = getConsent();
     if (!c || !c.analytics || !window._gaInited || typeof window.gtag !== 'function') return;
-    window.gtag('event', name, params || {});
+    var payload = Object.assign({ transport_type: 'beacon' }, params || {});
+    window.gtag('event', name, payload);
   };
 
   /* ---------- UI ---------- */

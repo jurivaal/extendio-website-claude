@@ -14,16 +14,15 @@ Dieses Repo lag ursprünglich im iCloud-Drive-Ordner „Extendio Assets/website"
 | ES | amazon.es |
 | EN | amazon.co.uk |
 
-Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in localStorage gespeichert. ASINs und Preise stehen zentral im `<script>`-Block von `index.html` (Konstanten `ASIN`, `PRICES`, `I18N`).
+Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in localStorage gespeichert. ASINs und Übersetzungen stehen zentral im `<script>`-Block von `index.html` (Konstanten `ASIN`, `I18N`). Numerische Preise werden bewusst nicht lokal gespeichert; maßgeblich ist Amazon.
 
 ## Vor dem Launch verifizieren
 
 1. **UK-ASINs:** EN-Buttons nutzen dieselben ASINs auf amazon.co.uk (ASINs sind i. d. R. marktplatzübergreifend identisch). Bitte jeden Link einmal auf amazon.co.uk anklicken und prüfen, ob das Listing live ist.
 2. **amazon.es:** Wattestäbchen (B0FZM98G9B), Haarklammern (B0GQ46QVKM) und Trolley (B0DKJW844F) — prüfen, ob die Listings auf .es tatsächlich aktiv sind.
-3. **Haarklammer-Sets:** Es sind jetzt BEIDE Sets als eigene Karten auf der Seite. Zuordnung (Annahme, vor Launch verifizieren!): Set 1 = Foto `02.01.jpg` (Koralle/Lila) → **B0GM6Y1D2G** (HC-4-set, unbranded); Set 2 = Foto `02.02.jpg` (Mint/Beige) → **B0GQ46QVKM** (HC-4-set-2, branded). Falls vertauscht: in `index.html` die ASINs `clipsSet1`/`clipsSet2` tauschen.
+3. **Haarklammer-Sets:** Beide Sets sind eigene Karten. Am 03.09.2026 direkt auf Amazon.de bestätigt: Set 1 = Foto `02.01.jpg` (Koralle/Lila) → **B0GM6Y1D2G** (HC-4-set); Set 2 = Foto `02.02.jpg` (Mint/Beige) → **B0GQ46QVKM** (HC-4-set-2). Beide ASINs sind dort als Varianten miteinander verknüpft.
 4. **Mini-Links:** Die Parent-ASIN B0GD2N9M5F war als /dp/-Link fehlerhaft — alle Mini-Hauptbuttons (Hero-CTA, Karten-Button, Lila-Swatch) zeigen jetzt auf die Schwarz-Variante B0GD2MV24F; die Farbauswahl übernimmt Amazon dort. Sobald die Lila-ASIN vorliegt: in `ASIN` als `miniLila` ergänzen und den Lila-Swatch umstellen.
-5. **Cepillo Mini Preis:** Kein bestätigter Retail-Preis in den Unterlagen — Karte zeigt bewusst „Preis auf Amazon". Bei Bedarf in `PRICES` ergänzen.
-6. **Cepillo L Beige (B07HDVVJ33):** NICHT verlinkt — laut Brief vor Verwendung zu verifizieren (passt nicht zur EAN-Liste).
+5. **Cepillo L Beige (B07HDVVJ33):** NICHT verlinkt — laut Brief vor Verwendung zu verifizieren (passt nicht zur EAN-Liste).
 
 ## B2B-/Großhandels-Modul
 

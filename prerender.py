@@ -87,6 +87,9 @@ markets = {'de': 'www.amazon.de', 'es': 'www.amazon.es', 'en': 'www.amazon.co.uk
 guide_routes = {
     'mini': {'de':'/de/mini-entwirrbuerste/','es':'/es/cepillo-mini-desenredante/','en':'/en/mini-detangling-brush/'},
     'large': {'de':'/de/entwirrbuerste-l/','es':'/es/cepillo-desenredante-l/','en':'/en/detangling-brush-l/'},
+    'swabs': {'de':'/de/bambus-wattestaebchen/','es':'/es/bastoncillos-bambu/','en':'/en/bamboo-cotton-swabs/'},
+    'clips1': {'de':'/de/haarklammer-set-1/','es':'/es/set-pinzas-pelo-1/','en':'/en/claw-clip-set-1/'},
+    'clips2': {'de':'/de/haarklammer-set-2/','es':'/es/set-pinzas-pelo-2/','en':'/en/claw-clip-set-2/'},
     'trolley': {'de':'/de/friseurwagen/','es':'/es/carrito-peluqueria/','en':'/en/salon-trolley/'}
 }
 product_keys = [
@@ -97,6 +100,7 @@ product_keys = [
     ('p_clips2_name', 'p_clips2_desc', 'clipsSet2'),
     ('p_trolley_name', 'p_trolley_desc', 'trolley')
 ]
+product_guides = ['mini', 'large', 'swabs', 'clips1', 'clips2', 'trolley']
 
 def render_language(lang):
     out = src
@@ -141,11 +145,9 @@ def render_language(lang):
         data = json.loads(ld_match.group(2))
         item_list = next(x for x in data['@graph'] if x.get('@type') == 'ItemList')
         item_list['name'] = {'de':'Extendio Produkte', 'es':'Productos Extendio', 'en':'Extendio products'}[lang]
-        for row, (name_key, desc_key, asin_key) in zip(item_list['itemListElement'], product_keys):
-            item = row['item']
-            item['name'] = words[name_key]
-            item['description'] = words[desc_key]
-            item['url'] = f"https://{markets[lang]}/dp/{asins[asin_key]}"
+        for row, (name_key, _, _), guide_key in zip(item_list['itemListElement'], product_keys, product_guides):
+            row['name'] = words[name_key]
+            row['url'] = 'https://extendio.es' + guide_routes[guide_key][lang]
         replacement = ld_match.group(1) + '\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n' + ld_match.group(3)
         out = out[:ld_match.start()] + replacement + out[ld_match.end():]
     target = pathlib.Path(__file__).parent / lang / 'index.html'
