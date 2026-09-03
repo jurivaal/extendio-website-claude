@@ -62,7 +62,16 @@ Eingetragene Nummern (aus den EUIPO-Dokumenten, Juli 2026 auf der Website ergän
 
 ## Empfohlen: Amazon Attribution
 
-In Seller Central (Brand Registry vorausgesetzt) Attribution-Tags erzeugen und an die Links hängen (`?maas=...`), pro Produkt × Sprache ein Tag. Qualifiziert für den Brand Referral Bonus (~10 %) und liefert Klick-/Conversion-Daten. Einfachste Stelle: in `index.html` die Konstante `MARKETPLACE` bzw. die `setLang()`-Linklogik erweitern.
+In Amazon Ads (Brand Registry und berechtigtes Verkäuferkonto vorausgesetzt) Attribution-Tags erzeugen und an die Links hängen, getrennt nach Produkt, Sprache und Platzierung. Damit lassen sich Produktseitenaufrufe, Warenkorb-Aktionen und Käufe nach externem Link auswerten. Einen Brand-Referral-Bonus nicht für EU/UK versprechen: Die offizielle Amazon-Dokumentation nennt dieses Programm derzeit ausdrücklich für berechtigte US-Markenverkäufer.
+
+Die Website sendet bei consent-gated `amazon_click`-Ereignissen zusätzlich `cta_position` (`hero`, `brush_finder`, `colour_swatch`, `product_card`). So lässt sich nach Einrichtung der gleichnamigen benutzerdefinierten GA4-Dimension erkennen, welche Platzierung den Klick ausgelöst hat. Amazon-Käufe selbst können erst mit echten Attribution-Links aus dem Amazon-Ads-Konto zugeordnet werden.
+
+## Conversion- und Performance-Optimierung
+
+- Der Bürsten-Finder vor dem Produktraster erklärt den Unterschied zwischen Mini und L mit ausschließlich bestätigten Angaben.
+- Produktvideos laden erst, wenn sie sich dem sichtbaren Bereich nähern. Bei `prefers-reduced-motion` werden die Videodateien nicht geladen; sichtbar bleibt nur das Posterbild. Hero- und Salonvideo behalten ihre bisherige Sonderrolle.
+- Im Bereich „Über uns“ wird Juri Vaal als bestätigter Gründer mit eigenem Portrait vorgestellt. Geburtsdatum und unbestätigte Gründungsgeschichte werden bewusst nicht veröffentlicht.
+- Eine permanente mobile Amazon-Schaltfläche wurde nach Prüfung verworfen: Bei sechs Produktlinien wäre ein fester Link auf die Mini-Bürste irreführend. Erst mit einem bestätigten Hauptprodukt oder einer kontextabhängigen Produktlogik erneut prüfen.
 
 ## Compliance
 

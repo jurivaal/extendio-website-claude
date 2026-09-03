@@ -42,7 +42,8 @@
       "logo": "https://extendio.es/assets/logo.png",
       "founder": {
         "@type": "Person",
-        "name": "Juri Vaal"
+        "name": "Juri Vaal",
+        "image": "https://extendio.es/assets/juri-vaal-founder.jpg"
       },
       "address": {
         "@type": "PostalAddress",
@@ -292,6 +293,17 @@
   .card .btn{justify-content:center;font-size:.92rem;padding:12px 20px;margin-top:6px}
   .grid-note{font-size:.8rem;color:var(--text-mute);margin-top:26px}
 
+  /* ---------- Bürsten-Finder ---------- */
+  .brush-finder{margin:0 0 42px;padding:30px;border:1px solid rgba(201,138,94,.28);border-radius:var(--radius);background:linear-gradient(135deg,#fff 0%,#fbf6f2 100%)}
+  .brush-finder h3{font-size:1.45rem;margin-bottom:6px}
+  .brush-finder>p{color:var(--text-mute);margin-bottom:22px}
+  .finder-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .finder-option{display:flex;align-items:center;gap:16px;padding:18px;border-radius:14px;background:#fff;text-decoration:none;border:1px solid #eadfd5;transition:.2s}
+  .finder-option:hover{border-color:var(--copper);transform:translateY(-2px);box-shadow:0 10px 24px rgba(36,24,38,.08)}
+  .finder-option img{width:74px;height:74px;object-fit:contain;flex:none}
+  .finder-option strong{display:block;font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:3px}
+  .finder-option span{display:block;color:var(--text-mute);font-size:.9rem}
+
   /* ---------- Facts ---------- */
   .facts{background:var(--card)}
   .facts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px}
@@ -322,7 +334,11 @@
   @media(max-width:900px){.wholesale{grid-template-columns:1fr;padding:28px 24px}}
 
   /* ---------- About ---------- */
-  .about p{max-width:70ch;color:var(--text-mute);margin-bottom:14px}
+  .about-inner{display:grid;grid-template-columns:minmax(260px,.72fr) 1.28fr;gap:54px;align-items:center}
+  .founder-photo{border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:0 20px 50px rgba(36,24,38,.16)}
+  .founder-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 28%}
+  .founder-caption{display:block;padding:12px 16px;color:var(--text-on-dark);background:var(--ink);font-size:.86rem;letter-spacing:.03em}
+  .about-copy p{max-width:70ch;color:var(--text-mute);margin-bottom:14px}
 
   /* ---------- Footer ---------- */
   footer{background:var(--ink);color:var(--text-on-dark);padding:60px 24px 40px}
@@ -340,6 +356,8 @@
   @media(max-width:900px){
     .hero-inner{grid-template-columns:1fr;gap:40px;padding-top:48px}
     nav{display:none}
+    .finder-grid,.about-inner{grid-template-columns:1fr}
+    .founder-photo{max-width:480px;margin:0 auto}
   }
 </style>
 </head>
@@ -369,7 +387,7 @@
       <p class="kicker" data-i18n="hero_kicker">Hair accessories · Alicante</p>
       <h1 data-i18n-html="hero_h1">Beautiful hair starts with the <em>right tools</em>.</h1>
       <p data-i18n="hero_sub">Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante, available on Amazon.</p>
-      <a class="btn" data-buy="miniNegro" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener">
+      <a class="btn" data-buy="miniNegro" data-cta-position="hero" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener">
         <span data-i18n="cta_view">View on Amazon</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
@@ -395,7 +413,7 @@
       <p class="kicker" data-i18n="phil_kicker">Our philosophy</p>
       <h2 data-i18n="phil_h2">Good tools, made honestly</h2>
       <p data-i18n="phil_p1">Extendio started with a simple question: why are good hairbrushes either practical-but-ugly or pretty-but-useless? We wanted both — a brush that actually detangles without pulling, and still looks good on the shelf.</p>
-      <p data-i18n="phil_p2">That's why we only say what we can prove: specific material facts instead of big promises — designed and run by one person in Alicante, not an anonymous corporation.</p>
+      <p data-i18n="phil_p2">That's why we only say what we can prove: specific material facts instead of big promises — developed in Alicante with a clear focus on design and everyday practicality.</p>
     </div>
     <div class="phil-img" data-reveal style="--rd:100ms">
       <img src="assets/philosophy.jpg" alt="Still life with wheat ears and bamboo — the natural raw materials of Extendio products" data-i18n-alt="alt_phil" loading="lazy">
@@ -409,40 +427,55 @@
     <h2 data-i18n="products_h2">Our products</h2>
     <p class="section-lead" data-i18n="products_lead">Every button takes you directly to the relevant Amazon product page, where the current price, delivery options and return terms are shown.</p>
 
+    <div class="brush-finder" data-reveal>
+      <h3 data-i18n="finder_h">Which brush is right for me?</h3>
+      <p data-i18n="finder_p">Choose by format and use — both brushes link directly to the relevant Amazon product page.</p>
+      <div class="finder-grid">
+        <a class="finder-option" data-buy="miniNegro" data-cta-position="brush_finder" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener">
+          <img src="assets/mini_lila.jpg" alt="" loading="lazy">
+          <span><strong data-i18n="finder_mini_h">Mini — compact</strong><span data-i18n="finder_mini_p">For handbags, travel and on the go · four colours</span></span>
+        </a>
+        <a class="finder-option" data-buy="cepilloL" data-cta-position="brush_finder" href="https://www.amazon.co.uk/dp/B0GD2MXXDT" target="_blank" rel="noopener">
+          <img src="assets/cepillo_l.jpg" alt="" loading="lazy">
+          <span><strong data-i18n="finder_l_h">L — larger brush area</strong><span data-i18n="finder_l_p">For long, thick or curly hair</span></span>
+        </a>
+      </div>
+    </div>
+
     <div class="grid">
       <!-- Cepillo Mini -->
       <div class="card" data-reveal style="--rd:0ms">
-        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+        <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
            poster="assets/mini-brush-poster.jpg" aria-label="Extendio Mini Detangling Brush in use">
-        <source src="assets/mini-brush-demo.mp4" type="video/mp4">
+        <source data-src="assets/mini-brush-demo.mp4" type="video/mp4">
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_mini_name">Mini Detangling Brush</h3>
           <p data-i18n="p_mini_desc">The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.</p>
           <span class="badge-design" data-i18n="badge_design">® Registered design — the original, only from Extendio</span>
           <div class="swatches">
-            <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
-            <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" href="https://www.amazon.co.uk/dp/B0GD2JL8JK" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
-            <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" href="https://www.amazon.co.uk/dp/B0GD2RBZ87" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
-            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
+            <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
+            <a class="swatch" style="background:#5b8fc7" data-buy="miniAzul" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2JL8JK" target="_blank" rel="noopener" data-i18n-title="col_azul"></a>
+            <a class="swatch" style="background:#e6d3ba" data-buy="miniBeige" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2RBZ87" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
+            <a class="swatch" style="background:#b57edc" data-buy="miniNegro" data-cta-position="colour_swatch" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_lila"></a>
           </div>
           <div class="price-row"><span class="price-note" data-i18n="p_mini_price">Pick a colour — see price on Amazon</span></div>
-          <a class="btn" data-buy="miniNegro" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="miniNegro" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GD2MV24F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
 
       <!-- Cepillo L -->
       <div class="card" data-reveal style="--rd:80ms">
-        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+        <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
            poster="assets/brush-l-poster.jpg" aria-label="Extendio Detangling Brush L in use">
-        <source src="assets/brush-l-demo.mp4" type="video/mp4">
+        <source data-src="assets/brush-l-demo.mp4" type="video/mp4">
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_l_name">Detangling Brush L</h3>
           <p data-i18n="p_l_desc">A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.</p>
           <span class="badge-design" data-i18n="badge_design">® Registered design — the original, only from Extendio</span>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
-          <a class="btn" data-buy="cepilloL" href="https://www.amazon.co.uk/dp/B0GD2MXXDT" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="cepilloL" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GD2MXXDT" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
 
@@ -453,50 +486,50 @@
           <h3 data-i18n="p_swab_name">Bamboo Cotton Swabs · 1200 pcs</h3>
           <p data-i18n="p_swab_desc">Value pack of 1200 swabs (6 boxes of 200): bamboo stem, 100% cotton tips. A natural alternative to all-plastic cotton swabs.</p>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
-          <a class="btn" data-buy="swabs" href="https://www.amazon.co.uk/dp/B0FZM98G9B" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="swabs" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0FZM98G9B" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
 
       <!-- Haarklammern Set 1 -->
       <div class="card" data-reveal style="--rd:240ms">
-        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+        <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
            poster="assets/clawclip-poster.jpg" aria-label="Extendio Claw Clip Set detail">
-        <source src="assets/clawclip-demo.mp4" type="video/mp4">
+        <source data-src="assets/clawclip-demo.mp4" type="video/mp4">
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_clips1_name">Claw Clip Set 1 · Coral &amp; Purple</h3>
           <p data-i18n="p_clips1_desc">Four claw clips in two sizes — coral, purple, lavender and beige. Made from bio-polypropylene with wheat-straw fibre; strong hold without pulling.</p>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
-          <a class="btn" data-buy="clipsSet1" href="https://www.amazon.co.uk/dp/B0GM6Y1D2G" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="clipsSet1" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GM6Y1D2G" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
 
       <!-- Haarklammern Set 2 -->
       <div class="card" data-reveal style="--rd:320ms">
-        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+        <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
            poster="assets/clawclip2-poster.jpg" aria-label="Extendio Claw Clip Set 2 detail">
-        <source src="assets/clawclip2-demo.mp4" type="video/mp4">
+        <source data-src="assets/clawclip2-demo.mp4" type="video/mp4">
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_clips2_name">Claw Clip Set 2 · Mint &amp; Beige</h3>
           <p data-i18n="p_clips2_desc">Four claw clips in two sizes — mint, lavender and two beige. Same matte finish, same secure hold, in cooler tones.</p>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
-          <a class="btn" data-buy="clipsSet2" href="https://www.amazon.co.uk/dp/B0GQ46QVKM" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="clipsSet2" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0GQ46QVKM" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
 
       <!-- Salon Trolley (B2B) -->
       <div class="card" data-reveal style="--rd:400ms">
-        <div class="card-img"><video class="product-media" autoplay muted loop playsinline preload="metadata"
+        <div class="card-img"><video class="product-media lazy-video" muted loop playsinline preload="none"
            poster="assets/trolley-poster.jpg" aria-label="Extendio Salon Trolley in use">
-        <source src="assets/trolley-loop.mp4" type="video/mp4">
+        <source data-src="assets/trolley-loop.mp4" type="video/mp4">
       </video></div>
         <div class="card-body">
           <span class="badge-salon" data-i18n="badge_salon">For professionals &amp; salons</span>
           <h3 data-i18n="p_trolley_name">Salon Trolley</h3>
           <p data-i18n="p_trolley_desc">Height-adjustable workstation with a tray, two removable bowls, tool holders and smooth-running castors — for extensions, colour and styling at the chair.</p>
           <div class="price-row"><span class="price-note" data-i18n="price_note">Price on Amazon</span></div>
-          <a class="btn" data-buy="trolley" href="https://www.amazon.co.uk/dp/B0DKJW844F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
+          <a class="btn" data-buy="trolley" data-cta-position="product_card" href="https://www.amazon.co.uk/dp/B0DKJW844F" target="_blank" rel="noopener"><span data-i18n="cta_buy">Buy on Amazon</span></a>
         </div>
       </div>
     </div>
@@ -555,11 +588,11 @@
         <p data-i18n="ws_p">Buying for a salon, retail or resale? For larger volumes we offer separate wholesale terms, shipped directly from our warehouse. Tell us which products and quantities you need and we'll come back quickly with a quote.</p>
       </div>
       <div class="wholesale-ctas">
-        <a class="btn-wa" data-wa href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">
+        <a class="btn-wa" data-wa data-cta-position="wholesale" href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.9 2.6 1 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
           <span data-i18n="ws_wa">Enquire via WhatsApp</span>
         </a>
-        <a class="btn" data-mailto href="mailto:extendio.es@gmail.com">
+        <a class="btn" data-mailto data-cta-position="wholesale" href="mailto:extendio.es@gmail.com">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           <span data-i18n="ws_mail">Enquire by email</span>
         </a>
@@ -570,11 +603,17 @@
 </section>
 
 <section class="about" id="ueber-uns">
-  <div class="wrap" data-reveal>
-    <p class="kicker" data-i18n="about_kicker">About us</p>
-    <h2 data-i18n="about_h2">Extendio — from Alicante, via Amazon</h2>
-    <p data-i18n="about_p1">Extendio was founded by Juri Vaal in Alicante, Spain. We develop hair accessories and salon equipment with clear, verifiable material facts.</p>
-    <p data-i18n="about_p2">We sell exclusively through Amazon — currently on Amazon.co.uk, Amazon.de and Amazon.es. Shipping, payment and returns all stay within the Amazon environment you already know.</p>
+  <div class="wrap about-inner">
+    <figure class="founder-photo" data-reveal>
+      <img src="assets/juri-vaal-founder.jpg" alt="Juri Vaal, founder of Extendio" data-i18n-alt="alt_founder" loading="lazy">
+      <figcaption class="founder-caption" data-i18n="founder_caption">Juri Vaal · Founder of Extendio</figcaption>
+    </figure>
+    <div class="about-copy" data-reveal style="--rd:100ms">
+      <p class="kicker" data-i18n="about_kicker">About us</p>
+      <h2 data-i18n="about_h2">Extendio — from Alicante, via Amazon</h2>
+      <p data-i18n="about_p1">Extendio was founded by Juri Vaal in Alicante, Spain. Having grown up in Germany and now living in Spain, he brings a European perspective on design and everyday practicality to the brand.</p>
+      <p data-i18n="about_p2">We develop hair accessories and salon equipment with clear, verifiable material facts. We sell through Amazon.co.uk, Amazon.de and Amazon.es, keeping shipping, payment and returns within the familiar Amazon environment.</p>
+    </div>
   </div>
 </section>
 
@@ -608,7 +647,7 @@
       <h4 data-i18n="footer_reach_h">Contact</h4>
       <p>
         <a href="tel:+34634223898">+34 634 22 38 98</a><br>
-        <a data-wa href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">WhatsApp Business</a><br>
+        <a data-wa data-cta-position="footer" href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">WhatsApp Business</a><br>
         <a href="mailto:extendio.es@gmail.com">extendio.es@gmail.com</a><br>
         NIF-IVA: ESY6296347L
       </p>
@@ -666,7 +705,7 @@ de:{
   phil_kicker:'Unsere Philosophie',
   phil_h2:'Gutes Werkzeug, ehrlich gemacht',
   phil_p1:'Extendio ist aus einer einfachen Frage entstanden: Warum sind gute Haarbürsten entweder praktisch-hässlich oder hübsch-unpraktisch? Wir wollten beides — eine Bürste, die wirklich entwirrt, ohne zu ziepen, und die trotzdem gut aussieht auf dem Waschtisch.',
-  phil_p2:'Deshalb sagen wir nur, was wir belegen können: konkrete Materialangaben statt großer Versprechen — entwickelt und geführt von einer Person in Alicante, kein anonymer Konzern.',
+  phil_p2:'Deshalb sagen wir nur, was wir belegen können: konkrete Materialangaben statt großer Versprechen — entwickelt in Alicante mit einem klaren Blick auf Design und Alltagstauglichkeit.',
   alt_phil:'Stillleben mit Weizenähren und Bambus — die natürlichen Rohstoffe der Extendio-Produkte',
   hero_kicker:'Haar-Accessoires · Alicante',
   hero_h1:'Schönes Haar beginnt mit dem <em>richtigen Werkzeug</em>.',
@@ -675,6 +714,9 @@ de:{
   hero_note:'Verkauf & Versand über Amazon.de — kein eigener Shop, keine Registrierung nötig.',
   products_kicker:'Sortiment', products_h2:'Unsere Produkte',
   products_lead:'Jeder Button führt direkt zur passenden Produktseite auf Amazon. Preis, Lieferoptionen und Rückgabebedingungen werden dort aktuell angezeigt.',
+  finder_h:'Welche Bürste passt zu mir?', finder_p:'Wählen Sie nach Format und Anwendung — beide Bürsten führen direkt zur passenden Amazon-Produktseite.',
+  finder_mini_h:'Mini — kompakt', finder_mini_p:'Für Handtasche, Reise und unterwegs · vier Farben',
+  finder_l_h:'L — große Bürstenfläche', finder_l_p:'Für langes, dickes oder lockiges Haar',
   p_mini_name:'Entwirrbürste Mini',
   p_mini_desc:'Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.',
   p_mini_price:'Farbe wählen — Preis auf Amazon',
@@ -706,7 +748,7 @@ de:{
   ws_h:'Großhandel & B2B-Anfragen',
   ws_p:'Sie kaufen für Salon, Einzelhandel oder Wiederverkauf? Für größere Mengen gelten eigene Großhandelskonditionen — mit Versand direkt ab Lager. Schreiben Sie uns kurz, welche Produkte und Stückzahlen Sie brauchen, und Sie erhalten schnell ein Angebot.',
   ws_wa:'Anfrage per WhatsApp', ws_mail:'Anfrage per E-Mail',
-  wa_text:'Hallo Extendio! Ich interessiere mich für Großhandelskonditionen. Produkte/Mengen: ',
+  wa_text:'Hallo Extendio! Ich interessiere mich für Großhandelskonditionen. Kundentyp (Salon/Handel/Distributor): · Produkte: · Ungefähre Menge: · Lieferland: ',
   mail_subject:'B2B- / Großhandelsanfrage',
   b2b_kicker:'Für Profis & Salons', b2b_h2:'Extendio im Salon',
   b2b_desc:'Von der Entwirrbürste an der Waschstation über Haarklammern beim Farbtermin bis zum Salon Trolley am Stuhl: Unsere Produkte sind auch für den professionellen Salonalltag gedacht. Größere Stückzahlen können direkt bei uns angefragt werden.',
@@ -715,8 +757,9 @@ de:{
   p_trolley_name:'Salon Trolley',
   p_trolley_desc:'Höhenverstellbarer Arbeitswagen mit Ablage, zwei herausnehmbaren Schalen, Werkzeug-Öffnungen und laufruhigen Rollen — für Extensions, Farbe und Styling am Stuhl.',
   about_kicker:'Über uns', about_h2:'Extendio — aus Alicante, über Amazon zu Ihnen',
-  about_p1:'Extendio wurde von Juri Vaal in Alicante gegründet. Wir entwickeln Haar-Accessoires und Salon-Zubehör mit klaren, belegbaren Materialangaben.',
-  about_p2:'Verkauft wird ausschließlich über Amazon — aktuell auf Amazon.de, Amazon.es und Amazon.co.uk. So bleiben Versand, Zahlung und Retouren in der vertrauten Amazon-Umgebung.',
+  about_p1:'Extendio wurde von Juri Vaal in Alicante gegründet. In Deutschland aufgewachsen und heute in Spanien zu Hause, verbindet er in der Marke einen europäischen Blick auf Design und Alltagstauglichkeit.',
+  about_p2:'Wir entwickeln Haar-Accessoires und Salon-Zubehör mit klaren, belegbaren Materialangaben. Verkauft wird über Amazon.de, Amazon.es und Amazon.co.uk — Versand, Zahlung und Retouren bleiben in der vertrauten Amazon-Umgebung.',
+  founder_caption:'Juri Vaal · Gründer von Extendio', alt_founder:'Juri Vaal, Gründer von Extendio',
   footer_tagline:'Haar-Accessoires und Salon-Zubehör aus Alicante.',
   footer_contact_h:'Anschrift', footer_reach_h:'Kontakt', footer_lang_h:'Sprache', footer_legal_h:'Rechtliches',
   legal_notice:'Impressum', privacy_label:'Datenschutz', cookie_settings:'Cookie-Einstellungen',
@@ -736,7 +779,7 @@ es:{
   phil_kicker:'Nuestra filosofía',
   phil_h2:'Buenas herramientas, hechas con honestidad',
   phil_p1:'Extendio nació de una pregunta sencilla: ¿por qué los buenos cepillos son o bien prácticos y feos, o bonitos e inútiles? Queríamos las dos cosas — un cepillo que desenreda de verdad, sin tirones, y que además luzca bien en el baño.',
-  phil_p2:'Por eso solo decimos lo que podemos demostrar: datos de materiales concretos en lugar de grandes promesas — diseñado y dirigido por una sola persona en Alicante, no una corporación anónima.',
+  phil_p2:'Por eso solo decimos lo que podemos demostrar: datos concretos de materiales en lugar de grandes promesas — desarrollado en Alicante con una visión clara del diseño y la funcionalidad cotidiana.',
   alt_phil:'Bodegón con espigas de trigo y bambú — las materias primas naturales de los productos Extendio',
   hero_kicker:'Accesorios para el pelo · Alicante',
   hero_h1:'El pelo bonito empieza con la <em>herramienta adecuada</em>.',
@@ -745,6 +788,9 @@ es:{
   hero_note:'Venta y envío a través de Amazon.es — sin tienda propia ni registro.',
   products_kicker:'Catálogo', products_h2:'Nuestros productos',
   products_lead:'Cada botón lleva directamente a la página correspondiente del producto en Amazon. Allí encontrarás el precio, las opciones de entrega y las condiciones de devolución vigentes.',
+  finder_h:'¿Qué cepillo es para mí?', finder_p:'Elige según el formato y el uso; ambos cepillos llevan directamente a su página de producto en Amazon.',
+  finder_mini_h:'Mini — compacto', finder_mini_p:'Para el bolso, viajes y fuera de casa · cuatro colores',
+  finder_l_h:'L — mayor superficie', finder_l_p:'Para pelo largo, grueso o rizado',
   p_mini_name:'Cepillo Mini Desenredante',
   p_mini_desc:'El cepillo desenredante en formato bolso — púas flexibles, suave con el cuero cabelludo, para pelo mojado y seco. Cuerpo con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado ASTM D6866). En cuatro colores.',
   p_mini_price:'Elige color — precio en Amazon',
@@ -776,7 +822,7 @@ es:{
   ws_h:'Mayoristas y consultas B2B',
   ws_p:'¿Compras para salón, tienda o reventa? Para volúmenes grandes ofrecemos condiciones mayoristas propias, con envío directo desde el almacén. Cuéntanos qué productos y cantidades necesitas y te enviamos una oferta enseguida.',
   ws_wa:'Consulta por WhatsApp', ws_mail:'Consulta por e-mail',
-  wa_text:'¡Hola Extendio! Me interesan las condiciones para mayoristas. Productos/cantidades: ',
+  wa_text:'¡Hola Extendio! Me interesan las condiciones para mayoristas. Tipo de cliente (salón/tienda/distribuidor): · Productos: · Cantidad aproximada: · País de entrega: ',
   mail_subject:'Consulta B2B / mayorista',
   b2b_kicker:'Para profesionales y salones', b2b_h2:'Extendio en el salón',
   b2b_desc:'Desde el cepillo desenredante en el lavacabezas hasta las pinzas durante el color y el carrito junto al sillón: nuestros productos también están pensados para el trabajo profesional en el salón. Puedes consultarnos directamente por cantidades mayores.',
@@ -785,8 +831,9 @@ es:{
   p_trolley_name:'Salon Trolley',
   p_trolley_desc:'Carrito de trabajo regulable en altura con bandeja, dos cubetas extraíbles, soportes para herramientas y ruedas suaves — para extensiones, color y estilismo junto al sillón.',
   about_kicker:'Sobre nosotros', about_h2:'Extendio — desde Alicante, a través de Amazon',
-  about_p1:'Extendio fue fundada por Juri Vaal en Alicante. Desarrollamos accesorios para el pelo y equipamiento para salones con datos de materiales claros y verificables.',
-  about_p2:'Vendemos exclusivamente a través de Amazon — actualmente en Amazon.es, Amazon.de y Amazon.co.uk. Así, el envío, el pago y las devoluciones se quedan en el entorno de Amazon que ya conoces.',
+  about_p1:'Extendio fue fundada por Juri Vaal en Alicante. Creció en Alemania y actualmente vive en España, aportando a la marca una perspectiva europea sobre el diseño y la funcionalidad cotidiana.',
+  about_p2:'Desarrollamos accesorios para el pelo y equipamiento para salones con datos de materiales claros y verificables. Vendemos a través de Amazon.es, Amazon.de y Amazon.co.uk; el envío, el pago y las devoluciones se mantienen en el entorno de Amazon.',
+  founder_caption:'Juri Vaal · Fundador de Extendio', alt_founder:'Juri Vaal, fundador de Extendio',
   footer_tagline:'Accesorios para el pelo y equipamiento para salones, desde Alicante.',
   footer_contact_h:'Dirección', footer_reach_h:'Contacto', footer_lang_h:'Idioma', footer_legal_h:'Legal',
   legal_notice:'Aviso Legal', privacy_label:'Privacidad', cookie_settings:'Configuración de cookies',
@@ -806,7 +853,7 @@ en:{
   phil_kicker:'Our philosophy',
   phil_h2:'Good tools, made honestly',
   phil_p1:'Extendio started with a simple question: why are good hairbrushes either practical-but-ugly or pretty-but-useless? We wanted both — a brush that actually detangles without pulling, and still looks good on the shelf.',
-  phil_p2:'That\'s why we only say what we can prove: specific material facts instead of big promises — designed and run by one person in Alicante, not an anonymous corporation.',
+  phil_p2:'That\'s why we only say what we can prove: specific material facts instead of big promises — developed in Alicante with a clear focus on design and everyday practicality.',
   alt_phil:'Still life with wheat ears and bamboo — the natural raw materials of Extendio products',
   hero_kicker:'Hair accessories · Alicante',
   hero_h1:'Beautiful hair starts with the <em>right tools</em>.',
@@ -815,6 +862,9 @@ en:{
   hero_note:'Sold and shipped via Amazon.co.uk — no separate shop or sign-up needed.',
   products_kicker:'Range', products_h2:'Our products',
   products_lead:'Every button takes you directly to the relevant Amazon product page, where the current price, delivery options and return terms are shown.',
+  finder_h:'Which brush is right for me?', finder_p:'Choose by format and use — both brushes link directly to the relevant Amazon product page.',
+  finder_mini_h:'Mini — compact', finder_mini_p:'For handbags, travel and on the go · four colours',
+  finder_l_h:'L — larger brush area', finder_l_p:'For long, thick or curly hair',
   p_mini_name:'Mini Detangling Brush',
   p_mini_desc:'The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.',
   p_mini_price:'Pick a colour — see price on Amazon',
@@ -846,7 +896,7 @@ en:{
   ws_h:'Wholesale & B2B enquiries',
   ws_p:'Buying for a salon, retail or resale? For larger volumes we offer separate wholesale terms, shipped directly from our warehouse. Tell us which products and quantities you need and we\'ll come back quickly with a quote.',
   ws_wa:'Enquire via WhatsApp', ws_mail:'Enquire by email',
-  wa_text:'Hello Extendio! I\'m interested in your wholesale terms. Products/quantities: ',
+  wa_text:'Hello Extendio! I\'m interested in your wholesale terms. Customer type (salon/retailer/distributor): · Products: · Approximate quantity: · Delivery country: ',
   mail_subject:'B2B / wholesale enquiry',
   b2b_kicker:'For professionals & salons', b2b_h2:'Extendio in the salon',
   b2b_desc:'From the detangling brush at the backwash to claw clips during colour work and the trolley at the chair: our products are also designed for professional salon routines. Larger quantities can be requested directly from us.',
@@ -855,8 +905,9 @@ en:{
   p_trolley_name:'Salon Trolley',
   p_trolley_desc:'Height-adjustable workstation with a tray, two removable bowls, tool holders and smooth-running castors — for extensions, colour and styling at the chair.',
   about_kicker:'About us', about_h2:'Extendio — from Alicante, via Amazon',
-  about_p1:'Extendio was founded by Juri Vaal in Alicante, Spain. We develop hair accessories and salon equipment with clear, verifiable material facts.',
-  about_p2:'We sell exclusively through Amazon — currently on Amazon.co.uk, Amazon.de and Amazon.es. Shipping, payment and returns all stay within the Amazon environment you already know.',
+  about_p1:'Extendio was founded by Juri Vaal in Alicante, Spain. Having grown up in Germany and now living in Spain, he brings a European perspective on design and everyday practicality to the brand.',
+  about_p2:'We develop hair accessories and salon equipment with clear, verifiable material facts. We sell through Amazon.co.uk, Amazon.de and Amazon.es, keeping shipping, payment and returns within the familiar Amazon environment.',
+  founder_caption:'Juri Vaal · Founder of Extendio', alt_founder:'Juri Vaal, founder of Extendio',
   footer_tagline:'Hair accessories and salon equipment from Alicante.',
   footer_contact_h:'Address', footer_reach_h:'Contact', footer_lang_h:'Language', footer_legal_h:'Legal',
   legal_notice:'Legal Notice', privacy_label:'Privacy Policy', cookie_settings:'Cookie settings',
@@ -931,12 +982,13 @@ document.addEventListener('click', e => {
       product_id: link.dataset.buy,
       marketplace: new URL(link.href).hostname,
       language: lang,
+      cta_position: link.dataset.ctaPosition || 'unspecified',
       link_url: link.href
     });
   } else if(link.matches('[data-wa]')) {
-    window.trackExtendioEvent('generate_lead', { contact_method:'whatsapp', language:lang });
+    window.trackExtendioEvent('generate_lead', { contact_method:'whatsapp', language:lang, cta_position:link.dataset.ctaPosition || 'unspecified' });
   } else if(link.matches('[data-mailto]')) {
-    window.trackExtendioEvent('generate_lead', { contact_method:'email', language:lang });
+    window.trackExtendioEvent('generate_lead', { contact_method:'email', language:lang, cta_position:link.dataset.ctaPosition || 'unspecified' });
   } else if(link.matches('.lang-switch button')) {
     window.trackExtendioEvent('language_change', { language:link.dataset.lang });
   }
@@ -953,6 +1005,31 @@ if(!initial){
   initial = ['de','es'].includes(nav) ? nav : 'en';
 }
 setLang(initial);
+
+/* Produktvideos erst kurz vor Sichtbarkeit laden. Das reduziert die mobile
+   Datenmenge deutlich; das Hero- und Salonvideo bleiben bewusst sofort aktiv. */
+(function(){
+  const videos = document.querySelectorAll('video.lazy-video');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return; /* Poster bleibt sichtbar, keine Videodatei wird geladen. */
+  const loadVideo = video => {
+    video.querySelectorAll('source[data-src]').forEach(source => {
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+    });
+    video.load();
+    video.play().catch(() => {});
+  };
+  if(!('IntersectionObserver' in window)){ videos.forEach(loadVideo); return; }
+  const videoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      loadVideo(entry.target);
+      videoObserver.unobserve(entry.target);
+    });
+  }, { rootMargin:'300px 0px', threshold:0.01 });
+  videos.forEach(video => videoObserver.observe(video));
+})();
 
 /* ---------- Dezente Bewegung (Scroll-Reveal + Zahlen-Counter) ----------
    Vollständig deaktiviert bei prefers-reduced-motion: dann kein Observer,
