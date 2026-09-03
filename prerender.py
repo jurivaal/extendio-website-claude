@@ -31,6 +31,8 @@ de = translations['de']
 
 # ---- ASINs parsen (keine Preise mehr im Code — Karten zeigen nur "Preis auf Amazon") ----
 asins = dict(re.findall(r"^\s*(\w+):'(B0[A-Z0-9]{8})'", src, re.M))
+attr_match = re.search(r"const ATTRIBUTION_DE = \{(.*?)\n\};", src, re.S)
+attribution_de = dict(re.findall(r"\s*(\w+):'(\?maas=[^']+)'", attr_match.group(1))) if attr_match else {}
 
 n = 0
 def sub(pattern, repl, s):
@@ -61,7 +63,7 @@ def fill_buy(mm):
     key = mm.group(1)
     if key in asins:
         n += 1
-        return 'data-buy="' + key + '"' + mm.group(2) + 'href="https://www.amazon.de/dp/' + asins[key] + '"'
+        return 'data-buy="' + key + '"' + mm.group(2) + 'href="https://www.amazon.de/dp/' + asins[key] + attribution_de.get(key, '') + '"'
     return mm.group(0)
 src = re.sub(r'data-buy="(\w+)"([^>]*?)href="[^"]*"', fill_buy, src)
 
@@ -133,8 +135,9 @@ def render_language(lang):
                          lambda m, s=value: 'alt="' + html.escape(s, quote=True) + '"' + m.group(1), out)
 
     for key, asin in asins.items():
+        suffix = attribution_de.get(key, '') if lang == 'de' else ''
         out = re.sub(rf'(data-buy="{key}"[^>]*href=")[^"]*',
-                     rf'\g<1>https://{markets[lang]}/dp/{asin}', out)
+                     rf'\g<1>https://{markets[lang]}/dp/{asin}{suffix}', out)
     for key, routes in guide_routes.items():
         out = re.sub(rf'(data-guide="{key}"[^>]*href=")[^"]*',
                      rf'\g<1>{routes[lang]}', out)

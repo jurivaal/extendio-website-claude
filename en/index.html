@@ -651,6 +651,22 @@ const ASIN = {
   clipsSet2:'B0GQ46QVKM',
   trolley:'B0DKJW844F'
 };
+/* Amazon Attribution: misst externe Klicks und nachgelagerte Amazon-Conversions.
+   Die Farbvarianten einer Bürstengröße teilen sich bewusst dieselbe Anzeigengruppe. */
+const ATTRIBUTION_DE = {
+  miniNegro:'?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas',
+  miniAzul:'?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas',
+  miniBeige:'?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas',
+  miniLila:'?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas',
+  cepilloL:'?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas',
+  largeBeige:'?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas',
+  largeLila:'?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas',
+  largeNegro:'?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas',
+  swabs:'?maas=maas_adg_F54DD3AFD3762CFFF51D38DE4ECB2724_afap_abs&ref_=aa_maas&tag=maas',
+  clipsSet1:'?maas=maas_adg_70AAAC75B6FB88E9C982FB2C4848DC1E_afap_abs&ref_=aa_maas&tag=maas',
+  clipsSet2:'?maas=maas_adg_6B690D3738FF3BD9DD517B07BAD7CB31_afap_abs&ref_=aa_maas&tag=maas',
+  trolley:'?maas=maas_adg_439851B40722F1B5A72B84D892FB39BC_afap_abs&ref_=aa_maas&tag=maas'
+};
 const GUIDE_ROUTES = {
   mini:{de:'/de/mini-entwirrbuerste/',es:'/es/cepillo-mini-desenredante/',en:'/en/mini-detangling-brush/'},
   large:{de:'/de/entwirrbuerste-l/',es:'/es/cepillo-desenredante-l/',en:'/en/detangling-brush-l/'},
@@ -916,7 +932,7 @@ function setLang(lang){
   /* Kauf-Buttons auf den passenden Marktplatz umschreiben */
   document.querySelectorAll('[data-buy]').forEach(el => {
     const asin = ASIN[el.dataset.buy];
-    if(asin) el.href = MARKETPLACE[lang] + asin;
+    if(asin) el.href = MARKETPLACE[lang] + asin + (lang === 'de' ? (ATTRIBUTION_DE[el.dataset.buy] || '') : '');
   });
   document.querySelectorAll('[data-guide]').forEach(el => {
     const routes = GUIDE_ROUTES[el.dataset.guide];

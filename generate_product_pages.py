@@ -6,6 +6,14 @@ import json
 
 ROOT = Path(__file__).parent
 MARKET = {"de":"amazon.de","es":"amazon.es","en":"amazon.co.uk"}
+ATTRIBUTION_DE = {
+  "mini":"?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas",
+  "large":"?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas",
+  "swabs":"?maas=maas_adg_F54DD3AFD3762CFFF51D38DE4ECB2724_afap_abs&ref_=aa_maas&tag=maas",
+  "clips1":"?maas=maas_adg_70AAAC75B6FB88E9C982FB2C4848DC1E_afap_abs&ref_=aa_maas&tag=maas",
+  "clips2":"?maas=maas_adg_6B690D3738FF3BD9DD517B07BAD7CB31_afap_abs&ref_=aa_maas&tag=maas",
+  "trolley":"?maas=maas_adg_439851B40722F1B5A72B84D892FB39BC_afap_abs&ref_=aa_maas&tag=maas",
+}
 ROUTES = {
   "mini":{"de":"mini-entwirrbuerste","es":"cepillo-mini-desenredante","en":"mini-detangling-brush"},
   "large":{"de":"entwirrbuerste-l","es":"cepillo-desenredante-l","en":"detangling-brush-l"},
@@ -63,7 +71,8 @@ def page(product, lang):
     c, d = COMMON[lang], DATA[product][lang]
     route = ROUTES[product][lang]
     url = f"https://extendio.es/{lang}/{route}/"
-    amazon = f"https://www.{MARKET[lang]}/dp/{DATA[product]['asin']}"
+    amazon_base = f"https://www.{MARKET[lang]}/dp/{DATA[product]['asin']}"
+    amazon = amazon_base + (ATTRIBUTION_DE[product] if lang == "de" else "")
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="https://extendio.es/{l}/{ROUTES[product][l]}/">' for l in ("de","es","en"))
     alts += f'\n<link rel="alternate" hreflang="x-default" href="https://extendio.es/en/{ROUTES[product]["en"]}/">'
     langlinks = "".join(f'<a href="/{l}/{ROUTES[product][l]}/" {("aria-current=" + chr(34) + "page" + chr(34)) if l==lang else ""}>{l.upper()}</a>' for l in ("de","es","en"))
@@ -78,7 +87,7 @@ def page(product, lang):
     faq_schema = [{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in d["faq"]]
     fact_h = d.get("facth", c["trust1h"])
     fact_p = d.get("factp", c["trust1p"])
-    schema = {"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":d["title"],"description":d["meta"],"image":"https://extendio.es"+(DATA[product].get("poster") or DATA[product]["image"]),"url":url,"isPartOf":{"@type":"WebSite","name":"Extendio","url":"https://extendio.es/"},"about":{"@type":"Thing","name":d["title"],"sameAs":amazon}},{"@type":"FAQPage","mainEntity":faq_schema}]}
+    schema = {"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":d["title"],"description":d["meta"],"image":"https://extendio.es"+(DATA[product].get("poster") or DATA[product]["image"]),"url":url,"isPartOf":{"@type":"WebSite","name":"Extendio","url":"https://extendio.es/"},"about":{"@type":"Thing","name":d["title"],"sameAs":amazon_base}},{"@type":"FAQPage","mainEntity":faq_schema}]}
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(d["title"])} | Extendio</title><meta name="description" content="{escape(d["meta"])}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}">{alts}<meta property="og:type" content="product"><meta property="og:title" content="{escape(d["title"])}"><meta property="og:description" content="{escape(d["meta"])}"><meta property="og:url" content="{url}"><meta property="og:image" content="https://extendio.es{DATA[product].get("poster") or DATA[product]["image"]}"><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/product-guide.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script><script src="/assets/consent.js?v=20260903" defer></script></head><body>
 <header class="top"><div class="wrap"><a href="/{lang}/"><img class="logo" src="/assets/logo.png" alt="Extendio"></a><a class="back" href="/{lang}/#produkte">← {c["back"]}</a><nav class="langs" aria-label="Language">{langlinks}</nav></div></header>
 <main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" data-buy="{product}" data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]}</p></div></section></div>
