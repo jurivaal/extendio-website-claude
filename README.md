@@ -12,17 +12,17 @@ Dieses Repo lag ursprünglich im iCloud-Drive-Ordner „Extendio Assets/website"
 |---|---|
 | DE | amazon.de |
 | ES | amazon.es |
-| EN | amazon.co.uk |
+| EN | amazon.de |
 
 Erstbesuch: Browser-Sprache wird vorausgewählt (de/es, sonst en), Wahl wird in localStorage gespeichert. ASINs und Übersetzungen stehen zentral im `<script>`-Block von `index.html` (Konstanten `ASIN`, `I18N`). Numerische Preise werden bewusst nicht lokal gespeichert; maßgeblich ist Amazon.
 
 ## Vor dem Launch verifizieren
 
-1. **UK-ASINs:** EN-Buttons nutzen dieselben ASINs auf amazon.co.uk (ASINs sind i. d. R. marktplatzübergreifend identisch). Bitte jeden Link einmal auf amazon.co.uk anklicken und prüfen, ob das Listing live ist.
+1. **Marktplatzumfang:** Verkauf derzeit offiziell über amazon.de und amazon.es. Die englische Sprachversion führt deshalb zu amazon.de; keine UK-Kampagne und keine amazon.co.uk-Kauflinks.
 2. **amazon.es:** Wattestäbchen (B0FZM98G9B), Haarklammern (B0GQ46QVKM) und Trolley (B0DKJW844F) — prüfen, ob die Listings auf .es tatsächlich aktiv sind.
 3. **Haarklammer-Sets:** Beide Sets sind eigene Karten. Am 03.09.2026 direkt auf Amazon.de bestätigt: Set 1 = Foto `02.01.jpg` (Koralle/Lila) → **B0GM6Y1D2G** (HC-4-set); Set 2 = Foto `02.02.jpg` (Mint/Beige) → **B0GQ46QVKM** (HC-4-set-2). Beide ASINs sind dort als Varianten miteinander verknüpft.
 4. **Bürsten-Farbvarianten:** Am 03.09.2026 direkt in Amazon Attribution bestätigt. Mini: Schwarz B0GD2MV24F, Blau B0GD2JL8JK, Beige B0GD2RBZ87, Lila B0GD2DZMWM. L: Beige B07HDVVJ33, Lila B0GD2KDYZR, Blau B0GD2MXXDT, Schwarz B0GD2N2463. Farbpunkte verlinken direkt auf die jeweilige Child-ASIN; die Hauptbuttons bleiben auf Schwarz (Mini) beziehungsweise Blau (L).
-5. **Amazon Attribution DE:** Kampagne `Extendio Website | DE | 2026` (ID 584918377269367287) misst Website-Traffic in sechs Produktgruppen. Die Tags sind auf der DE-Startseite und allen sechs deutschen Produktguides eingebaut. ES/UK bleiben bis zur Einrichtung eigener Marketplace-Tags auf direkten Amazon-Links.
+5. **Amazon Attribution:** DE-Kampagne `Extendio Website | DE | 2026` (ID 584918377269367287) und ES-Kampagne `Extendio Website | ES | 2026` (ID 587782400759408388) messen Website-Traffic jeweils in sechs Produktgruppen. Die Marketplace-spezifischen Tags sind auf den Startseiten-Links und allen Produktguides eingebaut. EN nutzt amazon.de und die deutschen Produkt-Tags.
 
 ## B2B-/Großhandels-Modul
 

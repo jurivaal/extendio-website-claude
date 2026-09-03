@@ -577,8 +577,9 @@
 
 <script>
 /* ---------- Amazon-Routing: Sprache → Marktplatz ---------- */
-const MARKETPLACE = { de:'https://www.amazon.de/dp/', es:'https://www.amazon.es/dp/', en:'https://www.amazon.co.uk/dp/' };
-/* UK: gleiche ASINs wie DE/ES (ASINs sind i. d. R. marktplatzübergreifend identisch) — nach Launch auf amazon.co.uk stichprobenartig verifizieren. */
+const MARKETPLACE = { de:'https://www.amazon.de/dp/', es:'https://www.amazon.es/dp/', en:'https://www.amazon.de/dp/' };
+/* Verkauf derzeit ausschließlich über die offiziell bedienten Marktplätze DE und ES.
+   Die englische Sprachversion führt deshalb ebenfalls zu amazon.de. */
 const ASIN = {
   /* Parent-ASIN B0GD2N9M5F ist als /dp/-Link nicht zuverlässig aufrufbar → Hauptlinks
      zeigen auf eine verfügbare Child-ASIN; Farbpunkte verlinken direkt auf die jeweilige Variante. */
@@ -611,6 +612,21 @@ const ATTRIBUTION_DE = {
   clipsSet2:'?maas=maas_adg_6B690D3738FF3BD9DD517B07BAD7CB31_afap_abs&ref_=aa_maas&tag=maas',
   trolley:'?maas=maas_adg_439851B40722F1B5A72B84D892FB39BC_afap_abs&ref_=aa_maas&tag=maas'
 };
+const ATTRIBUTION_ES = {
+  miniNegro:'?maas=maas_adg_C79490EB0344640BF6976C7A727E3E97_afap_abs&ref_=aa_maas&tag=maas',
+  miniAzul:'?maas=maas_adg_C79490EB0344640BF6976C7A727E3E97_afap_abs&ref_=aa_maas&tag=maas',
+  miniBeige:'?maas=maas_adg_C79490EB0344640BF6976C7A727E3E97_afap_abs&ref_=aa_maas&tag=maas',
+  miniLila:'?maas=maas_adg_C79490EB0344640BF6976C7A727E3E97_afap_abs&ref_=aa_maas&tag=maas',
+  cepilloL:'?maas=maas_adg_DF3C86335F299742022C20CB102F4292_afap_abs&ref_=aa_maas&tag=maas',
+  largeBeige:'?maas=maas_adg_DF3C86335F299742022C20CB102F4292_afap_abs&ref_=aa_maas&tag=maas',
+  largeLila:'?maas=maas_adg_DF3C86335F299742022C20CB102F4292_afap_abs&ref_=aa_maas&tag=maas',
+  largeNegro:'?maas=maas_adg_DF3C86335F299742022C20CB102F4292_afap_abs&ref_=aa_maas&tag=maas',
+  swabs:'?maas=maas_adg_344285AF5F422F4DD15104F90B2958B9_afap_abs&ref_=aa_maas&tag=maas',
+  clipsSet1:'?maas=maas_adg_B5250B694F0E59126FB1C3BA19B39602_afap_abs&ref_=aa_maas&tag=maas',
+  clipsSet2:'?maas=maas_adg_D4A58E9F22D57C19B77C875FF153E1DF_afap_abs&ref_=aa_maas&tag=maas',
+  trolley:'?maas=maas_adg_45A403A7826DB517DED5B9DEA6BBE6FC_afap_abs&ref_=aa_maas&tag=maas'
+};
+const ATTRIBUTION = {de:ATTRIBUTION_DE, es:ATTRIBUTION_ES, en:ATTRIBUTION_DE};
 const GUIDE_ROUTES = {
   mini:{de:'/de/mini-entwirrbuerste/',es:'/es/cepillo-mini-desenredante/',en:'/en/mini-detangling-brush/'},
   large:{de:'/de/entwirrbuerste-l/',es:'/es/cepillo-desenredante-l/',en:'/en/detangling-brush-l/'},
@@ -663,7 +679,7 @@ de:{
   fact2_h:'Bambus + Baumwolle',
   fact2_p:'Unsere Wattestäbchen bestehen aus einem Bambus-Stiel und Köpfen aus 100 % Baumwolle. CE-konform und TÜV-geprüft.',
   fact3_h:'Versand über Amazon',
-  fact3_p:'Lagerung und Versand laufen über die Amazon-Logistik in der EU und in Großbritannien — schnelle Lieferung, einfache Retouren.',
+  fact3_p:'Lagerung und Versand laufen über die Amazon-Logistik in Deutschland und Spanien — schnelle Lieferung und einfache Retouren.',
   trust_tm:'® Eingetragene Unionsmarke (EUIPO)',
   trust_design:'Design EU-weit geschützt (Geschmacksmuster)',
   badge_design:'® Eingetragenes Design — das Original nur von Extendio',
@@ -738,7 +754,7 @@ es:{
   fact2_h:'Bambú + algodón',
   fact2_p:'Nuestros bastoncillos se componen de una varilla de bambú y cabezas de 100 % algodón. Conformidad CE y verificación TÜV.',
   fact3_h:'Envío a través de Amazon',
-  fact3_p:'El almacenaje y el envío se gestionan con la logística de Amazon en la UE y el Reino Unido — entrega rápida y devoluciones sencillas.',
+  fact3_p:'El almacenaje y el envío se gestionan con la logística de Amazon en Alemania y España — entrega rápida y devoluciones sencillas.',
   trust_tm:'® Marca registrada de la UE (EUIPO)',
   trust_design:'Diseño registrado en toda la UE',
   badge_design:'® Diseño registrado — el original, solo de Extendio',
@@ -813,7 +829,7 @@ en:{
   fact2_h:'Bamboo + cotton',
   fact2_p:'Our swabs are made from a bamboo stem with 100% cotton tips. CE-compliant and TÜV-tested.',
   fact3_h:'Fulfilled by Amazon',
-  fact3_p:'Storage and delivery run through Amazon logistics in the EU and the UK — fast shipping and easy returns.',
+  fact3_p:'Storage and delivery run through Amazon logistics in Germany and Spain — fast shipping and easy returns.',
   trust_tm:'® Registered EU trade mark (EUIPO)',
   trust_design:'Design protected across the EU',
   badge_design:'® Registered design — the original, only from Extendio',
@@ -876,7 +892,7 @@ function setLang(lang){
   /* Kauf-Buttons auf den passenden Marktplatz umschreiben */
   document.querySelectorAll('[data-buy]').forEach(el => {
     const asin = ASIN[el.dataset.buy];
-    if(asin) el.href = MARKETPLACE[lang] + asin + (lang === 'de' ? (ATTRIBUTION_DE[el.dataset.buy] || '') : '');
+    if(asin) el.href = MARKETPLACE[lang] + asin + (ATTRIBUTION[lang]?.[el.dataset.buy] || '');
   });
   document.querySelectorAll('[data-guide]').forEach(el => {
     const routes = GUIDE_ROUTES[el.dataset.guide];

@@ -31,8 +31,10 @@ de = translations['de']
 
 # ---- ASINs parsen (keine Preise mehr im Code — Karten zeigen nur "Preis auf Amazon") ----
 asins = dict(re.findall(r"^\s*(\w+):'(B0[A-Z0-9]{8})'", src, re.M))
-attr_match = re.search(r"const ATTRIBUTION_DE = \{(.*?)\n\};", src, re.S)
-attribution_de = dict(re.findall(r"\s*(\w+):'(\?maas=[^']+)'", attr_match.group(1))) if attr_match else {}
+attribution = {}
+for lang in ('de', 'es', 'en'):
+    attr_match = re.search(rf"const ATTRIBUTION_{lang.upper()} = \{{(.*?)\n\}};", src, re.S)
+    attribution[lang] = dict(re.findall(r"\s*(\w+):'(\?maas=[^']+)'", attr_match.group(1))) if attr_match else {}
 
 n = 0
 def sub(pattern, repl, s):
@@ -63,7 +65,7 @@ def fill_buy(mm):
     key = mm.group(1)
     if key in asins:
         n += 1
-        return 'data-buy="' + key + '"' + mm.group(2) + 'href="https://www.amazon.de/dp/' + asins[key] + attribution_de.get(key, '') + '"'
+        return 'data-buy="' + key + '"' + mm.group(2) + 'href="https://www.amazon.de/dp/' + asins[key] + attribution['de'].get(key, '') + '"'
     return mm.group(0)
 src = re.sub(r'data-buy="(\w+)"([^>]*?)href="[^"]*"', fill_buy, src)
 
@@ -85,7 +87,7 @@ descriptions = {
     'en': 'Extendio: detangling brushes with 29% bio-based content (ASTM D6866), bamboo cotton swabs, claw clips and salon equipment. Available on Amazon.co.uk.'
 }
 og_locales = {'de': 'de_DE', 'es': 'es_ES', 'en': 'en_GB'}
-markets = {'de': 'www.amazon.de', 'es': 'www.amazon.es', 'en': 'www.amazon.co.uk'}
+markets = {'de': 'www.amazon.de', 'es': 'www.amazon.es', 'en': 'www.amazon.de'}
 guide_routes = {
     'mini': {'de':'/de/mini-entwirrbuerste/','es':'/es/cepillo-mini-desenredante/','en':'/en/mini-detangling-brush/'},
     'large': {'de':'/de/entwirrbuerste-l/','es':'/es/cepillo-desenredante-l/','en':'/en/detangling-brush-l/'},
@@ -135,7 +137,7 @@ def render_language(lang):
                          lambda m, s=value: 'alt="' + html.escape(s, quote=True) + '"' + m.group(1), out)
 
     for key, asin in asins.items():
-        suffix = attribution_de.get(key, '') if lang == 'de' else ''
+        suffix = attribution.get(lang, {}).get(key, '')
         out = re.sub(rf'(data-buy="{key}"[^>]*href=")[^"]*',
                      rf'\g<1>https://{markets[lang]}/dp/{asin}{suffix}', out)
     for key, routes in guide_routes.items():

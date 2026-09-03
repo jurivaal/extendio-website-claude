@@ -5,7 +5,7 @@ from html import escape
 import json
 
 ROOT = Path(__file__).parent
-MARKET = {"de":"amazon.de","es":"amazon.es","en":"amazon.co.uk"}
+MARKET = {"de":"amazon.de","es":"amazon.es","en":"amazon.de"}
 ATTRIBUTION_DE = {
   "mini":"?maas=maas_adg_AE5B9567A0182F2A31DE4DF7F273EBB2_afap_abs&ref_=aa_maas&tag=maas",
   "large":"?maas=maas_adg_0BEAA17AA1DDCF682F15A9E8149FA401_afap_abs&ref_=aa_maas&tag=maas",
@@ -14,6 +14,15 @@ ATTRIBUTION_DE = {
   "clips2":"?maas=maas_adg_6B690D3738FF3BD9DD517B07BAD7CB31_afap_abs&ref_=aa_maas&tag=maas",
   "trolley":"?maas=maas_adg_439851B40722F1B5A72B84D892FB39BC_afap_abs&ref_=aa_maas&tag=maas",
 }
+ATTRIBUTION_ES = {
+  "mini":"?maas=maas_adg_C79490EB0344640BF6976C7A727E3E97_afap_abs&ref_=aa_maas&tag=maas",
+  "large":"?maas=maas_adg_DF3C86335F299742022C20CB102F4292_afap_abs&ref_=aa_maas&tag=maas",
+  "swabs":"?maas=maas_adg_344285AF5F422F4DD15104F90B2958B9_afap_abs&ref_=aa_maas&tag=maas",
+  "clips1":"?maas=maas_adg_B5250B694F0E59126FB1C3BA19B39602_afap_abs&ref_=aa_maas&tag=maas",
+  "clips2":"?maas=maas_adg_D4A58E9F22D57C19B77C875FF153E1DF_afap_abs&ref_=aa_maas&tag=maas",
+  "trolley":"?maas=maas_adg_45A403A7826DB517DED5B9DEA6BBE6FC_afap_abs&ref_=aa_maas&tag=maas",
+}
+ATTRIBUTION = {"de": ATTRIBUTION_DE, "es": ATTRIBUTION_ES, "en": ATTRIBUTION_DE}
 ROUTES = {
   "mini":{"de":"mini-entwirrbuerste","es":"cepillo-mini-desenredante","en":"mini-detangling-brush"},
   "large":{"de":"entwirrbuerste-l","es":"cepillo-desenredante-l","en":"detangling-brush-l"},
@@ -72,7 +81,7 @@ def page(product, lang):
     route = ROUTES[product][lang]
     url = f"https://extendio.es/{lang}/{route}/"
     amazon_base = f"https://www.{MARKET[lang]}/dp/{DATA[product]['asin']}"
-    amazon = amazon_base + (ATTRIBUTION_DE[product] if lang == "de" else "")
+    amazon = amazon_base + ATTRIBUTION.get(lang, {}).get(product, "")
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="https://extendio.es/{l}/{ROUTES[product][l]}/">' for l in ("de","es","en"))
     alts += f'\n<link rel="alternate" hreflang="x-default" href="https://extendio.es/en/{ROUTES[product]["en"]}/">'
     langlinks = "".join(f'<a href="/{l}/{ROUTES[product][l]}/" {("aria-current=" + chr(34) + "page" + chr(34)) if l==lang else ""}>{l.upper()}</a>' for l in ("de","es","en"))
