@@ -49,6 +49,13 @@ for key, text in de.items():
     src = sub(r'(data-i18n-html="' + key + r'"[^>]*>)(</)', lambda mm, t=text: mm.group(1) + t + mm.group(2), src)
     src = sub(r'(data-i18n-alt="' + key + r'")', lambda mm, t=text: mm.group(1), src) if False else src
 
+# Keep the default German document current as well as the language routes.
+for key, value in de.items():
+    for attribute in ('data-i18n', 'data-i18n-html'):
+        pattern = rf'(<(?P<tag>[a-zA-Z0-9]+)\b[^>]*{attribute}="{key}"[^>]*>)(.*?)(</(?P=tag)>)'
+        value_out = value if attribute.endswith('-html') else html.escape(value, quote=False)
+        src = re.sub(pattern, lambda m, t=value_out: m.group(1) + t + m.group(4), src, flags=re.S)
+
 # Alt-Texte: alt="" vor data-i18n-alt="key" füllen
 def fill_alt(mm):
     global n
@@ -155,6 +162,7 @@ def render_language(lang):
             row['url'] = 'https://extendio.es' + guide_routes[guide_key][lang]
         replacement = ld_match.group(1) + '\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n' + ld_match.group(3)
         out = out[:ld_match.start()] + replacement + out[ld_match.end():]
+    out = re.sub(r'href="#[^"]*"', lambda m: 'href="/' + lang + '/' + m.group(0)[6:], out)
     target = pathlib.Path(__file__).parent / lang / 'index.html'
     target.parent.mkdir(exist_ok=True)
     target.write_text(out)

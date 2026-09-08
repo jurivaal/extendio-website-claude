@@ -1,3 +1,15 @@
+## Sales update — 8 September 2026 (current)
+
+Sales and delivery are limited to Spain and Germany, including Amazon MCF fulfilment. English is a language option, not a new delivery market. Direct requests use the existing WhatsApp/email contacts; the form sends no order, payment, stored customer data or automatic message. Stock, tax, delivery cost and timing must be confirmed before payment. Local Alicante pickup offers reuse owner-approved Wallapop prices; the trolley gift bundle applies only to that pickup offer, not to an Amazon/FBA shipment.
+
+The current selling path puts the catalogue immediately after the hero, adds local pickup offers and adds a product/quantity/ES-DE enquiry form. Product routes, Amazon Attribution tags and consent gating are preserved. Internal section links now retain the selected language.
+
+Earlier statements below about 29% biobased content, CE/TÜV and registered trademark status are historical and must not be reintroduced until supporting documents are verified for the exact SKU/status. This update removes those numerical/certification/trademark assertions from selling copy. The separately documented registered brush designs are retained. Do not advertise PPWR compliance without evidence of applicable product/packaging obligations and national registrations.
+
+Run `python3 prerender.py` and `python3 generate_product_pages.py` after changes. `assets/direct-order.js` handles the enquiry form; `index.html` remains the translation source. Keep the existing Cloudflare Pages deployment for extendio.es; no new site or DNS migration is needed.
+
+---
+
 # Extendio Website — Hinweise & offene Punkte
 
 Statische One-Page-Website (DE/ES/EN), keine Build-Tools nötig. `index.html` + `assets/` einfach auf beliebiges Hosting legen (z. B. Netlify, Cloudflare Pages, IONOS).

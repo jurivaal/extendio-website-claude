@@ -300,19 +300,29 @@
     .finder-grid,.about-inner{grid-template-columns:1fr}
     .founder-photo{max-width:480px;margin:0 auto}
   }
+
+  /* Direct purchase paths, September 2026. */
+  .skip-link{position:absolute;left:16px;top:-100px;background:#fff;color:#190d19;padding:14px;z-index:9999}.skip-link:focus{top:12px}
+  :focus-visible{outline:3px solid #cf87d3;outline-offset:5px}html{scroll-padding-top:100px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr))}.card-body{display:flex;flex-direction:column}.card-body>.btn{margin-top:auto}
+  .local-offers{background:#f8f2ee;color:#231522}.local-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.local-card{background:white;border:1px solid #e9dcd2;border-radius:16px;padding:22px;display:grid;grid-template-columns:100px 1fr;gap:20px;align-items:center}.local-card img{width:100%;height:135px;object-fit:contain}.local-card h3{font-size:21px;line-height:1.25}.local-card p{margin:12px 0;line-height:1.6}.local-card .guide-link{color:#743d79}
+  .wholesale{grid-template-columns:1fr 1fr}.wholesale>div:first-child{grid-column:1/-1}.order-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}.order-form label{display:flex;flex-direction:column;gap:8px;font-size:15px}.order-form input,.order-form select{width:100%;min-width:0;min-height:48px;padding:10px;border:1px solid #b899b5;border-radius:8px;background:#fff;color:#251625;font:inherit;font-size:16px}.order-form p{grid-column:1/-1;margin:0;font-size:14px!important;line-height:1.55}.order-disclaimer{color:#e1cfe1!important}.wholesale-ctas a{min-height:48px}
+  @media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.local-grid,.wholesale{grid-template-columns:1fr}}
+  @media(max-width:580px){.grid{grid-template-columns:1fr}.local-card{grid-template-columns:74px 1fr;padding:18px;gap:14px}.order-form{grid-template-columns:1fr}.hero-inner{padding-bottom:48px}.local-card h3{font-size:19px}}
 </style>
 </head>
 <body>
+<a class="skip-link" href="/en/#main" data-i18n="skip_main">Skip to content</a>
 
 <header>
   <div class="header-inner">
-    <a class="logo" href="#top"><img src="assets/logo.png" alt="Extendio"></a>
+    <a class="logo" href="/en/#top"><img src="assets/logo.png" alt="Extendio"></a>
     <nav>
-      <a href="#philosophie" data-i18n="nav_phil">Philosophy</a>
-      <a href="#produkte" data-i18n="nav_products">Products</a>
-      <a href="#salons" data-i18n="nav_salons">For salons</a>
-      <a href="#ueber-uns" data-i18n="nav_about">About</a>
-      <a href="#kontakt" data-i18n="nav_contact">Contact</a>
+      <a href="/en/#philosophie" data-i18n="nav_phil">Philosophy</a>
+      <a href="/en/#produkte" data-i18n="nav_products">Products</a>
+      <a href="/en/#salons" data-i18n="nav_salons">For salons</a>
+      <a href="/en/#ueber-uns" data-i18n="nav_about">About</a>
+      <a href="/en/#kontakt" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="lang-switch" role="group" aria-label="Sprache / Idioma / Language">
       <button data-lang="de">DE</button>
@@ -322,21 +332,22 @@
   </div>
 </header>
 
+<main id="main">
 <div class="hero" id="top">
   <div class="hero-inner">
     <div>
       <p class="kicker" data-i18n="hero_kicker">Hair accessories · Alicante</p>
       <h1 data-i18n-html="hero_h1">Beautiful hair starts with the <em>right tools</em>.</h1>
-      <p data-i18n="hero_sub">Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante.</p>
-      <a class="btn" data-buy="miniNegro" data-cta-position="hero" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener">
-        <span data-i18n="cta_view">View on Amazon</span>
+      <p data-i18n="hero_sub">Mini and L brushes, claw clips, bamboo cotton swabs and salon trolleys. Find your product or contact us for a direct order.</p>
+      <a class="btn" href="/en/#produkte">
+        <span data-i18n="cta_view">Explore products</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg>
       </a>
-      <a class="btn-ghost" href="#produkte" data-i18n="cta_all">All products</a>
-      <p class="hero-note" data-i18n="hero_note">Available through Amazon or by contacting Extendio directly.</p>
+      <a class="btn-ghost" href="/en/#grosshandel" data-i18n="cta_all">Enquire directly</a>
+      <p class="hero-note" data-i18n="hero_note">Sales and delivery exclusively in Spain and Germany.</p>
       <div class="trust-row">
-        <span class="trust-pill" data-i18n="trust_tm">® Registered EU trade mark (EUIPO)</span>
-        <span class="trust-pill" data-i18n="trust_design">Design protected across the EU</span>
+        <span class="trust-pill" data-i18n="trust_tm">From Alicante</span>
+        <span class="trust-pill" data-i18n="trust_design">Contact in Spanish and German</span>
       </div>
     </div>
     <div class="hero-img">
@@ -348,25 +359,11 @@
   </div>
 </div>
 
-<section id="philosophie" class="phil">
-  <div class="wrap phil-inner">
-    <div data-reveal>
-      <p class="kicker" data-i18n="phil_kicker">Our philosophy</p>
-      <h2 data-i18n="phil_h2">Good tools, made honestly</h2>
-      <p data-i18n="phil_p1">Extendio started with a simple question: why are good hairbrushes either practical-but-ugly or pretty-but-useless? We wanted both — a brush that actually detangles without pulling, and still looks good on the shelf.</p>
-      <p data-i18n="phil_p2">That's why we only say what we can prove: specific material facts instead of big promises — developed in Alicante with a clear focus on design and everyday practicality.</p>
-    </div>
-    <div class="phil-img" data-reveal style="--rd:100ms">
-      <img src="assets/philosophy.jpg" alt="Still life with wheat ears and bamboo — the natural raw materials of Extendio products" data-i18n-alt="alt_phil" loading="lazy">
-    </div>
-  </div>
-</section>
-
 <section id="produkte">
   <div class="wrap">
     <p class="kicker" data-i18n="products_kicker">Range</p>
     <h2 data-i18n="products_h2">Our products</h2>
-    <p class="section-lead" data-i18n="products_lead">Every button takes you directly to the relevant Amazon product page, where the current price, delivery options and return terms are shown.</p>
+    <p class="section-lead" data-i18n="products_lead">Buy on Amazon or request a direct quote. For delivery in Spain or Germany, we confirm stock, shipping cost and delivery time before payment.</p>
 
     <div class="brush-finder" data-reveal>
       <h3 data-i18n="finder_h">Which brush is right for me?</h3>
@@ -392,7 +389,7 @@
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_mini_name">Mini Detangling Brush</h3>
-          <p data-i18n="p_mini_desc">The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.</p>
+          <p data-i18n="p_mini_desc">A handbag-sized detangling brush with flexible bristles and a cat-ear design. For wet or dry hair. Available in four colours.</p>
           <span class="badge-design" data-i18n="badge_design">® Registered design — the original, only from Extendio</span>
           <div class="swatches">
             <a class="swatch" style="background:#1a1a1a" data-buy="miniNegro" data-cta-position="colour_swatch" href="https://www.amazon.de/dp/B0GD2MV24F" target="_blank" rel="noopener" data-i18n-title="col_negro"></a>
@@ -414,7 +411,7 @@
       </video></div>
         <div class="card-body">
           <h3 data-i18n="p_l_name">Detangling Brush L</h3>
-          <p data-i18n="p_l_desc">A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.</p>
+          <p data-i18n="p_l_desc">A larger brushing surface for long, thick or curly hair. Flexible bristles and the distinctive cat-ear design. Available in four colours.</p>
           <span class="badge-design" data-i18n="badge_design">® Registered design — the original, only from Extendio</span>
           <div class="swatches">
             <a class="swatch" style="background:#e6d3ba" data-buy="largeBeige" data-cta-position="colour_swatch" href="https://www.amazon.de/dp/B07HDVVJ33" target="_blank" rel="noopener" data-i18n-title="col_beige"></a>
@@ -490,31 +487,35 @@
   </div>
 </section>
 
+<section class="local-offers"><div class="wrap"><p class="kicker">03540 Alicante</p><h2 data-i18n="direct_h">Collection in Alicante</h2><p class="section-lead" data-i18n="direct_p">Offers for arranged collection in 03540 Alicante. Shipping is not included. Please confirm availability before travelling.</p><div class="local-grid">
+<article class="local-card"><img src="assets/trolley.jpg" alt="Extendio trolley" loading="lazy"><div><h3 data-i18n="local_trolley">Trolley + 1 L brush + 4 clips</h3><p data-i18n="local_trolley_desc">€99 including VAT · one L brush and four clips included only in this collection bundle.</p><a class="guide-link" href="https://es.wallapop.com/item/carrito-peluqueria-profesional-extendio-nuevo-1298034405" target="_blank" rel="noopener" data-i18n="local_cta">View listing and availability</a></div></article>
+<article class="local-card"><img src="assets/wattestaebchen.jpg" alt="Extendio cotton swab box" loading="lazy"><div><h3 data-i18n="local_swabs">240 cotton swab boxes × 200 pieces</h3><p data-i18n="local_swabs_desc">€145.20 including VAT · also 50 boxes for €36.30 or 100 for €66.55.</p><a class="guide-link" href="https://es.wallapop.com/item/caja-b2b-240200-bastoncillos-de-bambu-1298042053" target="_blank" rel="noopener" data-i18n="local_cta">View listing and availability</a></div></article>
+</div></div></section>
 <section class="facts">
   <div class="wrap">
-    <p class="kicker" data-i18n="facts_kicker">Materials &amp; facts</p>
-    <h2 data-i18n="facts_h2">Verified, not just claimed</h2>
-    <p class="section-lead" data-i18n="facts_lead">We only state what we can back up with certificates — specific material facts instead of big promises.</p>
+    <p class="kicker" data-i18n="facts_kicker">How to order</p>
+    <h2 data-i18n="facts_h2">The right product. A clear way to order.</h2>
+    <p class="section-lead" data-i18n="facts_lead">Explore the range, choose how to buy and confirm the total price before payment.</p>
     <div class="facts-grid">
       <div class="fact" data-reveal style="--rd:0ms">
-        <div class="num"><span class="stat-number" data-target="29" data-suffix="&nbsp;%">29&nbsp;%</span></div>
-        <h3 data-i18n="fact1_h">Bio-based content — certified</h3>
-        <p data-i18n="fact1_p">The brush body contains 29% bio-based carbon from wheat-straw fibre — independently measured by Beta Analytic to the ASTM D6866 standard.</p>
+        <div class="num">Mini / L</div>
+        <h3 data-i18n="fact1_h">Two brush sizes</h3>
+        <p data-i18n="fact1_p">Mini for your bag; L with a larger brushing surface. Both formats come in four colours.</p>
       </div>
       <div class="fact" data-reveal style="--rd:80ms">
-        <div class="num serif"><span class="stat-number" data-target="100" data-suffix="&nbsp;%">100&nbsp;%</span></div>
-        <h3 data-i18n="fact2_h">Bamboo + cotton</h3>
-        <p data-i18n="fact2_p">Our swabs are made from a bamboo stem with 100% cotton tips. CE-compliant and TÜV-tested.</p>
+        <div class="num serif">200</div>
+        <h3 data-i18n="fact2_h">200 pieces per box</h3>
+        <p data-i18n="fact2_p">Bamboo cotton swabs: an Amazon pack contains 6 boxes and 1200 pieces. Contact us directly for larger quantities.</p>
       </div>
       <div class="fact" data-reveal style="--rd:160ms">
-        <div class="num serif">EU</div>
-        <h3 data-i18n="fact3_h">Flexible ways to order</h3>
-        <p data-i18n="fact3_p">Individual orders are available conveniently through Amazon; we handle direct enquiries and larger quantities personally.</p>
+        <div class="num serif">ES / DE</div>
+        <h3 data-i18n="fact3_h">Spain and Germany</h3>
+        <p data-i18n="fact3_p">We sell and deliver exclusively in these two countries. Shipping cost and delivery time are confirmed for each order.</p>
       </div>
       <div class="fact" data-reveal style="--rd:240ms">
-        <div class="num serif">®</div>
-        <h3 data-i18n="fact4_h">Brand &amp; design protected</h3>
-        <p data-i18n="fact4_p">Extendio is a registered EU trade mark (EUIPO No. 019082088), and the cat-ear design of our brushes is protected across the EU as a registered design (No. 015112996-0001/-0002). The original is available only from Extendio.</p>
+        <div class="num serif">Hola / Hallo</div>
+        <h3 data-i18n="fact4_h">Personal contact</h3>
+        <p data-i18n="fact4_p">Questions about products, quantities or delivery? Contact Extendio through WhatsApp or email.</p>
       </div>
     </div>
   </div>
@@ -529,7 +530,7 @@
     <p class="kicker" data-reveal data-i18n="b2b_kicker">For professionals &amp; salons</p>
     <h2 data-reveal style="--rd:60ms" data-i18n="b2b_h2">Extendio in the salon</h2>
     <p data-reveal style="--rd:120ms" data-i18n="b2b_desc">From the detangling brush at the backwash to claw clips during colour work and the trolley at the chair: our products are also designed for professional salon routines. Larger quantities can be requested directly from us.</p>
-    <a class="btn" data-reveal style="--rd:180ms" href="#grosshandel">
+    <a class="btn" data-reveal style="--rd:180ms" href="/en/#grosshandel">
       <span data-i18n="cta_b2b">Ask about wholesale terms</span>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
@@ -537,20 +538,37 @@
   <div class="wrap">
     <div class="wholesale" id="grosshandel">
       <div>
-        <h3 data-i18n="ws_h">Wholesale &amp; B2B enquiries</h3>
-        <p data-i18n="ws_p">Buying for a salon, retail or resale? For larger volumes we offer separate wholesale terms, shipped directly from our warehouse. Tell us which products and quantities you need and we'll come back quickly with a quote.</p>
+        <h3 data-i18n="ws_h">Your product. Your quantity.</h3>
+        <p data-i18n="ws_p">For you, your salon or your shop. Select your product, quantity and destination: we confirm availability, the total including taxes and shipping before you pay.</p>
       </div>
+      <form id="order-enquiry" class="order-form">
+<label><span data-i18n="order_country">Delivery country</span><select id="order-country" name="country"><option value="ES" data-i18n="country_es">Spain</option><option value="DE" data-i18n="country_de">Germany</option></select></label>
+<label><span data-i18n="order_product">Product</span><select id="order-product" name="product"><option value="trolley" data-i18n="p_trolley_name">Salon Trolley</option><option value="mini" data-i18n="p_mini_name">Mini Detangling Brush</option><option value="large" data-i18n="p_l_name">Detangling Brush L</option><option value="swabs" data-i18n="p_swabs_bulk">Cotton swabs — box of 200 pieces</option><option value="clips1" data-i18n="p_clips1_name">Claw Clip Set 1 · Coral &amp; Purple</option><option value="clips2" data-i18n="p_clips2_name">Claw Clip Set 2 · Mint &amp; Beige</option></select></label><label><span data-i18n="order_quantity">Quantity</span><input id="order-quantity" name="quantity" type="number" min="1" max="99999" step="1" value="1" required aria-describedby="order-unit"></label><label><span data-i18n="order_postcode">Postcode (optional)</span><input id="order-postcode" name="postcode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}"></label><p id="order-unit" data-i18n="order_unit">Units or sets, according to the selected product.</p><p class="order-disclaimer" data-i18n="order_note">This prepares an enquiry; it does not place an order or take payment. You can review the message before sending.</p></form>
       <div class="wholesale-ctas">
-        <a class="btn-wa" data-wa data-cta-position="wholesale" href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">
+        <a class="btn-wa" data-wa data-order-contact="whatsapp" data-cta-position="wholesale" href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.9 2.6 1 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
           <span data-i18n="ws_wa">Enquire via WhatsApp</span>
         </a>
-        <a class="btn" data-mailto data-cta-position="wholesale" href="mailto:extendio.es@gmail.com">
+        <a class="btn" data-mailto data-order-contact="email" data-cta-position="wholesale" href="mailto:extendio.es@gmail.com">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           <span data-i18n="ws_mail">Enquire by email</span>
         </a>
         <span class="wholesale-note">+34 634 22 38 98 · extendio.es@gmail.com</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="philosophie" class="phil">
+  <div class="wrap phil-inner">
+    <div data-reveal>
+      <p class="kicker" data-i18n="phil_kicker">Our philosophy</p>
+      <h2 data-i18n="phil_h2">Good tools, made honestly</h2>
+      <p data-i18n="phil_p1">Extendio started with a simple question: why are good hairbrushes either practical-but-ugly or pretty-but-useless? We wanted both — a brush that actually detangles without pulling, and still looks good on the shelf.</p>
+      <p data-i18n="phil_p2">That's why we only say what we can prove: specific material facts instead of big promises — developed in Alicante with a clear focus on design and everyday practicality.</p>
+    </div>
+    <div class="phil-img" data-reveal style="--rd:100ms">
+      <img src="assets/philosophy.jpg" alt="Still life with wheat ears and bamboo — the natural raw materials of Extendio products" data-i18n-alt="alt_phil" loading="lazy">
     </div>
   </div>
 </section>
@@ -570,6 +588,7 @@
   </div>
 </section>
 
+</main>
 <footer id="kontakt">
   <div class="footer-grid">
     <div>
@@ -611,7 +630,7 @@
         <a href="legal.html" data-i18n="legal_notice">Legal Notice</a><br>
         <a href="privacy.html" data-i18n="privacy_label">Privacy Policy</a><br>
         <a href="cookies.html">Cookies</a><br>
-        <a href="#" data-cookie-settings data-i18n="cookie_settings">Cookie settings</a>
+        <a href="/en/#" data-cookie-settings data-i18n="cookie_settings">Cookie settings</a>
       </p>
     </div>
     <div>
@@ -626,8 +645,8 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Extendio · Alicante</span>
-    <span data-i18n="footer_ip">Extendio® · EU trade mark EUIPO No. 019082088 · Registered EU design No. 015112996</span>
-    <span data-i18n="footer_amazon_note">Order through Amazon or contact Extendio directly.</span>
+    <span data-i18n="footer_ip">Extendio · Alicante · Brush design registered in the EU under No. 015112996</span>
+    <span data-i18n="footer_amazon_note">Sales and delivery exclusively in Spain and Germany. Shipping and availability subject to confirmation.</span>
   </div>
 </footer>
 
@@ -697,6 +716,24 @@ const GUIDE_ROUTES = {
 
 const I18N = {
 de:{
+  order_intro:'Ich interessiere mich für diese Bestellung. Bitte bestätigen Sie Bestand, Gesamtpreis inklusive Steuern, Versand und Lieferzeit.',
+  p_swabs_bulk:'Wattestäbchen — Box mit 200 Stück',
+  skip_main:'Zum Inhalt',
+  local_cta:'Anzeige und Verfügbarkeit ansehen',
+  local_swabs_desc:'145,20 € inkl. MwSt. · auch 50 Boxen für 36,30 € oder 100 für 66,55 €.',
+  local_swabs:'240 Boxen Wattestäbchen × 200 Stück',
+  local_trolley_desc:'99 € inkl. MwSt. · eine L-Bürste und vier Klammern nur in diesem Abholpaket enthalten.',
+  local_trolley:'Friseurwagen + 1 L-Bürste + 4 Klammern',
+  direct_p:'Angebote für vereinbarte Abholung in 03540 Alicante. Versand ist nicht enthalten. Bitte vor der Anfahrt die Verfügbarkeit bestätigen lassen.',
+  direct_h:'Abholung in Alicante',
+  order_unit:'Stück oder Sets, je nach ausgewähltem Produkt.',
+  order_note:'Dies bereitet eine Anfrage vor; es wird keine Bestellung aufgegeben und keine Zahlung ausgelöst. Sie können die Nachricht vor dem Senden prüfen.',
+  order_postcode:'Postleitzahl (optional)',
+  order_quantity:'Menge',
+  order_product:'Produkt',
+  country_de:'Deutschland',
+  country_es:'Spanien',
+  order_country:'Lieferland',
   nav_phil:'Philosophie', nav_products:'Produkte', nav_salons:'Für Salons', nav_about:'Über uns', nav_contact:'Kontakt',
   phil_kicker:'Unsere Philosophie',
   phil_h2:'Gutes Werkzeug, ehrlich gemacht',
@@ -705,20 +742,20 @@ de:{
   alt_phil:'Stillleben mit Weizenähren und Bambus — die natürlichen Rohstoffe der Extendio-Produkte',
   hero_kicker:'Haar-Accessoires · Alicante',
   hero_h1:'Schönes Haar beginnt mit dem <em>richtigen Werkzeug</em>.',
-  hero_sub:'Entwirrbürsten mit 29 % biobasiertem Anteil aus Weizenstrohfaser (zertifiziert nach ASTM D6866), Wattestäbchen aus Bambus und Baumwolle, Haarklammern mit starkem Halt — entwickelt in Alicante.',
-  cta_view:'Auf Amazon ansehen', cta_all:'Alle Produkte', cta_buy:'Auf Amazon kaufen',
-  hero_note:'Erhältlich über Amazon oder auf direkte Anfrage bei Extendio.',
+  hero_sub:'Mini- und L-Bürsten, Haarklammern, Bambus-Wattestäbchen und Friseurwagen. Finden Sie Ihr Produkt oder fragen Sie direkt bei uns an.',
+  cta_view:'Produkte entdecken', cta_all:'Direkt anfragen', cta_buy:'Auf Amazon kaufen',
+  hero_note:'Verkauf und Lieferung ausschließlich in Spanien und Deutschland.',
   products_kicker:'Sortiment', products_h2:'Unsere Produkte', cta_details:'Details & Erfahrungen',
-  products_lead:'Jeder Button führt direkt zur passenden Produktseite auf Amazon. Preis, Lieferoptionen und Rückgabebedingungen werden dort aktuell angezeigt.',
+  products_lead:'Auf Amazon kaufen oder ein direktes Angebot anfragen. Für Lieferungen nach Spanien oder Deutschland bestätigen wir Verfügbarkeit, Versandkosten und Lieferzeit vor der Zahlung.',
   finder_h:'Welche Bürste passt zu mir?', finder_p:'Wählen Sie nach Format und Anwendung — beide Bürsten führen direkt zur passenden Amazon-Produktseite.',
   finder_mini_h:'Mini — kompakt', finder_mini_p:'Für Handtasche, Reise und unterwegs · vier Farben',
   finder_l_h:'L — große Bürstenfläche', finder_l_p:'Für langes, dickes oder lockiges Haar',
   p_mini_name:'Entwirrbürste Mini',
-  p_mini_desc:'Die Entwirrbürste im Handtaschenformat — flexible Borsten, sanft zu Kopfhaut und Haar, für nass und trocken. Korpus mit 29 % biobasiertem Anteil aus Weizenstrohfaser (ASTM-D6866-zertifiziert). In vier Farben.',
+  p_mini_desc:'Die Entwirrbürste im Handtaschenformat mit flexiblen Borsten und Katzenohren-Design. Für nasses und trockenes Haar. In vier Farben.',
   p_mini_price:'Farbe wählen — Preis auf Amazon',
   price_note:'Preis auf Amazon',
   p_l_name:'Entwirrbürste L',
-  p_l_desc:'Die große Bürstenfläche für langes, dickes oder lockiges Haar. Gleiche flexible Borsten, gleiches Material mit 29 % biobasiertem Anteil — mehr Bürste pro Zug.',
+  p_l_desc:'Große Bürstenfläche für langes, dickes oder lockiges Haar. Flexible Borsten und das charakteristische Katzenohren-Design. In vier Farben.',
   p_l_price:'Farbe wählen — Preis auf Amazon',
   p_swab_name:'Bambus-Wattestäbchen · 1200 Stück',
   p_swab_desc:'Vorratspack mit 1200 Stück (6 Boxen à 200): Stiel aus Bambus, Kopf aus 100 % Baumwolle. Eine natürliche Alternative zu Wattestäbchen aus reinem Plastik.',
@@ -728,25 +765,25 @@ de:{
   p_clips2_desc:'Vier Claw Clips in zwei Größen — Mint, Lavendel und zweimal Beige. Gleiche matte Oberfläche, gleicher sicherer Halt, kühlere Farbwelt.',
   col_negro:'Schwarz', col_azul:'Blau', col_beige:'Beige', col_lila:'Lila',
   price_disclaimer:'Die Preise unterscheiden sich je nach Amazon-Marktplatz und ändern sich durch Aktionen — maßgeblich ist ausschließlich der aktuelle Preis auf der jeweiligen Amazon-Produktseite.',
-  facts_kicker:'Material & Fakten', facts_h2:'Belegt statt behauptet',
-  facts_lead:'Wir werben nur mit dem, was wir mit Zertifikaten belegen können — konkrete Materialangaben statt großer Versprechen.',
-  fact1_h:'Biobasierter Anteil — zertifiziert',
-  fact1_p:'Der Bürstenkorpus enthält 29 % biobasierten Kohlenstoff aus Weizenstrohfaser — unabhängig gemessen von Beta Analytic nach dem Standard ASTM D6866.',
-  fact2_h:'Bambus + Baumwolle',
-  fact2_p:'Unsere Wattestäbchen bestehen aus einem Bambus-Stiel und Köpfen aus 100 % Baumwolle. CE-konform und TÜV-geprüft.',
-  fact3_h:'Flexible Bestellwege',
-  fact3_p:'Einzelbestellungen sind bequem über Amazon möglich; direkte Anfragen und größere Mengen bearbeiten wir persönlich.',
-  trust_tm:'® Eingetragene Unionsmarke (EUIPO)',
-  trust_design:'Design EU-weit geschützt (Geschmacksmuster)',
+  facts_kicker:'So bestellen Sie', facts_h2:'Das passende Produkt. Ein klarer Bestellweg.',
+  facts_lead:'Entdecken Sie das Sortiment, wählen Sie Ihren Bestellweg und prüfen Sie den Gesamtpreis vor der Zahlung.',
+  fact1_h:'Zwei Bürstenformate',
+  fact1_p:'Mini für unterwegs, L mit größerer Bürstenfläche. Beide Formate gibt es in vier Farben.',
+  fact2_h:'200 Stück pro Box',
+  fact2_p:'Bambus-Wattestäbchen: bei Amazon als 6er-Pack mit 1200 Stück; direkt auch in größeren Mengen auf Anfrage.',
+  fact3_h:'Spanien und Deutschland',
+  fact3_p:'Wir verkaufen und liefern ausschließlich in diesen beiden Ländern. Versandkosten und Lieferzeit bestätigen wir je Bestellung.',
+  trust_tm:'Aus Alicante',
+  trust_design:'Kontakt auf Deutsch und Spanisch',
   badge_design:'® Eingetragenes Design — das Original nur von Extendio',
-  fact4_h:'Marke & Design geschützt',
-  fact4_p:'Extendio ist als Unionsmarke beim EUIPO eingetragen (Nr. 019082088), und das Katzenohren-Design unserer Bürsten ist EU-weit als Geschmacksmuster eingetragen (Nr. 015112996-0001/-0002). Das Original gibt es nur von Extendio.',
-  footer_ip:'Extendio® · Unionsmarke EUIPO Nr. 019082088 · Design eingetragen als EU-Geschmacksmuster Nr. 015112996',
-  ws_h:'Großhandel & B2B-Anfragen',
-  ws_p:'Sie kaufen für Salon, Einzelhandel oder Wiederverkauf? Für größere Mengen gelten eigene Großhandelskonditionen — mit Versand direkt ab Lager. Schreiben Sie uns kurz, welche Produkte und Stückzahlen Sie brauchen, und Sie erhalten schnell ein Angebot.',
+  fact4_h:'Persönlicher Kontakt',
+  fact4_p:'Fragen zu Produkt, Menge oder Lieferung? Kontaktieren Sie Extendio per WhatsApp oder E-Mail.',
+  footer_ip:'Extendio · Alicante · Bürsten-Design als EU-Geschmacksmuster Nr. 015112996 eingetragen',
+  ws_h:'Ihr Produkt. Ihre Menge.',
+  ws_p:'Für Sie, Ihren Salon oder Ihr Geschäft. Produkt, Menge und Ziel auswählen: Wir bestätigen Bestand, Gesamtpreis inklusive Steuern und Versandkosten, bevor Sie bezahlen.',
   ws_wa:'Anfrage per WhatsApp', ws_mail:'Anfrage per E-Mail',
-  wa_text:'Hallo Extendio! Ich interessiere mich für Großhandelskonditionen. Kundentyp (Salon/Handel/Distributor): · Produkte: · Ungefähre Menge: · Lieferland: ',
-  mail_subject:'B2B- / Großhandelsanfrage',
+  wa_text:'Hallo Extendio! Ich möchte eine Bestellung anfragen. Produkt und Menge: · Lieferland (Spanien oder Deutschland): · Postleitzahl: ',
+  mail_subject:'Bestellanfrage Extendio',
   b2b_kicker:'Für Profis & Salons', b2b_h2:'Extendio im Salon',
   b2b_desc:'Von der Entwirrbürste an der Waschstation über Haarklammern beim Farbtermin bis zum Salon Trolley am Stuhl: Unsere Produkte sind auch für den professionellen Salonalltag gedacht. Größere Stückzahlen können direkt bei uns angefragt werden.',
   cta_b2b:'Großhandelskonditionen anfragen',
@@ -761,7 +798,7 @@ de:{
   footer_contact_h:'Anschrift', footer_reach_h:'Kontakt', footer_lang_h:'Sprache', footer_legal_h:'Rechtliches',
   legal_notice:'Impressum', privacy_label:'Datenschutz', cookie_settings:'Cookie-Einstellungen',
   footer_marketplaces:'Erhältlich über Amazon.de · Amazon.es · direkt bei Extendio',
-  footer_amazon_note:'Bestellungen über Amazon oder direkt auf Anfrage bei Extendio.',
+  footer_amazon_note:'Verkauf und Lieferung ausschließlich in Spanien und Deutschland. Versand und Verfügbarkeit nach Bestätigung.',
   footer_partner_label:'Partner:', footer_partner_link:'Haarverlängerung in Alicante — Marina Vaal Extensions',
   alt_hero:'Extendio Haarbürste mit Katzenohren-Design in Schwarz',
   alt_mini:'Extendio Entwirrbürste Mini — Farbvarianten',
@@ -772,6 +809,24 @@ de:{
   alt_trolley:'Extendio Salon Trolley mit Zubehör'
 },
 es:{
+  order_intro:'Me interesa este pedido. Por favor, confirma disponibilidad, total con impuestos, envío y plazo.',
+  p_swabs_bulk:'Bastoncillos — caja de 200 uds.',
+  skip_main:'Ir al contenido',
+  local_cta:'Ver anuncio y disponibilidad',
+  local_swabs_desc:'145,20 € IVA incluido · también 50 cajas por 36,30 € o 100 por 66,55 €.',
+  local_swabs:'240 cajas de bastoncillos × 200 uds.',
+  local_trolley_desc:'99 € IVA incluido · un cepillo L y cuatro pinzas incluidos solo en este lote de recogida.',
+  local_trolley:'Carrito + 1 cepillo L + 4 pinzas',
+  direct_p:'Ofertas para recogida concertada en 03540 Alicante. El envío no está incluido. Confirma la disponibilidad antes de desplazarte.',
+  direct_h:'Recogida en Alicante',
+  order_unit:'Unidades o packs, según el producto seleccionado.',
+  order_note:'Esto prepara una consulta; no confirma un pedido ni realiza ningún pago. Puedes revisar el mensaje antes de enviarlo.',
+  order_postcode:'Código postal (opcional)',
+  order_quantity:'Cantidad',
+  order_product:'Producto',
+  country_de:'Alemania',
+  country_es:'España',
+  order_country:'País de entrega',
   nav_phil:'Filosofía', nav_products:'Productos', nav_salons:'Para salones', nav_about:'Sobre nosotros', nav_contact:'Contacto',
   phil_kicker:'Nuestra filosofía',
   phil_h2:'Buenas herramientas, hechas con honestidad',
@@ -780,20 +835,20 @@ es:{
   alt_phil:'Bodegón con espigas de trigo y bambú — las materias primas naturales de los productos Extendio',
   hero_kicker:'Accesorios para el pelo · Alicante',
   hero_h1:'El pelo bonito empieza con la <em>herramienta adecuada</em>.',
-  hero_sub:'Cepillos desenredantes con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado según ASTM D6866), bastoncillos de bambú y algodón, y pinzas para el pelo con sujeción firme — diseñados en Alicante.',
-  cta_view:'Ver en Amazon', cta_all:'Todos los productos', cta_buy:'Comprar en Amazon',
-  hero_note:'Disponibles en Amazon o mediante consulta directa a Extendio.',
+  hero_sub:'Cepillos Mini y L, pinzas, bastoncillos de bambú y carritos de peluquería. Elige tu producto o consúltanos para un pedido directo.',
+  cta_view:'Explorar productos', cta_all:'Pedido directo', cta_buy:'Comprar en Amazon',
+  hero_note:'Venta y entrega exclusivamente en España y Alemania.',
   products_kicker:'Catálogo', products_h2:'Nuestros productos', cta_details:'Detalles y opiniones',
-  products_lead:'Cada botón lleva directamente a la página correspondiente del producto en Amazon. Allí encontrarás el precio, las opciones de entrega y las condiciones de devolución vigentes.',
+  products_lead:'Compra en Amazon o solicita una oferta directa. Para envíos a España o Alemania confirmamos disponibilidad, coste y plazo antes del pago.',
   finder_h:'¿Qué cepillo es para mí?', finder_p:'Elige según el formato y el uso; ambos cepillos llevan directamente a su página de producto en Amazon.',
   finder_mini_h:'Mini — compacto', finder_mini_p:'Para el bolso, viajes y fuera de casa · cuatro colores',
   finder_l_h:'L — mayor superficie', finder_l_p:'Para pelo largo, grueso o rizado',
   p_mini_name:'Cepillo Mini Desenredante',
-  p_mini_desc:'El cepillo desenredante en formato bolso — púas flexibles, suave con el cuero cabelludo, para pelo mojado y seco. Cuerpo con un 29 % de contenido de base biológica de fibra de paja de trigo (certificado ASTM D6866). En cuatro colores.',
+  p_mini_desc:'Cepillo desenredante en formato bolso, con púas flexibles y diseño de orejas de gato. Para cabello húmedo o seco. Disponible en cuatro colores.',
   p_mini_price:'Elige color — precio en Amazon',
   price_note:'Precio en Amazon',
   p_l_name:'Cepillo L Desenredante',
-  p_l_desc:'Superficie de cepillado grande para pelo largo, grueso o rizado. Las mismas púas flexibles y el mismo material con un 29 % de base biológica — más cepillo en cada pasada.',
+  p_l_desc:'Superficie de cepillado grande para pelo largo, grueso o rizado. Púas flexibles y el característico diseño de orejas de gato. En cuatro colores.',
   p_l_price:'Elige color — precio en Amazon',
   p_swab_name:'Bastoncillos de bambú · 1200 uds.',
   p_swab_desc:'Pack ahorro de 1200 unidades (6 cajas de 200): varilla de bambú y cabezas de 100 % algodón. Una alternativa natural a los bastoncillos de plástico.',
@@ -803,25 +858,25 @@ es:{
   p_clips2_desc:'Cuatro claw clips en dos tamaños — menta, lavanda y dos beige. El mismo acabado mate y la misma sujeción firme, en tonos más fríos.',
   col_negro:'Negro', col_azul:'Azul', col_beige:'Beige', col_lila:'Lila',
   price_disclaimer:'Los precios varían según el marketplace de Amazon y cambian por promociones — el precio válido es siempre el que aparece en la página del producto en Amazon.',
-  facts_kicker:'Materiales y datos', facts_h2:'Datos verificados, no promesas',
-  facts_lead:'Solo comunicamos lo que podemos demostrar con certificados: datos concretos de materiales en lugar de grandes promesas.',
-  fact1_h:'Contenido de base biológica — certificado',
-  fact1_p:'El cuerpo del cepillo contiene un 29 % de carbono de base biológica procedente de fibra de paja de trigo — medido de forma independiente por Beta Analytic según la norma ASTM D6866.',
-  fact2_h:'Bambú + algodón',
-  fact2_p:'Nuestros bastoncillos se componen de una varilla de bambú y cabezas de 100 % algodón. Conformidad CE y verificación TÜV.',
-  fact3_h:'Opciones de pedido flexibles',
-  fact3_p:'Los pedidos individuales pueden realizarse cómodamente en Amazon; atendemos personalmente las consultas directas y los volúmenes mayores.',
-  trust_tm:'® Marca registrada de la UE (EUIPO)',
-  trust_design:'Diseño registrado en toda la UE',
+  facts_kicker:'Cómo comprar', facts_h2:'El producto adecuado. Un pedido claro.',
+  facts_lead:'Explora el catálogo, elige cómo comprar y confirma el precio total antes de pagar.',
+  fact1_h:'Dos tamaños de cepillo',
+  fact1_p:'Mini para llevar; L con mayor superficie de cepillado. Ambos formatos están disponibles en cuatro colores.',
+  fact2_h:'200 unidades por caja',
+  fact2_p:'Bastoncillos de bambú: en Amazon, pack de 6 cajas con 1200 unidades; consulta también por cantidades mayores directamente.',
+  fact3_h:'España y Alemania',
+  fact3_p:'Vendemos y entregamos exclusivamente en estos dos países. Confirmamos gastos y plazo de envío para cada pedido.',
+  trust_tm:'Desde Alicante',
+  trust_design:'Atención en español y alemán',
   badge_design:'® Diseño registrado — el original, solo de Extendio',
-  fact4_h:'Marca y diseño protegidos',
-  fact4_p:'Extendio está registrada como marca de la Unión en la EUIPO (n.º 019082088), y el diseño con orejas de gato de nuestros cepillos está registrado en toda la UE como dibujo y modelo comunitario (n.º 015112996-0001/-0002). El original, solo de Extendio.',
-  footer_ip:'Extendio® · Marca de la Unión EUIPO n.º 019082088 · Diseño registrado en la UE n.º 015112996',
-  ws_h:'Mayoristas y consultas B2B',
-  ws_p:'¿Compras para salón, tienda o reventa? Para volúmenes grandes ofrecemos condiciones mayoristas propias, con envío directo desde el almacén. Cuéntanos qué productos y cantidades necesitas y te enviamos una oferta enseguida.',
+  fact4_h:'Contacto directo',
+  fact4_p:'¿Dudas sobre producto, cantidad o entrega? Contacta con Extendio por WhatsApp o e-mail.',
+  footer_ip:'Extendio · Alicante · Diseño de los cepillos registrado en la UE n.º 015112996',
+  ws_h:'Tu pedido, a tu medida',
+  ws_p:'Para ti, tu salón o tu tienda. Indica producto, cantidad y destino: confirmamos existencias, precio total con impuestos y gastos de envío antes de que pagues.',
   ws_wa:'Consulta por WhatsApp', ws_mail:'Consulta por e-mail',
-  wa_text:'¡Hola Extendio! Me interesan las condiciones para mayoristas. Tipo de cliente (salón/tienda/distribuidor): · Productos: · Cantidad aproximada: · País de entrega: ',
-  mail_subject:'Consulta B2B / mayorista',
+  wa_text:'¡Hola Extendio! Quiero consultar un pedido. Producto y cantidad: · Destino (España o Alemania): · Código postal: ',
+  mail_subject:'Consulta de pedido Extendio',
   b2b_kicker:'Para profesionales y salones', b2b_h2:'Extendio en el salón',
   b2b_desc:'Desde el cepillo desenredante en el lavacabezas hasta las pinzas durante el color y el carrito junto al sillón: nuestros productos también están pensados para el trabajo profesional en el salón. Puedes consultarnos directamente por cantidades mayores.',
   cta_b2b:'Solicitar condiciones mayoristas',
@@ -836,7 +891,7 @@ es:{
   footer_contact_h:'Dirección', footer_reach_h:'Contacto', footer_lang_h:'Idioma', footer_legal_h:'Legal',
   legal_notice:'Aviso Legal', privacy_label:'Privacidad', cookie_settings:'Configuración de cookies',
   footer_marketplaces:'Disponible en Amazon.es · Amazon.de · directamente en Extendio',
-  footer_amazon_note:'Pedidos en Amazon o directamente mediante consulta a Extendio.',
+  footer_amazon_note:'Venta y entrega exclusivamente en España y Alemania. Envío y disponibilidad sujetos a confirmación.',
   footer_partner_label:'Colaboración:', footer_partner_link:'Extensiones de cabello en Alicante — Marina Vaal',
   alt_hero:'Cepillo Extendio con diseño de orejas de gato, en negro',
   alt_mini:'Cepillo Mini Desenredante Extendio — variantes de color',
@@ -847,6 +902,24 @@ es:{
   alt_trolley:'Salon Trolley Extendio con accesorios'
 },
 en:{
+  order_intro:'I am interested in this order. Please confirm stock, the total including taxes, shipping and delivery time.',
+  p_swabs_bulk:'Cotton swabs — box of 200 pieces',
+  skip_main:'Skip to content',
+  local_cta:'View listing and availability',
+  local_swabs_desc:'€145.20 including VAT · also 50 boxes for €36.30 or 100 for €66.55.',
+  local_swabs:'240 cotton swab boxes × 200 pieces',
+  local_trolley_desc:'€99 including VAT · one L brush and four clips included only in this collection bundle.',
+  local_trolley:'Trolley + 1 L brush + 4 clips',
+  direct_p:'Offers for arranged collection in 03540 Alicante. Shipping is not included. Please confirm availability before travelling.',
+  direct_h:'Collection in Alicante',
+  order_unit:'Units or sets, according to the selected product.',
+  order_note:'This prepares an enquiry; it does not place an order or take payment. You can review the message before sending.',
+  order_postcode:'Postcode (optional)',
+  order_quantity:'Quantity',
+  order_product:'Product',
+  country_de:'Germany',
+  country_es:'Spain',
+  order_country:'Delivery country',
   nav_phil:'Philosophy', nav_products:'Products', nav_salons:'For salons', nav_about:'About', nav_contact:'Contact',
   phil_kicker:'Our philosophy',
   phil_h2:'Good tools, made honestly',
@@ -855,20 +928,20 @@ en:{
   alt_phil:'Still life with wheat ears and bamboo — the natural raw materials of Extendio products',
   hero_kicker:'Hair accessories · Alicante',
   hero_h1:'Beautiful hair starts with the <em>right tools</em>.',
-  hero_sub:'Detangling brushes with 29% bio-based content from wheat-straw fibre (certified to ASTM D6866), bamboo-and-cotton swabs, and strong-hold claw clips — designed in Alicante.',
-  cta_view:'View on Amazon', cta_all:'All products', cta_buy:'Buy on Amazon',
-  hero_note:'Available through Amazon or by contacting Extendio directly.',
+  hero_sub:'Mini and L brushes, claw clips, bamboo cotton swabs and salon trolleys. Find your product or contact us for a direct order.',
+  cta_view:'Explore products', cta_all:'Enquire directly', cta_buy:'Buy on Amazon',
+  hero_note:'Sales and delivery exclusively in Spain and Germany.',
   products_kicker:'Range', products_h2:'Our products', cta_details:'Details & customer experiences',
-  products_lead:'Every button takes you directly to the relevant Amazon product page, where the current price, delivery options and return terms are shown.',
+  products_lead:'Buy on Amazon or request a direct quote. For delivery in Spain or Germany, we confirm stock, shipping cost and delivery time before payment.',
   finder_h:'Which brush is right for me?', finder_p:'Choose by format and use — both brushes link directly to the relevant Amazon product page.',
   finder_mini_h:'Mini — compact', finder_mini_p:'For handbags, travel and on the go · four colours',
   finder_l_h:'L — larger brush area', finder_l_p:'For long, thick or curly hair',
   p_mini_name:'Mini Detangling Brush',
-  p_mini_desc:'The handbag-sized detangler — flexible bristles, gentle on scalp and hair, for wet and dry use. Body with 29% bio-based content from wheat-straw fibre (ASTM D6866 certified). Four colours.',
+  p_mini_desc:'A handbag-sized detangling brush with flexible bristles and a cat-ear design. For wet or dry hair. Available in four colours.',
   p_mini_price:'Pick a colour — see price on Amazon',
   price_note:'Price on Amazon',
   p_l_name:'Detangling Brush L',
-  p_l_desc:'A larger brush head for long, thick or curly hair. Same flexible bristles, same material with 29% bio-based content — more brush per stroke.',
+  p_l_desc:'A larger brushing surface for long, thick or curly hair. Flexible bristles and the distinctive cat-ear design. Available in four colours.',
   p_l_price:'Pick a colour — see price on Amazon',
   p_swab_name:'Bamboo Cotton Swabs · 1200 pcs',
   p_swab_desc:'Value pack of 1200 swabs (6 boxes of 200): bamboo stem, 100% cotton tips. A natural alternative to all-plastic cotton swabs.',
@@ -878,25 +951,25 @@ en:{
   p_clips2_desc:'Four claw clips in two sizes — mint, lavender and two beige. Same matte finish, same secure hold, in cooler tones.',
   col_negro:'Black', col_azul:'Blue', col_beige:'Beige', col_lila:'Purple',
   price_disclaimer:'Prices vary by Amazon marketplace and change with promotions — the price shown on the Amazon product page always applies.',
-  facts_kicker:'Materials & facts', facts_h2:'Verified, not just claimed',
-  facts_lead:'We only state what we can back up with certificates — specific material facts instead of big promises.',
-  fact1_h:'Bio-based content — certified',
-  fact1_p:'The brush body contains 29% bio-based carbon from wheat-straw fibre — independently measured by Beta Analytic to the ASTM D6866 standard.',
-  fact2_h:'Bamboo + cotton',
-  fact2_p:'Our swabs are made from a bamboo stem with 100% cotton tips. CE-compliant and TÜV-tested.',
-  fact3_h:'Flexible ways to order',
-  fact3_p:'Individual orders are available conveniently through Amazon; we handle direct enquiries and larger quantities personally.',
-  trust_tm:'® Registered EU trade mark (EUIPO)',
-  trust_design:'Design protected across the EU',
+  facts_kicker:'How to order', facts_h2:'The right product. A clear way to order.',
+  facts_lead:'Explore the range, choose how to buy and confirm the total price before payment.',
+  fact1_h:'Two brush sizes',
+  fact1_p:'Mini for your bag; L with a larger brushing surface. Both formats come in four colours.',
+  fact2_h:'200 pieces per box',
+  fact2_p:'Bamboo cotton swabs: an Amazon pack contains 6 boxes and 1200 pieces. Contact us directly for larger quantities.',
+  fact3_h:'Spain and Germany',
+  fact3_p:'We sell and deliver exclusively in these two countries. Shipping cost and delivery time are confirmed for each order.',
+  trust_tm:'From Alicante',
+  trust_design:'Contact in Spanish and German',
   badge_design:'® Registered design — the original, only from Extendio',
-  fact4_h:'Brand & design protected',
-  fact4_p:'Extendio is a registered EU trade mark (EUIPO No. 019082088), and the cat-ear design of our brushes is protected across the EU as a registered design (No. 015112996-0001/-0002). The original is available only from Extendio.',
-  footer_ip:'Extendio® · EU trade mark EUIPO No. 019082088 · Registered EU design No. 015112996',
-  ws_h:'Wholesale & B2B enquiries',
-  ws_p:'Buying for a salon, retail or resale? For larger volumes we offer separate wholesale terms, shipped directly from our warehouse. Tell us which products and quantities you need and we\'ll come back quickly with a quote.',
+  fact4_h:'Personal contact',
+  fact4_p:'Questions about products, quantities or delivery? Contact Extendio through WhatsApp or email.',
+  footer_ip:'Extendio · Alicante · Brush design registered in the EU under No. 015112996',
+  ws_h:'Your product. Your quantity.',
+  ws_p:'For you, your salon or your shop. Select your product, quantity and destination: we confirm availability, the total including taxes and shipping before you pay.',
   ws_wa:'Enquire via WhatsApp', ws_mail:'Enquire by email',
-  wa_text:'Hello Extendio! I\'m interested in your wholesale terms. Customer type (salon/retailer/distributor): · Products: · Approximate quantity: · Delivery country: ',
-  mail_subject:'B2B / wholesale enquiry',
+  wa_text:'Hello Extendio! I would like to enquire about an order. Product and quantity: · Destination (Spain or Germany): · Postcode: ',
+  mail_subject:'Extendio order enquiry',
   b2b_kicker:'For professionals & salons', b2b_h2:'Extendio in the salon',
   b2b_desc:'From the detangling brush at the backwash to claw clips during colour work and the trolley at the chair: our products are also designed for professional salon routines. Larger quantities can be requested directly from us.',
   cta_b2b:'Ask about wholesale terms',
@@ -911,7 +984,7 @@ en:{
   footer_contact_h:'Address', footer_reach_h:'Contact', footer_lang_h:'Language', footer_legal_h:'Legal',
   legal_notice:'Legal Notice', privacy_label:'Privacy Policy', cookie_settings:'Cookie settings',
   footer_marketplaces:'Available through Amazon.de · Amazon.es · directly from Extendio',
-  footer_amazon_note:'Order through Amazon or contact Extendio directly.',
+  footer_amazon_note:'Sales and delivery exclusively in Spain and Germany. Shipping and availability subject to confirmation.',
   footer_partner_label:'Partner:', footer_partner_link:'Hair extensions in Alicante — Marina Vaal Extensions',
   alt_hero:'Extendio cat-ear hairbrush in black',
   alt_mini:'Extendio Mini Detangling Brush — colour variants',
@@ -965,6 +1038,7 @@ function setLang(lang){
 
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   try{ localStorage.setItem('extendio-lang', lang); }catch(e){}
+  document.dispatchEvent(new CustomEvent('extendio-language', {detail:lang}));
   if(window.updateConsentLang) window.updateConsentLang(lang); /* Cookie-Banner folgt der Seitensprache */
 }
 
@@ -1105,5 +1179,6 @@ setLang(initial);
 })();
 </script>
 <script src="assets/consent.js?v=20260903c"></script>
+<script src="assets/direct-order.js?v=20260908" defer></script>
 </body>
 </html>
