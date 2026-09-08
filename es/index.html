@@ -541,6 +541,12 @@
         <h3 data-i18n="ws_h">Tu pedido, a tu medida</h3>
         <p data-i18n="ws_p">Para ti, tu salón o tu tienda. Indica producto, cantidad y destino: confirmamos existencias, precio total con impuestos y gastos de envío antes de que pagues.</p>
       </div>
+      <div class="brush-offers" style="grid-column:1/-1;display:grid;gap:18px">
+        <h3 data-i18n="brush_h">Cepillos para salones y tiendas</h3>
+        <p data-i18n="brush_intro">Mini o L. Confirmamos modelo, colores y existencias antes del pago. Enviamos desde nuestro propio stock en España o Alemania.</p>
+        <div><h4 data-i18n="brush_ten">10 cepillos · para entregas dentro de España</h4><p data-i18n="brush_ten_price">39 € sin IVA (3,90 €/unidad). En una venta interior ordinaria en España: 47,19 € IVA incluido. Transporte aparte.</p><a class="btn" href="/es/#order-enquiry" data-brush-pack="10" data-i18n="brush_ten_cta">Consultar lote de 10</a></div>
+        <div><h4 data-i18n="brush_hundred">100 cepillos · caja para profesionales</h4><p data-i18n="brush_hundred_price">300 € sin IVA (3 €/unidad), más IVA aplicable y transporte. Entregas en España o Alemania. Una compra B2B no está automáticamente exenta de IVA.</p><a class="btn" href="/es/#order-enquiry" data-brush-pack="100" data-i18n="brush_hundred_cta">Consultar caja de 100</a></div>
+      </div>
       <form id="order-enquiry" class="order-form">
 <label><span data-i18n="order_country">País de entrega</span><select id="order-country" name="country"><option value="ES" data-i18n="country_es">España</option><option value="DE" data-i18n="country_de">Alemania</option></select></label>
 <label><span data-i18n="order_product">Producto</span><select id="order-product" name="product"><option value="trolley" data-i18n="p_trolley_name">Salon Trolley</option><option value="mini" data-i18n="p_mini_name">Cepillo Mini Desenredante</option><option value="large" data-i18n="p_l_name">Cepillo L Desenredante</option><option value="swabs" data-i18n="p_swabs_bulk">Bastoncillos — caja de 200 uds.</option><option value="clips1" data-i18n="p_clips1_name">Set de pinzas 1 · Coral y lila</option><option value="clips2" data-i18n="p_clips2_name">Set de pinzas 2 · Menta y beige</option></select></label><label><span data-i18n="order_quantity">Cantidad</span><input id="order-quantity" name="quantity" type="number" min="1" max="99999" step="1" value="1" required aria-describedby="order-unit"></label><label><span data-i18n="order_postcode">Código postal (opcional)</span><input id="order-postcode" name="postcode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}"></label><p id="order-unit" data-i18n="order_unit">Unidades o packs, según el producto seleccionado.</p><p class="order-disclaimer" data-i18n="order_note">Esto prepara una consulta; no confirma un pedido ni realiza ningún pago. Puedes revisar el mensaje antes de enviarlo.</p></form>
@@ -716,6 +722,15 @@ const GUIDE_ROUTES = {
 
 const I18N = {
 de:{
+  brush_h:'Haarbürsten für Salon und Fachhandel',
+  brush_intro:'Mini oder L. Modell, Farben und Bestand bestätigen wir vor der Zahlung. Versand aus unseren eigenen Beständen in Spanien oder Deutschland.',
+  brush_ten:'10 Bürsten · für Lieferungen innerhalb Spaniens',
+  brush_ten_price:'39 € netto (3,90 €/Stück). Bei regulärer spanischer Inlandsbesteuerung: 47,19 € inkl. MwSt. Versand zusätzlich.',
+  brush_ten_cta:'10 Bürsten anfragen',
+  brush_hundred:'100 Bürsten · Händlerkarton',
+  brush_hundred_price:'300 € netto (3 €/Stück), zuzüglich anwendbarer MwSt. und Versand. Lieferung nach Spanien oder Deutschland. B2B bedeutet nicht automatisch steuerfrei.',
+  brush_hundred_cta:'100 Bürsten anfragen',
+  brush_other:'Für diese Auswahl bestätigen wir Preis, Bestand, Steuern und Versand individuell vor der Zahlung.',
   order_intro:'Ich interessiere mich für diese Bestellung. Bitte bestätigen Sie Bestand, Gesamtpreis inklusive Steuern, Versand und Lieferzeit.',
   p_swabs_bulk:'Wattestäbchen — Box mit 200 Stück',
   skip_main:'Zum Inhalt',
@@ -809,6 +824,15 @@ de:{
   alt_trolley:'Extendio Salon Trolley mit Zubehör'
 },
 es:{
+  brush_h:'Cepillos para salones y tiendas',
+  brush_intro:'Mini o L. Confirmamos modelo, colores y existencias antes del pago. Enviamos desde nuestro propio stock en España o Alemania.',
+  brush_ten:'10 cepillos · para entregas dentro de España',
+  brush_ten_price:'39 € sin IVA (3,90 €/unidad). En una venta interior ordinaria en España: 47,19 € IVA incluido. Transporte aparte.',
+  brush_ten_cta:'Consultar lote de 10',
+  brush_hundred:'100 cepillos · caja para profesionales',
+  brush_hundred_price:'300 € sin IVA (3 €/unidad), más IVA aplicable y transporte. Entregas en España o Alemania. Una compra B2B no está automáticamente exenta de IVA.',
+  brush_hundred_cta:'Consultar caja de 100',
+  brush_other:'Para esta selección confirmamos precio, existencias, impuestos y transporte antes del pago.',
   order_intro:'Me interesa este pedido. Por favor, confirma disponibilidad, total con impuestos, envío y plazo.',
   p_swabs_bulk:'Bastoncillos — caja de 200 uds.',
   skip_main:'Ir al contenido',
@@ -902,6 +926,15 @@ es:{
   alt_trolley:'Salon Trolley Extendio con accesorios'
 },
 en:{
+  brush_h:'Brushes for salons and retailers',
+  brush_intro:'Mini or L. We confirm the model, colours and stock before payment. Dispatch from our own stock in Spain or Germany.',
+  brush_ten:'10 brushes · for delivery within Spain',
+  brush_ten_price:'€39 excluding VAT (€3.90 each). For an ordinary domestic sale in Spain: €47.19 including VAT. Shipping is additional.',
+  brush_ten_cta:'Enquire about 10 brushes',
+  brush_hundred:'100 brushes · trade carton',
+  brush_hundred_price:'€300 excluding VAT (€3 each), plus applicable VAT and shipping. Delivery to Spain or Germany. B2B purchases are not automatically VAT exempt.',
+  brush_hundred_cta:'Enquire about 100 brushes',
+  brush_other:'For this selection, we confirm the price, stock, taxes and shipping before payment.',
   order_intro:'I am interested in this order. Please confirm stock, the total including taxes, shipping and delivery time.',
   p_swabs_bulk:'Cotton swabs — box of 200 pieces',
   skip_main:'Skip to content',
