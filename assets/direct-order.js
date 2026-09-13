@@ -22,12 +22,15 @@
   form.addEventListener('change', refresh);
   document.addEventListener('extendio-language', e => { defaults(e.detail); refresh(); });
   document.querySelectorAll('[data-brush-pack]').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
       if (!['mini', 'large'].includes(form.elements.product.value)) form.elements.product.value = 'mini';
       form.elements.quantity.value = link.dataset.brushPack;
       if (link.dataset.brushPack === '10') { country.value = 'ES'; countryChosen = true; }
       refresh();
-      form.elements.product.focus();
+      history.replaceState(null, '', location.pathname + location.search + '#order-enquiry');
+      form.scrollIntoView({ block: 'center' });
+      form.elements.product.focus({ preventScroll: true });
     });
   });
   refresh();
