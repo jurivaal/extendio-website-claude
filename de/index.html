@@ -550,7 +550,7 @@
       <p style="grid-column:1/-1"><a class="btn-ghost" href="/assets/extendio-brush-trade-es-de.pdf" target="_blank" rel="noopener" data-i18n="brush_pdf">Sortiment &amp; Preise als PDF (ES/DE)</a></p>
       <form id="order-enquiry" class="order-form">
 <label><span data-i18n="order_country">Lieferland</span><select id="order-country" name="country"><option value="ES" data-i18n="country_es">Spanien</option><option value="DE" data-i18n="country_de">Deutschland</option></select></label>
-<label><span data-i18n="order_product">Produkt</span><select id="order-product" name="product"><option value="trolley" data-i18n="p_trolley_name">Salon Trolley</option><option value="mini" data-i18n="p_mini_name">Entwirrbürste Mini</option><option value="large" data-i18n="p_l_name">Entwirrbürste L</option><option value="swabs" data-i18n="p_swabs_bulk">Wattestäbchen — Box mit 200 Stück</option><option value="clips1" data-i18n="p_clips1_name">Haarklammer-Set 1 · Koralle &amp; Lila</option><option value="clips2" data-i18n="p_clips2_name">Haarklammer-Set 2 · Mint &amp; Beige</option></select></label><label><span data-i18n="order_quantity">Menge</span><input id="order-quantity" name="quantity" type="number" min="1" max="99999" step="1" value="1" required aria-describedby="order-unit"></label><label><span data-i18n="order_postcode">Postleitzahl (optional)</span><input id="order-postcode" name="postcode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}"></label><p id="order-unit" data-i18n="order_unit">Stück oder Sets, je nach ausgewähltem Produkt.</p><p class="order-disclaimer" data-i18n="order_note">Dies bereitet eine Anfrage vor; es wird keine Bestellung aufgegeben und keine Zahlung ausgelöst. Sie können die Nachricht vor dem Senden prüfen.</p></form>
+<label><span data-i18n="order_product">Produkt</span><select id="order-product" name="product"><option value="trolley" data-i18n="p_trolley_name">Salon Trolley</option><option value="mini" data-i18n="p_mini_name">Entwirrbürste Mini</option><option value="large" data-i18n="p_l_name">Entwirrbürste L</option><option value="swabs-pack" data-i18n="p_swabs_pack">Wattestäbchen — Vorratspack 6 × 200 Stück</option><option value="swabs" data-i18n="p_swabs_bulk">Wattestäbchen — Box mit 200 Stück</option><option value="clips1" data-i18n="p_clips1_name">Haarklammer-Set 1 · Koralle &amp; Lila</option><option value="clips2" data-i18n="p_clips2_name">Haarklammer-Set 2 · Mint &amp; Beige</option><option value="clips-bulk" data-i18n="p_clips_bulk">Einzelne Haarklammern — Sortiment nach Vereinbarung</option></select></label><label><span data-i18n="order_quantity">Menge</span><input id="order-quantity" name="quantity" type="number" min="1" max="99999" step="1" value="1" required aria-describedby="order-unit"></label><label><span data-i18n="order_postcode">Postleitzahl (optional)</span><input id="order-postcode" name="postcode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}"></label><p id="order-unit">einzelne Produkte</p><p class="order-disclaimer" data-i18n="order_note">Dies bereitet eine Anfrage vor; es wird keine Bestellung aufgegeben und keine Zahlung ausgelöst. Sie können die Nachricht vor dem Senden prüfen.</p></form>
       <div class="wholesale-ctas">
         <a class="btn-wa" data-wa data-order-contact="whatsapp" data-cta-position="wholesale" href="https://wa.me/34634223898?text=Hallo%20Extendio!%20Ich%20interessiere%20mich%20f%C3%BCr%20Gro%C3%9Fhandelskonditionen.%20Produkte%2FMengen%3A%20" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.7l.4-.5c.1-.2.1-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.5 3.9 2.6 1 2.6.7 3.1.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
@@ -723,6 +723,17 @@ const GUIDE_ROUTES = {
 
 const I18N = {
 de:{
+  p_swabs_pack:'Wattestäbchen — Vorratspack 6 × 200 Stück',
+  p_clips_bulk:'Einzelne Haarklammern — Sortiment nach Vereinbarung',
+  order_unit_items:'einzelne Produkte',
+  order_unit_swabs:'Boxen mit je 200 Stäbchen; keine Exportkartons',
+  order_unit_swabs_pack:'Vorratspacks mit je 6 Boxen × 200 Stäbchen (1200 Stück)',
+  order_unit_clips_set:'Sets mit je 4 Haarklammern',
+  order_unit_clips:'einzelne Haarklammern; keine Vierer-Sets',
+  order_choose_lot:'Losgröße wählen:',
+  order_boxes:'Boxen × 200',
+  order_clips:'Haarklammern',
+  order_bulk_price:'Lospreis: {net} € netto / {gross} € inkl. 21 % MwSt. Für Abholung in Alicante; Versand nicht enthalten. Bestand, Zusammensetzung und Übergabetermin bestätigen wir vor der Zahlung.',
   brush_h:'Haarbürsten für Salon und Fachhandel',
   brush_intro:'Mini oder L. Modell, Farben und Bestand bestätigen wir vor der Zahlung. Versand aus unseren eigenen Beständen in Spanien oder Deutschland.',
   brush_ten:'10 Bürsten · für Lieferungen innerhalb Spaniens',
@@ -827,6 +838,17 @@ de:{
   alt_trolley:'Extendio Salon Trolley mit Zubehör'
 },
 es:{
+  p_swabs_pack:'Bastoncillos — pack de 6 cajas × 200 uds.',
+  p_clips_bulk:'Pinzas sueltas — surtido a confirmar',
+  order_unit_items:'unidades individuales',
+  order_unit_swabs:'cajas de 200 bastoncillos; no cajas máster',
+  order_unit_swabs_pack:'packs de 6 cajas × 200 bastoncillos (1200 uds. por pack)',
+  order_unit_clips_set:'sets de 4 pinzas cada uno',
+  order_unit_clips:'pinzas individuales; no sets de cuatro',
+  order_choose_lot:'Elegir lote:',
+  order_boxes:'cajas × 200',
+  order_clips:'pinzas',
+  order_bulk_price:'Precio del lote: {net} € sin IVA / {gross} € IVA 21 % incluido. Para recogida en Alicante; envío no incluido. Confirmamos existencias, composición y fecha de entrega antes del pago.',
   brush_h:'Cepillos para salones y tiendas',
   brush_intro:'Mini o L. Confirmamos modelo, colores y existencias antes del pago. Enviamos desde nuestro propio stock en España o Alemania.',
   brush_ten:'10 cepillos · para entregas dentro de España',
@@ -931,6 +953,17 @@ es:{
   alt_trolley:'Salon Trolley Extendio con accesorios'
 },
 en:{
+  p_swabs_pack:'Cotton swabs — pack of 6 boxes × 200 pieces',
+  p_clips_bulk:'Individual claw clips — assortment to confirm',
+  order_unit_items:'individual items',
+  order_unit_swabs:'boxes of 200 swabs; not master cartons',
+  order_unit_swabs_pack:'packs of 6 boxes × 200 swabs (1200 swabs per pack)',
+  order_unit_clips_set:'sets of 4 claw clips each',
+  order_unit_clips:'individual claw clips; not four-piece sets',
+  order_choose_lot:'Choose a lot:',
+  order_boxes:'boxes × 200',
+  order_clips:'claw clips',
+  order_bulk_price:'Lot price: €{net} excluding VAT / €{gross} including 21% VAT. For collection in Alicante; shipping excluded. We confirm stock, assortment and handover date before payment.',
   brush_h:'Brushes for salons and retailers',
   brush_intro:'Mini or L. We confirm the model, colours and stock before payment. Dispatch from our own stock in Spain or Germany.',
   brush_ten:'10 brushes · for delivery within Spain',
@@ -1218,7 +1251,7 @@ setLang(initial);
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 })();
 </script>
-<script src="assets/direct-order.js?v=20260913c"></script>
+<script src="assets/direct-order.js?v=20260917"></script>
 <script src="assets/consent.js?v=20260903c"></script>
 </body>
 </html>
