@@ -49,6 +49,7 @@
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'btn-ghost';
+        button.style.cssText = 'border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 12px;font:inherit;cursor:pointer';
         button.textContent = quantity + ' ' + (product.value === 'swabs' ? t.order_boxes : t.order_clips);
         button.setAttribute('aria-pressed', String(Number(quantityInput.value) === quantity));
         button.addEventListener('click', () => { quantityInput.value = quantity; refresh(); });
