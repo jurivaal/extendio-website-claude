@@ -1,3 +1,7 @@
+## Stock availability — 8 October 2026
+
+Trolleys: no Amazon stock per owner; approximately 4–5 returned units in Spain await individual inspection from 26 October. No gifts, current sale price or working-condition promise. Cotton swabs: two whole master cartons in Spain, preparation from 26 October for two weeks; transport extra and count before payment. Direct enquiries remain non-binding. These facts supersede old trolley bundles and small cotton lots below.
+
 ## Sales update — 8 September 2026 (current)
 
 Sales and delivery are limited to Spain and Germany, including Amazon MCF fulfilment. English is a language option, not a new delivery market. Direct requests use the existing WhatsApp/email contacts; the form sends no order, payment, stored customer data or automatic message. Stock, tax, delivery cost and timing must be confirmed before payment. Local Alicante pickup offers reuse owner-approved Wallapop prices; the trolley gift bundle applies only to that pickup offer, not to an Amazon/FBA shipment.

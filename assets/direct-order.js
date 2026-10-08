@@ -15,12 +15,13 @@
   form.appendChild(summary);
   const terms = () => {
     const t = I18N[document.documentElement.lang] || I18N.de;
+    if (product.value === 'trolley') return t.local_trolley_desc;
+    if (product.value === 'swabs') return t.local_swabs_desc;
     const brush = ['mini', 'large'].includes(form.elements.product.value);
     const quantity = Number(form.elements.quantity.value);
     if (brush && quantity === 10 && country.value === 'ES') return t.brush_ten_price;
     if (brush && quantity === 100 && ['ES', 'DE'].includes(country.value)) return t.brush_hundred_price;
-    const bulkNet = product.value === 'swabs' ? ({50:30, 100:55, 240:120})[quantity]
-      : product.value === 'clips-bulk' ? ({24:24, 100:80})[quantity] : undefined;
+    const bulkNet = product.value === 'clips-bulk' ? ({24:24, 100:80})[quantity] : undefined;
     if (bulkNet !== undefined && country.value === 'ES') {
       const money = value => value.toLocaleString(document.documentElement.lang, {minimumFractionDigits:2, maximumFractionDigits:2});
       return t.order_bulk_price.replace('{net}', money(bulkNet)).replace('{gross}', money(bulkNet * 1.21));
@@ -40,7 +41,7 @@
       history.replaceState(null, '', selected.pathname + selected.search + selected.hash);
     }
     presets.replaceChildren();
-    const choices = product.value === 'swabs' ? [50, 100, 240] : product.value === 'clips-bulk' ? [24, 100] : [];
+    const choices = product.value === 'swabs' ? [240, 480] : product.value === 'clips-bulk' ? [24, 100] : [];
     if (choices.length) {
       const label = document.createElement('span');
       label.textContent = t.order_choose_lot;

@@ -13,6 +13,10 @@ import html, json, re, sys, pathlib
 
 HTML = pathlib.Path(__file__).parent / "index.html"
 src = HTML.read_text()
+# Preserve the approved Spanish-only trade section when rebuilding language routes.
+es_page = HTML.parent / "es" / "index.html"
+es_trade_match = re.search(r'<section id="pinzas-profesionales".*?</section>', es_page.read_text(), re.S) if es_page.exists() else None
+es_trade = es_trade_match.group(0) if es_trade_match else ""
 
 def language_block(lang, next_lang=None):
     end = rf"\n\}},\n{next_lang}:\{{" if next_lang else r"\n\}\};"
@@ -163,6 +167,8 @@ def render_language(lang):
         replacement = ld_match.group(1) + '\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n' + ld_match.group(3)
         out = out[:ld_match.start()] + replacement + out[ld_match.end():]
     out = re.sub(r'href="#[^"]*"', lambda m: 'href="/' + lang + '/' + m.group(0)[6:], out)
+    if lang == 'es' and es_trade:
+        out = out.replace('<form id="order-enquiry"', es_trade + '\n      <form id="order-enquiry"', 1)
     target = pathlib.Path(__file__).parent / lang / 'index.html'
     target.parent.mkdir(exist_ok=True)
     target.write_text(out)

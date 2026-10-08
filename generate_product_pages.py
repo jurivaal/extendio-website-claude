@@ -81,13 +81,23 @@ DATA = {
 }
 
 def page(product, lang):
-    c, d = COMMON[lang], DATA[product][lang]
+    c, d = dict(COMMON[lang]), dict(DATA[product][lang])
     enquiry_product = 'swabs-pack' if product == 'swabs' else product
     enquiry_url = f'/{lang}/?product={enquiry_product}&quantity=1#order-enquiry'
+    buy_attr = 'data-stock-status' if product == 'trolley' else f'data-buy="{product}"'
     route = ROUTES[product][lang]
     url = f"https://extendio.es/{lang}/{route}/"
     amazon_base = f"https://www.{MARKET[lang]}/dp/{DATA[product]['asin']}"
     amazon = amazon_base + ATTRIBUTION.get(lang, {}).get(product, "")
+    if product == "trolley":
+        status = {
+          "de": "Derzeit nicht zum Kauf verfügbar. Rückläufer nur in Spanien, noch nicht einzeln geprüft. Prüfung ab 26. Oktober vorgesehen. Modellbilder und technische Beschreibung bestätigen nicht Zustand oder Vollständigkeit der einzelnen Einheit. Zubehör, Preis und Übergabe erst nach Prüfung; keine Geschenke oder Vorauszahlungen.",
+          "es": "No disponible para compra. Devoluciones solo en España, todavía sin revisión individual. Revisión prevista desde el 26 de octubre. Las fotos y la descripción del modelo no confirman el estado ni la integridad de cada unidad. Accesorios, precio y entrega después de la revisión; sin regalos ni anticipos.",
+          "en": "Currently unavailable for purchase. Returned units in Spain only, not yet individually inspected. Inspection planned from 26 October. Model images and specifications do not confirm the condition or completeness of any unit. Accessories, price and handover after inspection; no gifts or advance payments."
+        }[lang]
+        amazon = f"/{lang}/#stock-status"
+        c.update(buy={"de":"Status ansehen", "es":"Ver estado", "en":"View status"}[lang], price=status, finalp=status, trust3p=status, market_scope={"de":"Nur Spanien.","es":"Solo España.","en":"Spain only."}[lang])
+        d.update(lead=status, faq=[({"de":"Wann ist ein Kauf möglich?","es":"¿Cuándo se podrá comprar?","en":"When can I buy?"}[lang],status)], factp=status)
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="https://extendio.es/{l}/{ROUTES[product][l]}/">' for l in ("de","es","en"))
     alts += f'\n<link rel="alternate" hreflang="x-default" href="https://extendio.es/en/{ROUTES[product]["en"]}/">'
     langlinks = "".join(f'<a href="/{l}/{ROUTES[product][l]}/" {("aria-current=" + chr(34) + "page" + chr(34)) if l==lang else ""}>{l.upper()}</a>' for l in ("de","es","en"))
@@ -105,12 +115,12 @@ def page(product, lang):
     schema = {"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":d["title"],"description":d["meta"],"image":"https://extendio.es"+(DATA[product].get("poster") or DATA[product]["image"]),"url":url,"isPartOf":{"@type":"WebSite","name":"Extendio","url":"https://extendio.es/"},"about":{"@type":"Thing","name":d["title"],"sameAs":amazon_base}},{"@type":"FAQPage","mainEntity":faq_schema}]}
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(d["title"])} | Extendio</title><meta name="description" content="{escape(d["meta"])}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}">{alts}<meta property="og:type" content="product"><meta property="og:title" content="{escape(d["title"])}"><meta property="og:description" content="{escape(d["meta"])}"><meta property="og:url" content="{url}"><meta property="og:image" content="https://extendio.es{DATA[product].get("poster") or DATA[product]["image"]}"><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/product-guide.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script><script src="/assets/consent.js?v=20260903" defer></script></head><body>
 <header class="top"><div class="wrap"><a href="/{lang}/"><img class="logo" src="/assets/logo.png" alt="Extendio"></a><a class="back" href="/{lang}/#produkte">← {c["back"]}</a><nav class="langs" aria-label="Language">{langlinks}</nav></div></header>
-<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" data-buy="{product}" data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p><a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a></div></section></div>
+<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" {buy_attr} data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p><a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a></div></section></div>
 <section class="section white" id="details"><div class="wrap"><h2>{c["details"]}</h2><div class="grid">{features}</div></div></section>
 {reviews}
 <section class="section"><div class="wrap"><h2>{c["faq"]}</h2>{faqs}</div></section>
 <section class="section trust"><div class="wrap"><h2>{c["trust"]}</h2><div class="grid"><article class="box"><h3>{fact_h}</h3><p>{fact_p}</p></article><article class="box"><h3>{c["trust2h"]}</h3><p>{c["trust2p"]}</p></article><article class="box"><h3>{c["trust3h"]}</h3><p>{c["trust3p"]}</p></article></div></div></section>
-<section class="final"><h2>{c["finalh"]}</h2><p>{c["finalp"]} {c["market_scope"]}</p><a class="btn" data-buy="{product}" data-cta-position="product_guide_bottom" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a></section></main>
+<section class="final"><h2>{c["finalh"]}</h2><p>{c["finalp"]} {c["market_scope"]}</p><a class="btn" {buy_attr} data-cta-position="product_guide_bottom" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a></section></main>
 <footer><div class="wrap foot"><div><img src="/assets/logo.png" alt="Extendio"><p>Extendio · Alicante</p></div><div><p><a href="/{lang}/">{c["home"]}</a><br><a href="/{lang}/#grosshandel">B2B / Wholesale</a></p></div><div class="legal"><a href="/legal.html">{c["legal"]}</a><a href="/privacy.html">{c["privacy"]}</a><a href="/cookies.html">{c["cookies"]}</a><a href="#" data-cookie-settings>{c["settings"]}</a></div></div></footer>
 <script>document.addEventListener('click',function(e){{const a=e.target.closest('[data-buy]');if(a&&window.trackExtendioEvent)window.trackExtendioEvent('amazon_click',{{product_id:a.dataset.buy,marketplace:new URL(a.href).hostname,language:'{lang}',cta_position:a.dataset.ctaPosition,link_url:a.href}})}});if(matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('video').forEach(v=>{{v.removeAttribute('autoplay');v.pause()}});</script></body></html>"""
 
