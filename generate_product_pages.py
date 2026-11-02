@@ -91,13 +91,13 @@ def page(product, lang):
     amazon = amazon_base + ATTRIBUTION.get(lang, {}).get(product, "")
     if product == "trolley":
         status = {
-          "de": "Derzeit nicht zum Kauf verfügbar. Rückläufer nur in Spanien, noch nicht einzeln geprüft. Prüfung ab 26. Oktober vorgesehen. Modellbilder und technische Beschreibung bestätigen nicht Zustand oder Vollständigkeit der einzelnen Einheit. Zubehör, Preis und Übergabe erst nach Prüfung; keine Geschenke oder Vorauszahlungen.",
-          "es": "No disponible para compra. Devoluciones solo en España, todavía sin revisión individual. Revisión prevista desde el 26 de octubre. Las fotos y la descripción del modelo no confirman el estado ni la integridad de cada unidad. Accesorios, precio y entrega después de la revisión; sin regalos ni anticipos.",
-          "en": "Currently unavailable for purchase. Returned units in Spain only, not yet individually inspected. Inspection planned from 26 October. Model images and specifications do not confirm the condition or completeness of any unit. Accessories, price and handover after inspection; no gifts or advance payments."
+          "de": "65 € inkl. MwSt. für einen neuen Extendio Friseurwagen. Abholung nach Vereinbarung; Versand nach Bestätigung von Verpackung und Kosten. Verfügbarkeit und Übergabetermin bestätigen wir vor der Zahlung.",
+          "es": "65 € IVA incluido por un carrito Extendio nuevo. Recogida por acuerdo o envío tras confirmar embalaje y coste. Confirmamos disponibilidad y fecha de entrega antes del pago.",
+          "en": "€65 including VAT for one new Extendio salon trolley. Collection by arrangement or shipping after packaging and cost are confirmed. We confirm availability and handover date before payment."
         }[lang]
         amazon = f"/{lang}/#stock-status"
         c.update(buy={"de":"Status ansehen", "es":"Ver estado", "en":"View status"}[lang], price=status, finalp=status, trust3p=status, market_scope={"de":"Nur Spanien.","es":"Solo España.","en":"Spain only."}[lang])
-        d.update(lead=status, faq=[({"de":"Wann ist ein Kauf möglich?","es":"¿Cuándo se podrá comprar?","en":"When can I buy?"}[lang],status)], factp=status)
+        d.update(lead=status, faq=[({"de":"Wie kaufe ich einen neuen Wagen?","es":"¿Cómo compro un carrito nuevo?","en":"How do I buy a new trolley?"}[lang],status)], factp=status)
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="https://extendio.es/{l}/{ROUTES[product][l]}/">' for l in ("de","es","en"))
     alts += f'\n<link rel="alternate" hreflang="x-default" href="https://extendio.es/en/{ROUTES[product]["en"]}/">'
     langlinks = "".join(f'<a href="/{l}/{ROUTES[product][l]}/" {("aria-current=" + chr(34) + "page" + chr(34)) if l==lang else ""}>{l.upper()}</a>' for l in ("de","es","en"))

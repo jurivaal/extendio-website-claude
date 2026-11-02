@@ -17,6 +17,7 @@
     const t = I18N[document.documentElement.lang] || I18N.de;
     if (product.value === 'trolley') return t.local_trolley_desc;
     if (product.value === 'swabs') return t.local_swabs_desc;
+    if (product.value === 'swabs-de') return country.value === 'DE' ? t.local_swabs_de : t.swabs_de_country;
     const brush = ['mini', 'large'].includes(form.elements.product.value);
     const quantity = Number(form.elements.quantity.value);
     if (brush && quantity === 10 && country.value === 'ES') return t.brush_ten_price;
@@ -28,7 +29,7 @@
     }
     return t.brush_other;
   };
-  const unitKey = () => ({swabs:'order_unit_swabs', 'swabs-pack':'order_unit_swabs_pack',
+  const unitKey = () => ({'swabs-de':'order_unit_swabs_de', swabs:'order_unit_swabs', 'swabs-pack':'order_unit_swabs_pack',
     clips1:'order_unit_clips_set', clips2:'order_unit_clips_set', 'clips-bulk':'order_unit_clips'})[product.value] || 'order_unit_items';
   const refresh = () => {
     const t = I18N[document.documentElement.lang] || I18N.de;
@@ -41,7 +42,7 @@
       history.replaceState(null, '', selected.pathname + selected.search + selected.hash);
     }
     presets.replaceChildren();
-    const choices = product.value === 'swabs' ? [240, 480] : product.value === 'clips-bulk' ? [24, 100] : [];
+    const choices = product.value === 'swabs' ? [1, 2, 3] : product.value === 'clips-bulk' ? [24, 100] : [];
     if (choices.length) {
       const label = document.createElement('span');
       label.textContent = t.order_choose_lot;
@@ -65,7 +66,10 @@
   const requestedProduct = params.get('product');
   if (Array.from(product.options).some(option => option.value === requestedProduct)) {
     product.value = requestedProduct;
-    const requestedQuantity = Number(params.get('quantity'));
+    if (requestedProduct === 'swabs-de') { country.value = 'DE'; countryChosen = true; }
+    const rawQuantity = Number(params.get('quantity'));
+    // Preserve historical full-carton links that used retail-pack counts.
+    const requestedQuantity = requestedProduct === 'swabs' && [240, 480, 720].includes(rawQuantity) ? rawQuantity / 240 : rawQuantity;
     quantityInput.value = Number.isInteger(requestedQuantity) && requestedQuantity >= 1 && requestedQuantity <= 99999 ? requestedQuantity : 1;
   }
   country.addEventListener('change', () => { countryChosen = true; refresh(); });
@@ -84,12 +88,30 @@
       form.elements.product.focus({ preventScroll: true });
     });
   });
+  document.querySelectorAll('[data-order-preset]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      product.value = link.dataset.orderPreset;
+      quantityInput.value = 1;
+      country.value = 'DE';
+      countryChosen = true;
+      refresh();
+      form.scrollIntoView({ block: 'center' });
+      product.focus({ preventScroll: true });
+    });
+  });
   refresh();
   form.addEventListener('submit', e => e.preventDefault());
   document.querySelectorAll('[data-order-contact]').forEach(link => {
     link.addEventListener('click', e => {
       if (!form.reportValidity() || !['ES', 'DE'].includes(country.value)) { e.preventDefault(); return; }
       const t = I18N[document.documentElement.lang] || I18N.de;
+      if (product.value === 'swabs-de' && country.value !== 'DE') {
+        e.preventDefault();
+        summary.textContent = t.swabs_de_country;
+        country.focus();
+        return;
+      }
       const productName = product.selectedOptions[0].textContent;
       const message = [t.order_intro, t.order_product + ': ' + productName,
         t.order_quantity + ': ' + quantityInput.value + ' (' + t[unitKey()] + ')',
