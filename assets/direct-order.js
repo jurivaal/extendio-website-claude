@@ -5,6 +5,7 @@
   const product = form.elements.product;
   const quantityInput = form.elements.quantity;
   const unit = form.querySelector('#order-unit');
+  const localDeliveryCountries = { trolley: 'ES', 'swabs-de': 'DE' };
   let countryChosen = false;
   const presets = document.createElement('div');
   presets.className = 'order-presets';
@@ -15,9 +16,9 @@
   form.appendChild(summary);
   const terms = () => {
     const t = I18N[document.documentElement.lang] || I18N.de;
-    if (product.value === 'trolley') return t.local_trolley_desc;
+    if (product.value === 'trolley') return country.value === localDeliveryCountries.trolley ? t.local_trolley_desc : t.trolley_country;
     if (product.value === 'swabs') return t.local_swabs_desc;
-    if (product.value === 'swabs-de') return country.value === 'DE' ? t.local_swabs_de : t.swabs_de_country;
+    if (product.value === 'swabs-de') return country.value === localDeliveryCountries['swabs-de'] ? t.local_swabs_de : t.swabs_de_country;
     const brush = ['mini', 'large'].includes(form.elements.product.value);
     const quantity = Number(form.elements.quantity.value);
     if (brush && quantity === 10 && country.value === 'ES') return t.brush_ten_price;
@@ -66,7 +67,8 @@
   const requestedProduct = params.get('product');
   if (Array.from(product.options).some(option => option.value === requestedProduct)) {
     product.value = requestedProduct;
-    if (requestedProduct === 'swabs-de') { country.value = 'DE'; countryChosen = true; }
+    const requestedCountry = localDeliveryCountries[requestedProduct];
+    if (requestedCountry) { country.value = requestedCountry; countryChosen = true; }
     const rawQuantity = Number(params.get('quantity'));
     // Preserve historical full-carton links that used retail-pack counts.
     const requestedQuantity = requestedProduct === 'swabs' && [240, 480, 720].includes(rawQuantity) ? rawQuantity / 240 : rawQuantity;
@@ -106,9 +108,10 @@
     link.addEventListener('click', e => {
       if (!form.reportValidity() || !['ES', 'DE'].includes(country.value)) { e.preventDefault(); return; }
       const t = I18N[document.documentElement.lang] || I18N.de;
-      if (product.value === 'swabs-de' && country.value !== 'DE') {
+      const requiredCountry = localDeliveryCountries[product.value];
+      if (requiredCountry && country.value !== requiredCountry) {
         e.preventDefault();
-        summary.textContent = t.swabs_de_country;
+        summary.textContent = terms();
         country.focus();
         return;
       }
