@@ -102,6 +102,8 @@ def page(product, lang):
     primary_attr = f" {buy_attr}"
     primary_target = ' target="_blank" rel="noopener"'
     direct_link = f'<a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>'
+    if lang == "es" and product in ("clips1", "clips2"):
+        direct_link += '<p class="note"><a class="back" href="/es/#pinzas-profesionales">Ver lotes de 24 y 100 pinzas</a></p>'
     wallapop_offers = ""
     if product == "trolley" and lang == "es":
         d["pills"] = ["Altura regulable de 70 a 104 cm", "Bandeja de 44,6 × 37,6 cm", *d["pills"][1:]]
