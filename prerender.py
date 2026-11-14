@@ -176,6 +176,14 @@ def render_language(lang):
             'Vollen Karton mit 400 Packungen à 200 Stück anfragen</a>'
         )
         out = out[:end_of_guide] + '\n          ' + carton_link + out[end_of_guide:]
+        carton_offer = out.index('data-order-preset="swabs-de"')
+        end_of_offer = out.index('</a>', carton_offer) + len('</a>')
+        kleinanzeigen_link = (
+            '<a class="guide-link" href="https://www.kleinanzeigen.de/s-anzeige/'
+            'extendio-bambus-wattestaebchen-400-packungen-200-stueck/3559415314-224-9488" '
+            'target="_blank" rel="noopener">Anzeige auf Kleinanzeigen ansehen</a>'
+        )
+        out = out[:end_of_offer] + kleinanzeigen_link + out[end_of_offer:]
     if lang == 'es':
         trolley_card = out.index('data-i18n="local_trolley"')
         end_of_card = out.index('</div></article>', trolley_card)
