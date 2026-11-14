@@ -4,6 +4,11 @@
   const country = form.elements.country;
   const product = form.elements.product;
   const quantityInput = form.elements.quantity;
+  const cartonReceipt = form.elements.cartonReceipt;
+  const cartonReceiptField = form.querySelector('#order-carton-receipt');
+  const postcode = form.elements.postcode;
+  const postcodeField = form.querySelector('#order-postcode-field');
+  const postcodeLabel = postcodeField.querySelector('[data-i18n]');
   const unit = form.querySelector('#order-unit');
   const localDeliveryCountries = { trolley: 'ES', 'swabs-de': 'DE' };
   let countryChosen = false;
@@ -34,6 +39,11 @@
     clips1:'order_unit_clips_set', clips2:'order_unit_clips_set', 'clips-bulk':'order_unit_clips'})[product.value] || 'order_unit_items';
   const refresh = () => {
     const t = I18N[document.documentElement.lang] || I18N.de;
+    const germanCartons = product.value === 'swabs-de' && country.value === localDeliveryCountries['swabs-de'];
+    cartonReceiptField.hidden = cartonReceipt.disabled = !germanCartons;
+    postcodeField.hidden = postcode.disabled = germanCartons && cartonReceipt.value === 'pickup';
+    postcode.required = germanCartons && cartonReceipt.value === 'shipping';
+    postcodeLabel.textContent = postcode.required ? t.order_postcode_required : t.order_postcode;
     unit.textContent = t[unitKey()];
     summary.textContent = terms();
     if (params.has('product')) {
@@ -125,7 +135,8 @@
       const message = [t.order_intro, t.order_product + ': ' + productName,
         t.order_quantity + ': ' + quantityInput.value + ' (' + t[unitKey()] + ')',
         t.order_country + ': ' + country.selectedOptions[0].textContent, terms(),
-        ...(form.elements.postcode.value ? [t.order_postcode + ': ' + form.elements.postcode.value] : [])].join('\n');
+        ...(!cartonReceipt.disabled && cartonReceipt.value ? [t.order_carton_receipt + ': ' + cartonReceipt.selectedOptions[0].textContent] : []),
+        ...(!postcode.disabled && postcode.value ? [t.order_postcode_required + ': ' + postcode.value] : [])].join('\n');
       link.href = link.dataset.orderContact === 'whatsapp'
         ? 'https://wa.me/34634223898?text=' + encodeURIComponent(message)
         : 'mailto:extendio.es@gmail.com?subject=' + encodeURIComponent(t.mail_subject) + '&body=' + encodeURIComponent(message);
