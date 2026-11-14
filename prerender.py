@@ -167,6 +167,15 @@ def render_language(lang):
         replacement = ld_match.group(1) + '\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n' + ld_match.group(3)
         out = out[:ld_match.start()] + replacement + out[ld_match.end():]
     out = re.sub(r'href="#[^"]*"', lambda m: 'href="/' + lang + '/' + m.group(0)[6:], out)
+    if lang == 'de':
+        carton_url = "/de/?product=swabs-de&quantity=1#order-enquiry"
+        swab_guide = out.index('data-guide="swabs"')
+        end_of_guide = out.index('</a>', swab_guide) + len('</a>')
+        carton_link = (
+            f'<a class="guide-link" href="{html.escape(carton_url, quote=True)}">'
+            'Vollen Karton mit 400 Packungen à 200 Stück anfragen</a>'
+        )
+        out = out[:end_of_guide] + '\n          ' + carton_link + out[end_of_guide:]
     if lang == 'es':
         trolley_card = out.index('data-i18n="local_trolley"')
         end_of_card = out.index('</div></article>', trolley_card)
