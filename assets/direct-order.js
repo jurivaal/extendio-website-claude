@@ -12,6 +12,7 @@
   const unit = form.querySelector('#order-unit');
   const localDeliveryCountries = { trolley: 'ES', 'swabs-de': 'DE' };
   let countryChosen = false;
+  let receiptProduct;
   const presets = document.createElement('div');
   presets.className = 'order-presets';
   presets.style.cssText = 'grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center';
@@ -44,10 +45,18 @@
     clips1:'order_unit_clips_set', clips2:'order_unit_clips_set', 'clips-bulk':'order_unit_clips'})[product.value] || 'order_unit_items';
   const refresh = () => {
     const t = I18N[document.documentElement.lang] || I18N.de;
-    const germanCartons = product.value === 'swabs-de' && country.value === localDeliveryCountries['swabs-de'];
-    cartonReceiptField.hidden = cartonReceipt.disabled = !germanCartons;
-    postcodeField.hidden = postcode.disabled = germanCartons && cartonReceipt.value === 'pickup';
-    postcode.required = germanCartons && cartonReceipt.value === 'shipping';
+    const localTrolley = product.value === 'trolley';
+    const deliveryCountry = localDeliveryCountries[product.value];
+    const showReceipt = deliveryCountry === country.value;
+    if (receiptProduct !== product.value) {
+      cartonReceipt.value = '';
+      receiptProduct = product.value;
+    }
+    cartonReceipt.options[1].textContent = t[localTrolley ? 'order_trolley_pickup' : 'order_carton_pickup'];
+    cartonReceipt.options[2].textContent = t[localTrolley ? 'order_trolley_shipping' : 'order_carton_shipping'];
+    cartonReceiptField.hidden = cartonReceipt.disabled = !showReceipt;
+    postcodeField.hidden = postcode.disabled = showReceipt && cartonReceipt.value === 'pickup';
+    postcode.required = showReceipt && cartonReceipt.value === 'shipping';
     postcodeLabel.textContent = postcode.required ? t.order_postcode_required : t.order_postcode;
     unit.textContent = t[unitKey()];
     summary.textContent = terms();
