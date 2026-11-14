@@ -112,6 +112,10 @@ def page(product, lang):
     wallapop_offers = ""
     if product == "trolley" and lang == "es":
         d["pills"] = ["Altura regulable de 70 a 104 cm", "Bandeja de 44,6 × 37,6 cm", *d["pills"][1:]]
+        d["faq"].append((
+            "¿Puedo apoyar la plancha caliente en el carrito?",
+            "Sí, sobre la bandeja metálica. Los recipientes laterales son de plástico: evita apoyar la plancha caliente sobre ellos."
+        ))
         c["buy"] = "Consultar carrito nuevo · 65 €"
         primary_url = escape(enquiry_url, quote=True)
         primary_attr = primary_target = ""
