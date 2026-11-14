@@ -43,8 +43,14 @@
       history.replaceState(null, '', selected.pathname + selected.search + selected.hash);
     }
     presets.replaceChildren();
-    const choices = product.value === 'swabs' ? [1, 2, 3] : product.value === 'clips-bulk' ? [24, 100] : [];
-    if (choices.length) {
+    const lotUnits = {
+      swabs: t.order_boxes,
+      'swabs-de': t.order_boxes_de,
+      'clips-bulk': t.order_clips
+    };
+    const lotUnit = lotUnits[product.value];
+    const choices = product.value === 'clips-bulk' ? [24, 100] : [1, 2, 3];
+    if (lotUnit) {
       const label = document.createElement('span');
       label.textContent = t.order_choose_lot;
       presets.appendChild(label);
@@ -53,7 +59,7 @@
         button.type = 'button';
         button.className = 'btn-ghost';
         button.style.cssText = 'border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 12px;font:inherit;cursor:pointer';
-        button.textContent = quantity + ' ' + (product.value === 'swabs' ? t.order_boxes : t.order_clips);
+        button.textContent = product.value === 'swabs-de' ? quantity + ' × ' + lotUnit : quantity + ' ' + lotUnit;
         button.setAttribute('aria-pressed', String(Number(quantityInput.value) === quantity));
         button.addEventListener('click', () => { quantityInput.value = quantity; refresh(); });
         presets.appendChild(button);
