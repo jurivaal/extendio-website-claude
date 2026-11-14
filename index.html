@@ -1115,7 +1115,7 @@ function setLang(lang){
 
 document.querySelectorAll('.lang-switch button').forEach(b => b.addEventListener('click', () => {
   const target = '/' + b.dataset.lang + '/';
-  if(location.pathname !== target) location.href = target;
+  if(location.pathname !== target) location.href = target + location.search + location.hash;
   else setLang(b.dataset.lang);
 }));
 
@@ -1249,7 +1249,7 @@ setLang(initial);
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 })();
 </script>
-<script src="assets/direct-order.js?v=20261114-trolley-receipt"></script>
+<script src="assets/direct-order.js?v=20261114-order-language"></script>
 <script src="assets/consent.js?v=20260903c"></script>
 </body>
 </html>

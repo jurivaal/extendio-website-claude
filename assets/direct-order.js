@@ -60,11 +60,12 @@
     postcodeLabel.textContent = postcode.required ? t.order_postcode_required : t.order_postcode;
     unit.textContent = t[unitKey()];
     summary.textContent = terms();
-    if (params.has('product')) {
-      const selected = new URL(location.href);
+    const selected = new URL(location.href);
+    if (selected.searchParams.has('product') || product.value === 'swabs-de') {
       selected.searchParams.set('product', product.value);
       selected.searchParams.set('quantity', quantityInput.value);
-      history.replaceState(null, '', selected.pathname + selected.search + selected.hash);
+      if (product.value === 'swabs-de') selected.hash = 'order-enquiry';
+      if (selected.href !== location.href) history.replaceState(null, '', selected);
     }
     presets.replaceChildren();
     const lotUnits = {
