@@ -61,10 +61,13 @@
     unit.textContent = t[unitKey()];
     summary.textContent = terms();
     const selected = new URL(location.href);
-    if (selected.searchParams.has('product') || product.value === 'swabs-de') {
+    const shareableLot = ['swabs-de', 'clips-bulk'].includes(product.value);
+    if (selected.searchParams.has('product') || shareableLot) {
       selected.searchParams.set('product', product.value);
       selected.searchParams.set('quantity', quantityInput.value);
-      if (product.value === 'swabs-de') selected.hash = 'order-enquiry';
+      if (deliveryCountry) selected.searchParams.delete('country');
+      else selected.searchParams.set('country', country.value);
+      if (shareableLot) selected.hash = 'order-enquiry';
       if (selected.href !== location.href) history.replaceState(null, '', selected);
     }
     presets.replaceChildren();
@@ -98,8 +101,11 @@
   const requestedProduct = params.get('product');
   if (Array.from(product.options).some(option => option.value === requestedProduct)) {
     product.value = requestedProduct;
-    const requestedCountry = localDeliveryCountries[requestedProduct];
-    if (requestedCountry) { country.value = requestedCountry; countryChosen = true; }
+    const requestedCountry = localDeliveryCountries[requestedProduct] || params.get('country');
+    if (['ES', 'DE'].includes(requestedCountry)) {
+      country.value = requestedCountry;
+      countryChosen = true;
+    }
     const rawQuantity = Number(params.get('quantity'));
     // Preserve historical full-carton links that used retail-pack counts.
     const requestedQuantity = requestedProduct === 'swabs' && [240, 480, 720].includes(rawQuantity) ? rawQuantity / 240 : rawQuantity;
