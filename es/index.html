@@ -784,6 +784,7 @@ de:{
   order_postcode:'Postleitzahl (optional)',
   order_postcode_required:'Postleitzahl',
   order_carton_receipt:'Abholung oder Versand',
+  order_carton_subtotal:'Warenwert der gewählten Kartons: {gross} € inkl. 19 % MwSt. Versand kommt gegebenenfalls hinzu.',
   order_carton_undecided:'Noch offen',
   order_carton_pickup:'Abholung in 22415 Hamburg',
   order_carton_shipping:'Versand innerhalb Deutschlands',
@@ -914,6 +915,7 @@ es:{
   order_postcode:'Código postal (opcional)',
   order_postcode_required:'Código postal',
   order_carton_receipt:'Recogida o envío',
+  order_carton_subtotal:'Importe de las cajas seleccionadas: {gross} € con IVA alemán del 19 %. Envío aparte si corresponde.',
   order_carton_undecided:'Por decidir',
   order_carton_pickup:'Recogida en Hamburgo (22415)',
   order_carton_shipping:'Envío dentro de Alemania',
@@ -1044,6 +1046,7 @@ en:{
   order_postcode:'Postcode (optional)',
   order_postcode_required:'Postcode',
   order_carton_receipt:'Collection or shipping',
+  order_carton_subtotal:'Subtotal for the selected cartons: €{gross} including 19% German VAT. Shipping is extra if applicable.',
   order_carton_undecided:'Undecided',
   order_carton_pickup:'Collection in Hamburg (22415)',
   order_carton_shipping:'Shipping within Germany',
@@ -1312,7 +1315,7 @@ setLang(initial);
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 })();
 </script>
-<script src="assets/direct-order.js?v=20261114-carton-receipt"></script>
+<script src="assets/direct-order.js?v=20261114-carton-subtotal"></script>
 <script src="assets/consent.js?v=20260903c"></script>
 </body>
 </html>

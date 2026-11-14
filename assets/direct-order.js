@@ -23,14 +23,19 @@
     const t = I18N[document.documentElement.lang] || I18N.de;
     if (product.value === 'trolley') return country.value === localDeliveryCountries.trolley ? t.local_trolley_desc : t.trolley_country;
     if (product.value === 'swabs') return t.local_swabs_desc;
-    if (product.value === 'swabs-de') return country.value === localDeliveryCountries['swabs-de'] ? t.local_swabs_de : t.swabs_de_country;
-    const brush = ['mini', 'large'].includes(form.elements.product.value);
-    const quantity = Number(form.elements.quantity.value);
+    const quantity = Number(quantityInput.value);
+    const money = value => value.toLocaleString(document.documentElement.lang, {minimumFractionDigits:2, maximumFractionDigits:2});
+    if (product.value === 'swabs-de') {
+      if (country.value !== localDeliveryCountries['swabs-de']) return t.swabs_de_country;
+      if (!Number.isInteger(quantity) || quantity < 2 || quantity > 99999) return t.local_swabs_de;
+      const subtotal = t.order_carton_subtotal.replace('{gross}', money(219 * quantity));
+      return subtotal + ' ' + t.local_swabs_de;
+    }
+    const brush = ['mini', 'large'].includes(product.value);
     if (brush && quantity === 10 && country.value === 'ES') return t.brush_ten_price;
     if (brush && quantity === 100 && ['ES', 'DE'].includes(country.value)) return t.brush_hundred_price;
     const bulkNet = product.value === 'clips-bulk' ? ({24:24, 100:80})[quantity] : undefined;
     if (bulkNet !== undefined && country.value === 'ES') {
-      const money = value => value.toLocaleString(document.documentElement.lang, {minimumFractionDigits:2, maximumFractionDigits:2});
       return t.order_bulk_price.replace('{net}', money(bulkNet)).replace('{gross}', money(bulkNet * 1.21));
     }
     return t.brush_other;
