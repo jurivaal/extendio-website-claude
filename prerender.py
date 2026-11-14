@@ -167,6 +167,14 @@ def render_language(lang):
         replacement = ld_match.group(1) + '\n' + json.dumps(data, ensure_ascii=False, indent=2) + '\n' + ld_match.group(3)
         out = out[:ld_match.start()] + replacement + out[ld_match.end():]
     out = re.sub(r'href="#[^"]*"', lambda m: 'href="/' + lang + '/' + m.group(0)[6:], out)
+    if lang == 'es':
+        trolley_card = out.index('data-i18n="local_trolley"')
+        end_of_card = out.index('</div></article>', trolley_card)
+        trolley_options = (
+            '<a class="guide-link" href="/es/carrito-peluqueria/">'
+            'Ver también el carrito de devolución y el usado</a>'
+        )
+        out = out[:end_of_card] + trolley_options + out[end_of_card:]
     if lang == 'es' and es_trade:
         out = out.replace('<form id="order-enquiry"', es_trade + '\n      <form id="order-enquiry"', 1)
     target = pathlib.Path(__file__).parent / lang / 'index.html'
