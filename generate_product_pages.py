@@ -2,6 +2,7 @@
 """Generate static, crawlable DE/ES/EN product guide pages."""
 from pathlib import Path
 from html import escape
+from urllib.parse import quote, urlencode
 import json
 
 ROOT = Path(__file__).parent
@@ -120,11 +121,24 @@ def page(product, lang):
         primary_url = escape(enquiry_url, quote=True)
         primary_attr = primary_target = ""
         direct_link = ""
+        pickup_message = (
+            "Hola, me interesa el carrito de devolución sin uso de 50 €. "
+            "¿Sigue disponible para recoger en Alicante? "
+            "¿Podéis confirmarme qué accesorios incluye?"
+        )
+        pickup_whatsapp = "https://wa.me/34634223898?text=" + quote(pickup_message)
+        pickup_email = "mailto:extendio.es@gmail.com?" + urlencode({
+            "subject": "Recogida del carrito de devolución de 50 €",
+            "body": pickup_message,
+        }, quote_via=quote)
         wallapop_offers = (
             '<p class="note"><strong>Devolución sin uso · 50 €.</strong> '
             'Desmontado, en su caja. Recogida en Alicante con cita previa. '
             '<a href="https://es.wallapop.com/item/carrito-peluqueria-extendio-devolucion-sin-uso-1319647753" '
-            'target="_blank" rel="noopener">Ver la devolución en Wallapop</a></p>'
+            'target="_blank" rel="noopener">Ver la devolución en Wallapop</a><br>'
+            f'<a href="{escape(pickup_whatsapp, quote=True)}" target="_blank" rel="noopener">'
+            'Consultar recogida por WhatsApp</a> · '
+            f'<a href="{escape(pickup_email, quote=True)}">Consultar recogida por correo</a></p>'
             '<p class="note"><strong>Usado en buen estado · 30 €.</strong> '
             'Recogida en Alicante con cita previa o envío por Wallapop. '
             'La plataforma muestra el total antes de pagar. '
