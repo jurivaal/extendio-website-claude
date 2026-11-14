@@ -2,7 +2,7 @@
 """Generate static, crawlable DE/ES/EN product guide pages."""
 from pathlib import Path
 from html import escape
-from urllib.parse import quote, urlencode
+from urllib.parse import quote
 import json
 
 ROOT = Path(__file__).parent
@@ -127,10 +127,8 @@ def page(product, lang):
             "¿Podéis confirmarme qué accesorios incluye?"
         )
         pickup_whatsapp = "https://wa.me/34634223898?text=" + quote(pickup_message)
-        pickup_email = "mailto:extendio.es@gmail.com?" + urlencode({
-            "subject": "Recogida del carrito de devolución de 50 €",
-            "body": pickup_message,
-        }, quote_via=quote)
+        pickup_subject = quote("Recogida del carrito de devolución de 50 €")
+        pickup_email = f"mailto:extendio.es@gmail.com?subject={pickup_subject}&body={quote(pickup_message)}"
         wallapop_offers = (
             '<p class="note"><strong>Devolución sin uso · 50 €.</strong> '
             'Desmontado, en su caja. Recogida en Alicante con cita previa. '
@@ -138,7 +136,7 @@ def page(product, lang):
             'target="_blank" rel="noopener">Ver la devolución en Wallapop</a><br>'
             f'<a href="{escape(pickup_whatsapp, quote=True)}" target="_blank" rel="noopener">'
             'Consultar recogida por WhatsApp</a> · '
-            f'<a href="{escape(pickup_email, quote=True)}">Consultar recogida por correo</a></p>'
+            f'<a href="{pickup_email}">Consultar recogida por correo</a></p>'
             '<p class="note"><strong>Usado en buen estado · 30 €.</strong> '
             'Recogida en Alicante con cita previa o envío por Wallapop. '
             'La plataforma muestra el total antes de pagar. '
