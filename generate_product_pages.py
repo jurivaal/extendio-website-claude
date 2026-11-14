@@ -104,6 +104,7 @@ def page(product, lang):
     direct_link = f'<a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>'
     wallapop_offers = ""
     if product == "trolley" and lang == "es":
+        d["pills"] = ["Altura regulable de 70 a 104 cm", "Bandeja de 44,6 × 37,6 cm", *d["pills"][1:]]
         c["buy"] = "Consultar carrito nuevo · 65 €"
         primary_url = escape(enquiry_url, quote=True)
         primary_attr = primary_target = ""
