@@ -104,6 +104,11 @@ def page(product, lang):
     direct_link = f'<a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>'
     if lang == "es" and product in ("clips1", "clips2"):
         direct_link += '<p class="note"><a class="back" href="/es/#pinzas-profesionales">Ver lotes de 24 y 100 pinzas</a></p>'
+    if lang == "de" and product == "swabs":
+        direct_link += (
+            '<p class="note"><a class="back" href="/de/?product=swabs-de&amp;quantity=1#order-enquiry">'
+            'Großhandel: vollen Karton mit 400 Packungen à 200 Stück anfragen</a></p>'
+        )
     wallapop_offers = ""
     if product == "trolley" and lang == "es":
         d["pills"] = ["Altura regulable de 70 a 104 cm", "Bandeja de 44,6 × 37,6 cm", *d["pills"][1:]]
