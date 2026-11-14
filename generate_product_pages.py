@@ -98,8 +98,16 @@ def page(product, lang):
         amazon = f"/{lang}/#stock-status"
         c.update(buy={"de":"Status ansehen", "es":"Ver estado", "en":"View status"}[lang], price=status, finalp=status, trust3p=status, market_scope={"de":"Nur Spanien.","es":"Solo España.","en":"Spain only."}[lang])
         d.update(lead=status, faq=[({"de":"Wie kaufe ich einen neuen Wagen?","es":"¿Cómo compro un carrito nuevo?","en":"How do I buy a new trolley?"}[lang],status)], factp=status)
+    primary_url = amazon
+    primary_attr = f" {buy_attr}"
+    primary_target = ' target="_blank" rel="noopener"'
+    direct_link = f'<a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>'
     wallapop_offers = ""
     if product == "trolley" and lang == "es":
+        c["buy"] = "Consultar carrito nuevo · 65 €"
+        primary_url = escape(enquiry_url, quote=True)
+        primary_attr = primary_target = ""
+        direct_link = ""
         wallapop_offers = (
             '<p class="note"><strong>Devolución sin uso · 50 €.</strong> '
             'Desmontado, en su caja. Recogida en Alicante con cita previa. '
@@ -128,12 +136,12 @@ def page(product, lang):
     schema = {"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":d["title"],"description":d["meta"],"image":"https://extendio.es"+(DATA[product].get("poster") or DATA[product]["image"]),"url":url,"isPartOf":{"@type":"WebSite","name":"Extendio","url":"https://extendio.es/"},"about":{"@type":"Thing","name":d["title"],"sameAs":amazon_base}},{"@type":"FAQPage","mainEntity":faq_schema}]}
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(d["title"])} | Extendio</title><meta name="description" content="{escape(d["meta"])}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}">{alts}<meta property="og:type" content="product"><meta property="og:title" content="{escape(d["title"])}"><meta property="og:description" content="{escape(d["meta"])}"><meta property="og:url" content="{url}"><meta property="og:image" content="https://extendio.es{DATA[product].get("poster") or DATA[product]["image"]}"><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/product-guide.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script><script src="/assets/consent.js?v=20260903" defer></script></head><body>
 <header class="top"><div class="wrap"><a href="/{lang}/"><img class="logo" src="/assets/logo.png" alt="Extendio"></a><a class="back" href="/{lang}/#produkte">← {c["back"]}</a><nav class="langs" aria-label="Language">{langlinks}</nav></div></header>
-<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" {buy_attr} data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p><a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>{wallapop_offers}</div></section></div>
+<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn"{primary_attr} data-cta-position="product_guide_top" href="{primary_url}"{primary_target}>{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p>{direct_link}{wallapop_offers}</div></section></div>
 <section class="section white" id="details"><div class="wrap"><h2>{c["details"]}</h2><div class="grid">{features}</div></div></section>
 {reviews}
 <section class="section"><div class="wrap"><h2>{c["faq"]}</h2>{faqs}</div></section>
 <section class="section trust"><div class="wrap"><h2>{c["trust"]}</h2><div class="grid"><article class="box"><h3>{fact_h}</h3><p>{fact_p}</p></article><article class="box"><h3>{c["trust2h"]}</h3><p>{c["trust2p"]}</p></article><article class="box"><h3>{c["trust3h"]}</h3><p>{c["trust3p"]}</p></article></div></div></section>
-<section class="final"><h2>{c["finalh"]}</h2><p>{c["finalp"]} {c["market_scope"]}</p><a class="btn" {buy_attr} data-cta-position="product_guide_bottom" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a></section></main>
+<section class="final"><h2>{c["finalh"]}</h2><p>{c["finalp"]} {c["market_scope"]}</p><a class="btn"{primary_attr} data-cta-position="product_guide_bottom" href="{primary_url}"{primary_target}>{c["buy"]}</a></section></main>
 <footer><div class="wrap foot"><div><img src="/assets/logo.png" alt="Extendio"><p>Extendio · Alicante</p></div><div><p><a href="/{lang}/">{c["home"]}</a><br><a href="/{lang}/#grosshandel">B2B / Wholesale</a></p></div><div class="legal"><a href="/legal.html">{c["legal"]}</a><a href="/privacy.html">{c["privacy"]}</a><a href="/cookies.html">{c["cookies"]}</a><a href="#" data-cookie-settings>{c["settings"]}</a></div></div></footer>
 <script>document.addEventListener('click',function(e){{const a=e.target.closest('[data-buy]');if(a&&window.trackExtendioEvent)window.trackExtendioEvent('amazon_click',{{product_id:a.dataset.buy,marketplace:new URL(a.href).hostname,language:'{lang}',cta_position:a.dataset.ctaPosition,link_url:a.href}})}});if(matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('video').forEach(v=>{{v.removeAttribute('autoplay');v.pause()}});</script></body></html>"""
 
