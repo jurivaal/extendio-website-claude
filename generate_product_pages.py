@@ -98,13 +98,18 @@ def page(product, lang):
         amazon = f"/{lang}/#stock-status"
         c.update(buy={"de":"Status ansehen", "es":"Ver estado", "en":"View status"}[lang], price=status, finalp=status, trust3p=status, market_scope={"de":"Nur Spanien.","es":"Solo España.","en":"Spain only."}[lang])
         d.update(lead=status, faq=[({"de":"Wie kaufe ich einen neuen Wagen?","es":"¿Cómo compro un carrito nuevo?","en":"How do I buy a new trolley?"}[lang],status)], factp=status)
-    returned_offer = ""
+    wallapop_offers = ""
     if product == "trolley" and lang == "es":
-        returned_offer = (
+        wallapop_offers = (
             '<p class="note"><strong>Devolución sin uso · 50 €.</strong> '
             'Desmontado, en su caja. Recogida en Alicante con cita previa. '
             '<a href="https://es.wallapop.com/item/carrito-peluqueria-extendio-devolucion-sin-uso-1319647753" '
             'target="_blank" rel="noopener">Ver la devolución en Wallapop</a></p>'
+            '<p class="note"><strong>Usado en buen estado · 30 €.</strong> '
+            'Recogida en Alicante con cita previa o envío por Wallapop. '
+            'La plataforma muestra el total antes de pagar. '
+            '<a href="https://es.wallapop.com/item/carrito-peluqueria-extendio-usado-buen-estado-1319648802" '
+            'target="_blank" rel="noopener">Ver el carrito usado en Wallapop</a></p>'
         )
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="https://extendio.es/{l}/{ROUTES[product][l]}/">' for l in ("de","es","en"))
     alts += f'\n<link rel="alternate" hreflang="x-default" href="https://extendio.es/en/{ROUTES[product]["en"]}/">'
@@ -123,7 +128,7 @@ def page(product, lang):
     schema = {"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":d["title"],"description":d["meta"],"image":"https://extendio.es"+(DATA[product].get("poster") or DATA[product]["image"]),"url":url,"isPartOf":{"@type":"WebSite","name":"Extendio","url":"https://extendio.es/"},"about":{"@type":"Thing","name":d["title"],"sameAs":amazon_base}},{"@type":"FAQPage","mainEntity":faq_schema}]}
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(d["title"])} | Extendio</title><meta name="description" content="{escape(d["meta"])}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="{url}">{alts}<meta property="og:type" content="product"><meta property="og:title" content="{escape(d["title"])}"><meta property="og:description" content="{escape(d["meta"])}"><meta property="og:url" content="{url}"><meta property="og:image" content="https://extendio.es{DATA[product].get("poster") or DATA[product]["image"]}"><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/product-guide.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script><script src="/assets/consent.js?v=20260903" defer></script></head><body>
 <header class="top"><div class="wrap"><a href="/{lang}/"><img class="logo" src="/assets/logo.png" alt="Extendio"></a><a class="back" href="/{lang}/#produkte">← {c["back"]}</a><nav class="langs" aria-label="Language">{langlinks}</nav></div></header>
-<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" {buy_attr} data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p><a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>{returned_offer}</div></section></div>
+<main><div class="wrap"><div class="crumb"><a href="/{lang}/">{c["home"]}</a> / {escape(d["title"])}</div><section class="hero"><div class="media">{media}</div><div><p class="kicker">{c["kicker"]}</p><h1>{escape(d["title"])}</h1><p class="lead">{escape(d["lead"])}</p><div class="facts">{pills}</div><div class="actions"><a class="btn" {buy_attr} data-cta-position="product_guide_top" href="{amazon}" target="_blank" rel="noopener">{c["buy"]}</a><a class="btn secondary" href="#details">{c["details"]}</a></div><p class="note">{c["price"]} <strong>{c["market_scope"]}</strong></p><a class="back" href="{escape(enquiry_url, quote=True)}">{c["direct"]} →</a>{wallapop_offers}</div></section></div>
 <section class="section white" id="details"><div class="wrap"><h2>{c["details"]}</h2><div class="grid">{features}</div></div></section>
 {reviews}
 <section class="section"><div class="wrap"><h2>{c["faq"]}</h2>{faqs}</div></section>
