@@ -11,6 +11,11 @@
   const postcodeLabel = postcodeField.querySelector('[data-i18n]');
   const unit = form.querySelector('#order-unit');
   const localDeliveryCountries = { trolley: 'ES', 'swabs-de': 'DE' };
+  const sectionLinks = Array.from(document.querySelectorAll('a[href*="#"]')).filter(link => {
+    const target = new URL(link.href);
+    return target.origin === location.origin && target.pathname === location.pathname
+      && !target.search && target.hash;
+  });
   let countryChosen = false;
   let receiptProduct;
   const presets = document.createElement('div');
@@ -70,6 +75,9 @@
       if (shareableLot) selected.hash = 'order-enquiry';
       if (selected.href !== location.href) history.replaceState(null, '', selected);
     }
+    sectionLinks.forEach(link => {
+      link.href = selected.pathname + selected.search + link.hash;
+    });
     presets.replaceChildren();
     const lotUnits = {
       swabs: t.order_boxes,
