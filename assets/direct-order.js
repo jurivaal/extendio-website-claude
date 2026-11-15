@@ -18,6 +18,7 @@
   });
   let countryChosen = false;
   let receiptProduct;
+  let syncedSearch;
   const presets = document.createElement('div');
   presets.className = 'order-presets';
   presets.style.cssText = 'grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center';
@@ -48,7 +49,7 @@
   };
   const unitKey = () => ({'swabs-de':'order_unit_swabs_de', swabs:'order_unit_swabs', 'swabs-pack':'order_unit_swabs_pack',
     clips1:'order_unit_clips_set', clips2:'order_unit_clips_set', 'clips-bulk':'order_unit_clips'})[product.value] || 'order_unit_items';
-  const refresh = () => {
+  const refresh = ({ preserveSection = false } = {}) => {
     const t = I18N[document.documentElement.lang] || I18N.de;
     const localTrolley = product.value === 'trolley';
     const deliveryCountry = localDeliveryCountries[product.value];
@@ -72,9 +73,10 @@
       selected.searchParams.set('quantity', quantityInput.value);
       if (deliveryCountry) selected.searchParams.delete('country');
       else selected.searchParams.set('country', country.value);
-      if (shareableLot) selected.hash = 'order-enquiry';
+      if (shareableLot && !preserveSection) selected.hash = 'order-enquiry';
       if (selected.href !== location.href) history.replaceState(null, '', selected);
     }
+    syncedSearch = selected.search;
     sectionLinks.forEach(link => {
       link.href = selected.pathname + selected.search + link.hash;
     });
@@ -103,11 +105,17 @@
     }
   };
   const defaults = lang => { if (!countryChosen) country.value = lang === 'es' ? 'ES' : 'DE'; };
-  defaults(document.documentElement.lang);
-  // Only recognised products and whole, positive quantities can prefill an enquiry.
-  const params = new URLSearchParams(location.search);
-  const requestedProduct = params.get('product');
-  if (Array.from(product.options).some(option => option.value === requestedProduct)) {
+  const restoreSelection = () => {
+    const params = new URLSearchParams(location.search);
+    const requestedProduct = params.get('product');
+    countryChosen = false;
+    defaults(document.documentElement.lang);
+    // Only recognised products and whole, positive quantities can prefill an enquiry.
+    if (!Array.from(product.options).some(option => option.value === requestedProduct)) {
+      product.selectedIndex = 0;
+      quantityInput.value = 1;
+      return;
+    }
     product.value = requestedProduct;
     const requestedCountry = localDeliveryCountries[requestedProduct] || params.get('country');
     if (['ES', 'DE'].includes(requestedCountry)) {
@@ -118,7 +126,13 @@
     // Preserve historical full-carton links that used retail-pack counts.
     const requestedQuantity = requestedProduct === 'swabs' && [240, 480, 720].includes(rawQuantity) ? rawQuantity / 240 : rawQuantity;
     quantityInput.value = Number.isInteger(requestedQuantity) && requestedQuantity >= 1 && requestedQuantity <= 99999 ? requestedQuantity : 1;
-  }
+  };
+  restoreSelection();
+  window.addEventListener('popstate', () => {
+    if (location.search === syncedSearch) return;
+    restoreSelection();
+    refresh({ preserveSection: true });
+  });
   country.addEventListener('change', () => { countryChosen = true; refresh(); });
   form.addEventListener('input', refresh);
   form.addEventListener('change', refresh);
