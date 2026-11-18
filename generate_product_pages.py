@@ -108,7 +108,7 @@ def page(product, lang):
     if lang == "de" and product == "swabs":
         direct_link += (
             '<p class="note"><a class="back" href="/de/?product=swabs-de&amp;quantity=1#order-enquiry">'
-            'Großhandel: vollen Karton mit 400 Packungen à 200 Stück anfragen</a></p>'
+            'Großhandel: vollen Karton mit 420 Packungen à 200 Stück anfragen</a></p>'
         )
     wallapop_offers = ""
     if product == "trolley" and lang == "es":

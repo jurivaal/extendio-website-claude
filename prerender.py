@@ -173,7 +173,7 @@ def render_language(lang):
         end_of_guide = out.index('</a>', swab_guide) + len('</a>')
         carton_link = (
             f'<a class="guide-link" href="{html.escape(carton_url, quote=True)}">'
-            'Vollen Karton mit 400 Packungen à 200 Stück anfragen</a>'
+            'Vollen Karton mit 420 Packungen à 200 Stück anfragen</a>'
         )
         out = out[:end_of_guide] + '\n          ' + carton_link + out[end_of_guide:]
         carton_offer = out.index('data-order-preset="swabs-de"')
